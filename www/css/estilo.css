@@ -1,0 +1,224 @@
+@charset "utf-8";
+/* CSS Document */
+
+@-webkit-viewport{width:device-width;}
+@-moz-viewport{width:device-width;}
+@-o-viewport{width:device-width;}
+@viewport{width:device-width;}
+@-ms-viewport{width:device-width;}
+
+
+#tituloh2{
+color:white;
+text-align: center
+
+}
+#pg-third
+{
+	background: url(img/Fondo1.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#contentReport
+{
+	background: url(img/Fondo1.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+#titulo{
+color:white;
+}
+#titulo{
+color:white;
+text-align: center
+}
+#titulobold{
+color:white;
+font-weight:bold;
+text-align: center
+}
+#texto{
+color:white;
+font-size:80%
+
+}
+#ctnt {
+
+width: 100%;
+
+background-color: #f00;        
+margin: 0px;
+
+left: 0px;
+}
+#btnsypic {
+  float: left;
+  width: 10%;
+}
+#homebtn {
+  float: left;
+  width: 10%;
+  padding-top:-5px;
+}
+#simg {
+  margin-left: 50%;
+}
+#logomintic {
+  margin-left: 20%;
+}
+#btnReport {
+  margin-left: 35%;
+}
+
+#img {
+	 width: 100%;
+	 height: auto;
+}
+#head{
+	width:90%;
+	margin-left:2%;
+	height:5em;
+	border-top:solid 10px #f8882a;
+	border-left:solid 10px #f8882a;
+	border-right:solid 10px #f8882a;
+	border-top-right-radius:20px;
+	border-top-left-radius:20px;
+	background-image:url(../images/bg.jpg);
+	box-shadow: inset 0px 0px 50px #000;
+	}
+#logo-h{
+	width:80%;
+	float:left;
+	position:relative;
+	background-color:#090;
+	margin-left:10%;
+	}
+#inicio{
+	width:90%;
+	margin-left:3%;
+	height:20em;
+	float:left;
+	position:relative;
+	background-image:url(../images/bg.jpg);
+	border:solid 10px #f8882a;
+	border-radius:30px;
+	box-shadow: inset 0px 0px 50px #000;
+	}
+.btn{
+	width:100%;
+	height:45%;
+	float:left;
+	position:relative;
+	}
+#btn-e{
+	background-image:url(../images/btn1.png);
+	float:left;
+	position:relative;
+	background-size:65%;
+	height:100%;
+	width:100%;
+	background-repeat:no-repeat;
+	background-position:center;
+	margin-top:3%;
+	}
+#btn-e:hover{
+	background-image:url(../images/btn1-h.png);
+	}
+#btn-v{
+	background-image:url(../images/btn2.png);
+	float:left;
+	position:relative;
+	background-size:65%;
+	height:100%;
+	width:100%;
+	background-repeat:no-repeat;
+	background-position:center;
+	margin-top:3%;
+	}
+#btn-v:hover{
+	background-image:url(../images/btn2-h.png);
+	}
+#footer{
+	width:100%;
+	height:15%;
+	position:absolute;
+	bottom:0px;
+	}
+#bg-footer{
+	background-image:url(../images/motivo.jpg);
+	background-color:#c10a26;
+	background-repeat:repeat-x;
+	background-position:bottom;
+	height:100%;
+	background-size:20%;
+	}
+#kids{
+	height:90%;
+	position:absolute;
+	bottom:0px;
+	width:80%;
+	}
+#kids img{
+	max-width:100%;
+	bottom:0px;
+	max-height:100%;
+	}
+#title{
+	width:100%;
+	text-align:center;
+	}
+#title img{
+	max-height:100%;
+	}
+.entidad{
+	width:100%;
+	float:left;
+	position:relative;
+	height:5em;
+	}
+.logo-ent{
+	width:30%;
+	float:left;
+	position:relative;
+	text-align:center;
+	}
+.logo-ent img{
+	max-height:100%;
+	max-width:100%;
+	}
+.texto-ent{
+	width:70%;
+	float:left;
+	position:relative;
+	}
+#mas{
+ width:3em;
+ height:3em;
+ background-image:url(../images/plus.png);
+ float:left;
+ position:relative;
+ background-size:100%;
+ background-repeat:no-repeat;
+ }
+ 
+#btns{
+ width:100%;
+ height:2.5em;
+ float:left;
+ position:relative;
+ }
+#volver{
+ float:right;
+ position:relative;
+ background-image:url(../images/volver.png);
+ height:40px;
+ width:40px;
+ background-size:100%;
+ background-repeat:no-repeat;
+}

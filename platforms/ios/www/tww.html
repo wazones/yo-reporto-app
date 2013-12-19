@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Load the AJAX API-->
+  <meta charset="utf-8" />
+  <script src="cordova.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/victimas.css"/>
+  <link rel="stylesheet" type="text/css" href="css/estilo.css"/>
+  <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css" />
+  <script src="js/jquery-1.9.1.min.js"></script>
+  <script src="js/jquery.mobile-1.3.2.min.js"></script>
+   <script type="text/javascript" src="js/navigator.js"  ></script>
+      
+      
+     
+    
+  </head>
+
+  <body>
+  
+    	
+		<div data-role="page" style="background-image:url(img/Fondo2.jpg);">
+			<div data-role="header" data-position="inline">
+				<div data-role="navbar" class="ui-navbar ui-mini" role="navigation">
+					<ul class="ui-grid-b">
+						<li class="ui-block-a">
+						 <input class="ui-btn-inner" id="btnReporte"  type="button" value="Reportar" onclick="gotoReport()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-b">
+							 <input class="ui-btn-inner" id="btnGraphs"  type="button" value="Indicadores"  data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						
+						<li class="ui-block-c">
+							<input class="ui-btn-inner" id="btnTwitter"  type="button" value="@UNGRD" onclick="gotoTwitter()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-d">
+							<input class="ui-btn-inner" id="btnAbout"  type="button" value="Acerca de" onclick="gotoAbout()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+					</ul>
+				</div>
+
+				<h1>Twitter</h1>
+				
+				
+
+			</div>
+			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo2.jpg); border:none;">
+			
+			
+			<script>
+			
+			$.ajax({ type:"GET", url:"https://api.twitter.com/1.1/statuses/mentions_timeline.json", headers:'Authorization: OAuth oauth_consumer_key="Tn6r0Z1A5KQyLn9JSvGcUg", oauth_nonce="9817b959921f48a54159dc99265a549b", oauth_signature="G8IAeXX%2FhrXAZceuu0kNfSiOk%2Bw%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386341838", oauth_token="280834227-AHrkpZpjOCFfAOUtPZTs1A2tdCu4dltIDzwtslpU", oauth_version="1.0"', data:{'count':'2'} }) .done(function(data) { console.log(data); });
+			</script>
+    			
+   </div>
+   </div>
+  
+</body>
+</html>

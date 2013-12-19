@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <link rel="stylesheet" type="text/css" href="css/victimas.css"/>
+		<link rel="stylesheet" type="text/css" href="css/estilo.css"/>
+		<link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css" />
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/jquery-1.9.1.min.js"></script>
+ 		 <script src="js/jquery.mobile-1.3.2.min.js"></script>
+ 		 
+ 		 <script type="text/javascript" src="js/main.js"></script>
+      <script type="text/javascript" src="js/mapfunctions.js"></script>
+      <script type="text/javascript" src="js/Map.js"></script>
+      <script type="text/javascript" src="js/googleapi.js"></script>
+      
+       <script type="text/javascript" src="js/graphs.js"></script>
+       
+       <script type="text/javascript" src="js/twitter.js" ></script>
+        
+        <title>Hello World</title>
+        <script>
+        
+        document.addEventListener("deviceready", testConnection, false);
+     	 $(document).on('pageinit', '#pg-report', function(){
+     	 	//alert("KKK");
+ 		 	onDeviceReady();
+  			start();
+		});
+		$(document).on('pageinit', '#pg-graphs', function(){
+     	 	onGraphsReady();
+		});
+		$(document).on('pageinit', '#pg-twitter', function(){
+     	 	onTwitterReady();
+		});
+		
+  			
+			function testConnection()
+			{
+			   
+				 var networkState=navigator.network.connection.type;
+                    if (networkState==Connection.NONE)
+                    {
+                        //alert("no hay conexion a internet. Intenta Mas Tarde");
+                        navigator.notification.alert('no hay conexion a internet. Intenta Mas Tarde',null,'Yo Reporto','Aceptar');
+
+                        if(navigator.app)
+                        {
+      						  navigator.app.exitApp();
+						}
+						else if(navigator.device)
+						{
+       						 navigator.device.exitApp();
+						}
+                    }
+                     else 
+                    {
+                       var value = window.localStorage.getItem("NombreUsuario");
+		 	   		   if(value!=null)
+		 	    	   {
+		 		    	  $.mobile.navigate("#pg-third",{allowSamePageTransition:false,reloadPage:false,changeHash:true,transition:"none"});
+		 			   }
+		 			   else
+		 			   {
+                          $.mobile.navigate("#pg-second",{allowSamePageTransition:false,reloadPage:false,changeHash:true,transition:"none"});
+                       }
+                    }
+			}
+    	
+    	
+    	
+ 		
+ 		function goThird()
+ 		{
+ 			
+        
+         
+         		if($("#txtNombre").val()=="")
+  			    {
+   					//alert("");
+   					 navigator.notification.alert('Por Favor Ingresa Tu Nombre',null,'Yo Reporto','Aceptar');
+  				}
+  				else if($("#txtTelefono").val()=="")
+  			    {
+   					//alert("");
+   					navigator.notification.alert('Por Favor Ingresa Tu Telefono',null,'Yo Reporto','Aceptar');
+  				}
+  				else if($("#txtEmail").val()=="")
+  			    {
+   					//alert("");
+   					navigator.notification.alert('Por Favor Ingresa Tu e-mail',null,'Yo Reporto','Aceptar');
+  				}
+         		else
+         		{
+             		window.localStorage.setItem("NombreUsuario", $("#txtNombre").val());
+             		window.localStorage.setItem("TelefonoUsuario", $("#txtTelefono").val());
+             		window.localStorage.setItem("EmailUsuario", $("#txtEmail").val());
+             		window.localStorage.setItem("EntidadUsuario", $("#txtEntidad").val());
+                	 $.mobile.navigate("#pg-third",{allowSamePageTransition:true,reloadPage:true,changeHash:true,transition:"none"});
+                }
+ 		}//gothird
+ 		
+ 		
+ 		function gotoReport()
+ 		{
+ 			$.mobile.navigate("#pg-report",{allowSamePageTransition:true,reloadPage:false,changeHash:true,transition:"slide",speed:200});
+ 		}
+ 		function gotoGraphs()
+ 		{
+ 			 $.mobile.navigate("#pg-graphs",{allowSamePageTransition:true,reloadPage:false,changeHash:true,transition:"slide",speed:500});
+ 		}
+ 		function gotoTwitter()
+ 		{
+ 			 $.mobile.navigate("#pg-twitter",{allowSamePageTransition:true,reloadPage:false,changeHash:true,transition:"slide",speed:800});
+ 		}
+ 		function gotoAbout()
+ 		{
+ 			 $.mobile.navigate("#pg-about",{allowSamePageTransition:true,reloadPage:false,changeHash:true,transition:"slide",speed:50});
+ 		}
+ 		function gotoHome()
+ 		{
+ 			 $.mobile.navigate("#pg-third",{allowSamePageTransition:true,reloadPage:false,changeHash:true,transition:"slide",speed:50});
+ 		}
+ 		
+ 		
+ 		</script>
+    </head>
+    
+    
+    <body>
+    <div id="deviceready" class="blink"></div>
+    
+    <!-- second -->
+		<div id="pg-second" data-role="page"  style="background-image:url(img/Fondo2.png);">
+			<div data-role="header" data-position="fixed">
+			    <p>Datos Personales</p>
+			</div>
+			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo2.png); border:none;padding-bottom:120%;">
+					<form id="secondForm">	
+        			Nombre: 		 
+    	 			<input id="txtNombre" type="text" "/>
+   		 			<br>
+   		 			Telefono:
+     	 			<input id="txtTelefono" type="text" />
+    	 			<br>
+   		 			E-Mail:
+     	 			<input id="txtEmail" type="text" />
+     	  			<br>
+   		 			Entidad:
+     	 			<input id="txtEntidad" type="text" />
+    	 			<br>
+     	 			</form>
+     	 			<br>
+          			<button id="btnGuardarConfig" onclick="goThird()">Guardar Datos</button>
+       				<br>
+			</div>
+		</div>
+		<!--third -->
+		<div id="pg-third" data-role="page" style="background-image:url(img/Fondo1.png);">
+			<div data-role="header" data-position="fixed">
+				<h1>Inicio</h1>
+			</div>
+			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo1.png); border:none;padding-bottom:120%;">
+				<button id="btn-report" onclick="gotoReport()">Reportar</button>
+				<button id="btn-stats" onclick="gotoGraphs()">Indicadores</button>
+				<button id="btn-twitter" onclick="gotoTwitter()">@UNGRD</button>	
+				<button id="btn-about" onclick="gotoAbout()">Acerca de</button>	
+			</div><!--content-->
+			<div data-role="footer" id="footer">
+    			<img src="img/logopresidencia.png" alt=" " />
+    		</div><!--Footer-->
+		</div><!--page-->
+		<!--cierra third-->
+		
+		 <!-- Report -->
+		<div id="pg-report" data-role="page"">
+		
+			<div data-role="header" data-position="fixed">
+				<div data-role="navbar" class="ui-navbar ui-mini" role="navigation">
+					<ul class="ui-grid-b">
+						<li class="ui-block-a">
+						 <input class="ui-btn-inner" id="btnReporte"  type="button" value="Reportar"  data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-b">
+						 <input class="ui-btn-inner" id="btnReporte"  type="button" value="Indicadores" onclick="gotoGraphs()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-c">
+							<input class="ui-btn-inner" id="btnTwitter"  type="button" value="@UNGRD" onclick="gotoTwitter()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-d">
+							<input class="ui-btn-inner" id="btnAbout"  type="button" value="Acerca de" onclick="gotoAbout()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+					</ul>
+				</div><!--navbar-->
+
+				<h1>Reportar</h1>
+				
+			</div><!--header-->
+			<div data-role="content" style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+				
+					<input id="homebtn" type="image" src="img/home.png" onclick="gotoHome()"></input>
+        		<br>
+			    <form id="myForm">
+  					<select id="selectEvt">
+    					<option>Categoría</option>
+  					</select>
+  					<select id="selectLevel">
+    					<option>Nivel</option>
+  					</select>
+  					<select id="selectMuni">
+    					<option>Municipio</option>
+  					</select>
+				</form> 
+		
+		
+				<!-- Camera -->
+				<div id="btnsypic">
+					<input id="capture" type="image" src="img/btf.png"></input>
+        			<input id="pictureSource" type="image" src="img/bdg.png"></input>
+        		</div>
+        		<div id="simg">
+        			<img src="" id="smallImage" style="display:none;width:85%;height:50%;max-height:30%;"> </img>
+        		</div>
+        		<br>
+        		<!-- Map -->
+        		    
+        			    <div id="map" style="width:100%;height:60%;">
+        			    </div>
+        		    <br>
+    			   <input id="btnReport" name="btnReport" type="image" value="Reportar" src="img/benv.png" />
+    			   <p id="titulobold">Enviar</p>
+			    </div><!--content-->
+			   
+		</div><!--page-->
+		
+		<!--cierra report-->
+        
+        
+        
+        
+       
+       <!--abre graphs-->
+       	<div id="pg-graphs" data-role="page">
+			<div data-role="header" data-position="fixed">
+				<div data-role="navbar" class="ui-navbar ui-mini" role="navigation">
+					<ul class="ui-grid-b">
+						<li class="ui-block-a">
+						 <input class="ui-btn-inner" id="btnReporte"  type="button" value="Reportar" onclick="gotoReport()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-b">
+							 <input class="ui-btn-inner" id="btnGraphs"  type="button" value="Indicadores"  data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						
+						<li class="ui-block-c">
+							<input class="ui-btn-inner" id="btnTwitter"  type="button" value="@UNGRD" onclick="gotoTwitter()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-d">
+							<input class="ui-btn-inner" id="btnAbout"  type="button" value="Acerca de" onclick="gotoAbout()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+					</ul>
+				</div>
+				<h1>Indicadores</h1>
+			</div>
+				
+				<div data-role="content" style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:100%;">
+				<input id="homebtn" type="image" src="img/home.png" onclick="gotoHome()"></input>
+				<br>
+				 <form id="formGraphs">
+  					<select id="selectType">
+    					<option>Linea de Tiempo</option>
+    					<option>Torta</option>
+    					<option>Barras</option>
+  					</select>
+  					<select id="selectDeptGraphs" onchange="getMunicipiosDepto()">
+    					<option>Departamento</option>
+  					</select>
+  					<select id="selectMunGraphs">
+    					<option>Municipio</option>
+  					</select>
+  					
+				</form> 
+				<button  onclick="render()"> PINTAR </button>
+  					
+  					 <div id="chart_div3"></div>
+				 </div>
+			
+			
+	</div>
+       <!--cierra graphs-->
+       
+       
+       <!--abre twitter -->
+       	<div id="pg-twitter" data-role="page">
+			<div data-role="header" data-position="fixed">
+				<div data-role="navbar" class="ui-navbar ui-mini" role="navigation">
+					<ul class="ui-grid-b">
+						<li class="ui-block-a">
+						 <input class="ui-btn-inner" id="btnReporte"  type="button" value="Reportar" onclick="gotoReport()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-b">
+							 <input class="ui-btn-inner" id="btnGraphs"  type="button" value="Indicadores"  onclick="gotoGraphs()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						
+						<li class="ui-block-c">
+							<input class="ui-btn-inner" id="btnTwitter"  type="button" value="@UNGRD"  data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-d">
+							<input class="ui-btn-inner" id="btnAbout"  type="button" value="Acerca de" onclick="gotoAbout()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+					</ul>
+				</div>
+
+				<h1>Twitter</h1>
+				<input id="homebtn" type="image" src="img/home.png" onclick="gotoHome()"></input>
+				<img src="" id="twitterheader" style="width:100%;height:30%;max-height:30%;"> </img>
+				
+			</div>
+			<ul id="tweets" style="display: inline-block; list-style-type: none; padding-right: 20px; vertical-align: middle; "></ul>
+			
+	</div>
+       <!-- cierra twitter-->
+       
+       <!--abre about-->
+       <div id="pg-about" data-role="page">
+			<div data-role="header" data-position="fixed">
+				<div data-role="navbar" class="ui-navbar ui-mini" role="navigation">
+					<ul class="ui-grid-b">
+						<li class="ui-block-a">
+						 <input class="ui-btn-inner" id="btnReporte"  type="button" value="Reportar" onclick="gotoReport()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-b">
+							 <input class="ui-btn-inner" id="btnGraphs"  type="button" value="Indicadores" onclick="gotoGraphs()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						
+						<li class="ui-block-c">
+							<input class="ui-btn-inner" id="btnTwitter"  type="button" value="@UNGRD" onclick="gotoTwitter()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-d">
+							<input class="ui-btn-inner" id="btnAbout"  type="button" value="Acerca de" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+					</ul>
+				</div>
+
+				<h1>Acerca de</h1>
+				
+				
+
+			</div>
+			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo1.png); border:none;padding-bottom:150%;background-repeat: no-repeat;max-height:100%;max-width:100%;">
+    			<input id="homebtn" type="image" src="img/home.png" onclick="gotoHome()"></input>
+    			<h2 id="tituloh2" >Yo Reporto v1.0</h2>
+    			<p id="titulo">UNGRD- Unidad Nacional para la Gestión del Riesgo de Desastres</p>
+    			<p id="titulo">2013 - Derechos Reservados</p>
+    			<img src="img/logoungrd.png" ></img>
+    			<img src="img/logopresidencia.png" ></img>
+    			<img src="img/logomintic.png" ></img>
+    			<p id="titulobold">Autores:</p>
+    			<p id="titulo">Daniel Cárdenas</p>
+    			<p id="titulo">Simón Soriano</p>
+    			<p id="titulo">Daniel Warner</p>
+    			<p id="texto">Tenga en cuenta que esta aplicación requiere acceso a Internet y puede consumir recursos de su plan de datos.</p>
+    			
+   			</div>
+       <!--cierra about-->
+    </body>
+</html>
