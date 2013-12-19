@@ -163,7 +163,7 @@
 			<div data-role="header" data-position="fixed">
 				<h1>Inicio</h1>
 			</div>
-			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo1.png); border:none;padding-bottom:120%;">
+			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo1.png); border:none;padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 				<button id="btn-report" onclick="gotoReport()">Reportar</button>
 				<button id="btn-stats" onclick="gotoGraphs()">Indicadores</button>
 				<button id="btn-twitter" onclick="gotoTwitter()">@UNGRD</button>	
@@ -197,11 +197,11 @@
 				</div><!--navbar-->
 
 				<h1>Reportar</h1>
-				
+				<input id="homebtn" type="image" src="img/home.png" onclick="gotoHome()" ></input>
 			</div><!--header-->
 			<div data-role="content" style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 				
-					<input id="homebtn" type="image" src="img/home.png" onclick="gotoHome()"></input>
+					
         		<br>
 			    <form id="myForm">
   					<select id="selectEvt">
@@ -265,7 +265,7 @@
 				<h1>Indicadores</h1>
 			</div>
 				
-				<div data-role="content" style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:100%;">
+				<div data-role="content" style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 				<input id="homebtn" type="image" src="img/home.png" onclick="gotoHome()"></input>
 				<br>
 				 <form id="formGraphs">
@@ -315,9 +315,10 @@
 
 				<h1>Twitter</h1>
 				<input id="homebtn" type="image" src="img/home.png" onclick="gotoHome()"></input>
-				<img src="" id="twitterheader" style="width:100%;height:30%;max-height:30%;"> </img>
+				
 				
 			</div>
+			<img src="" id="twitterheader" style="width:100%;height:30%;max-height:30%;"> </img>
 			<ul id="tweets" style="display: inline-block; list-style-type: none; padding-right: 20px; vertical-align: middle; "></ul>
 			
 	</div>
@@ -349,7 +350,7 @@
 				
 
 			</div>
-			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo1.png); border:none;padding-bottom:150%;background-repeat: no-repeat;max-height:100%;max-width:100%;">
+			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo1.png); border:none;padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
     			<input id="homebtn" type="image" src="img/home.png" onclick="gotoHome()"></input>
     			<h2 id="tituloh2" >Yo Reporto v1.0</h2>
     			<p id="titulo">UNGRD- Unidad Nacional para la Gestión del Riesgo de Desastres</p>

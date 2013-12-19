@@ -11,6 +11,24 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
+    <access origin="*" />
+    <access origin="http://www.gestiondelriesgo.gov.co/" />
+    <access origin="http://www.gestiondelriesgo.gov.co/" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+    <preference name="UIWebViewBounce" value="true" />
+    <preference name="TopActivityIndicator" value="gray" />
+    <preference name="EnableLocation" value="false" />
+    <preference name="EnableViewportScale" value="false" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="OpenAllWhitelistURLsInWebView" value="false" />
+    <preference name="BackupWebStorage" value="cloud" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="true" />
+    <preference name="DisallowOverscroll" value="true" />
     <feature name="Camera">
         <param name="ios-package" value="CDVCamera" />
     </feature>
@@ -36,22 +54,4 @@
         <param name="ios-package" value="CDVSplashScreen" />
         <param name="onload" value="true" />
     </feature>
-    <access origin="*" />
-    <access origin="http://www.gestiondelriesgo.gov.co/" />
-    <access origin="http://www.gestiondelriesgo.gov.co/" />
-    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
-    <preference name="SuppressesIncrementalRendering" value="false" />
-    <preference name="UIWebViewBounce" value="true" />
-    <preference name="TopActivityIndicator" value="gray" />
-    <preference name="EnableLocation" value="false" />
-    <preference name="EnableViewportScale" value="false" />
-    <preference name="AutoHideSplashScreen" value="true" />
-    <preference name="ShowSplashScreenSpinner" value="true" />
-    <preference name="MediaPlaybackRequiresUserAction" value="false" />
-    <preference name="AllowInlineMediaPlayback" value="false" />
-    <preference name="OpenAllWhitelistURLsInWebView" value="false" />
-    <preference name="BackupWebStorage" value="cloud" />
-    <preference name="fullscreen" value="true" />
-    <preference name="webviewbounce" value="true" />
-    <preference name="DisallowOverscroll" value="true" />
 </widget>

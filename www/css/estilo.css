@@ -7,6 +7,9 @@
 @viewport{width:device-width;}
 @-ms-viewport{width:device-width;}
 
+.homebtn {
+  float:right; width:250px;
+  }
 
 #tituloh2{
 color:white;
@@ -21,14 +24,7 @@ text-align: center
     -o-background-size: cover;
     background-size: cover;
 }
-#contentReport
-{
-	background: url(img/Fondo1.png) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
+
 
 
 #titulo{
@@ -149,6 +145,8 @@ left: 0px;
 	height:15%;
 	position:absolute;
 	bottom:0px;
+	opacity:0.9;
+	background-color:white;
 	}
 #bg-footer{
 	background-image:url(../images/motivo.jpg);
