@@ -130,6 +130,73 @@ function start()
 	
 }//start
 
+function testConnection()
+			{
+			   
+				 var networkState=navigator.network.connection.type;
+                    if (networkState==Connection.NONE)
+                    {
+                        //alert("no hay conexion a internet. Intenta Mas Tarde");
+                        navigator.notification.alert('no hay conexion a internet. Intenta Mas Tarde',null,'Yo Reporto','Aceptar');
+
+                        if(navigator.app)
+                        {
+      						  navigator.app.exitApp();
+						}
+						else if(navigator.device)
+						{
+       						 navigator.device.exitApp();
+						}
+                    }
+                     else 
+                    {
+                       var value = window.localStorage.getItem("NombreUsuario");
+		 	   		   if(value!=null)
+		 	    	   {
+		 	    	   //alert("si usuario");
+		 		    	  $.mobile.navigate("#pg-third",{allowSamePageTransition:false,reloadPage:false,changeHash:true,transition:"none"});
+		 			   }
+		 			   else
+		 			   {
+		 			   //alert("no user");
+                          $.mobile.navigate("#pg-second",{allowSamePageTransition:false,reloadPage:false,changeHash:true,transition:"none"});
+                       }
+                    }
+			}
+    	
+    	
+    	
+ 		
+ 		function goThird()
+ 		{
+ 			
+        
+         
+         		if($("#txtNombre").val()=="")
+  			    {
+   					//alert("");
+   					 navigator.notification.alert('Por Favor Ingresa Tu Nombre',null,'Yo Reporto','Aceptar');
+  				}
+  				else if($("#txtTelefono").val()=="")
+  			    {
+   					//alert("");
+   					navigator.notification.alert('Por Favor Ingresa Tu Telefono',null,'Yo Reporto','Aceptar');
+  				}
+  				else if($("#txtEmail").val()=="")
+  			    {
+   					//alert("");
+   					navigator.notification.alert('Por Favor Ingresa Tu e-mail',null,'Yo Reporto','Aceptar');
+  				}
+         		else
+         		{
+             		window.localStorage.setItem("NombreUsuario", $("#txtNombre").val());
+             		window.localStorage.setItem("TelefonoUsuario", $("#txtTelefono").val());
+             		window.localStorage.setItem("EmailUsuario", $("#txtEmail").val());
+             		window.localStorage.setItem("EntidadUsuario", $("#txtEntidad").val());
+                	 $.mobile.navigate("#pg-third",{allowSamePageTransition:true,reloadPage:true,changeHash:true,transition:"none"});
+                }
+ 		}//gothird
+
 function getCodeEvent(event)
 {
     return mapa.get(event);

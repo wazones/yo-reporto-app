@@ -7,11 +7,23 @@
 @viewport{width:device-width;}
 @-ms-viewport{width:device-width;}
 
+#homebtn {
+  float: left;
+  
+}
+#titulo {
+  
+  padding-top:-5%;
+  color:red;
+}
 
 #tituloh2{
 color:white;
 text-align: center
 
+}
+#tituloh3{
+color:red;
 }
 #pg-third
 {
@@ -21,14 +33,7 @@ text-align: center
     -o-background-size: cover;
     background-size: cover;
 }
-#contentReport
-{
-	background: url(img/Fondo1.png) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
+
 
 
 #titulo{
@@ -61,14 +66,15 @@ left: 0px;
   float: left;
   width: 10%;
 }
+#simg {
+  margin-left: 50%;
+}
 #homebtn {
   float: left;
   width: 10%;
   padding-top:-5px;
 }
-#simg {
-  margin-left: 50%;
-}
+
 #logomintic {
   margin-left: 20%;
 }
@@ -149,6 +155,8 @@ left: 0px;
 	height:15%;
 	position:absolute;
 	bottom:0px;
+	opacity:0.9;
+	background-color:white;
 	}
 #bg-footer{
 	background-image:url(../images/motivo.jpg);
