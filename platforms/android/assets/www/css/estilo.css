@@ -7,14 +7,23 @@
 @viewport{width:device-width;}
 @-ms-viewport{width:device-width;}
 
-.homebtn {
-  float:right; width:250px;
-  }
+#homebtn {
+  float: left;
+  
+}
+#titulo {
+  
+  padding-top:-5%;
+  color:red;
+}
 
 #tituloh2{
 color:white;
 text-align: center
 
+}
+#tituloh3{
+color:red;
 }
 #pg-third
 {
@@ -34,10 +43,15 @@ color:white;
 color:white;
 text-align: center
 }
+
 #titulobold{
 color:white;
 font-weight:bold;
 text-align: center
+}
+#titulo2nd{
+color:white;
+font-weight:bold;
 }
 #texto{
 color:white;
@@ -57,19 +71,20 @@ left: 0px;
   float: left;
   width: 10%;
 }
+#simg {
+  margin-left: 50%;
+}
 #homebtn {
   float: left;
   width: 10%;
   padding-top:-5px;
 }
-#simg {
-  margin-left: 50%;
-}
+
 #logomintic {
   margin-left: 20%;
 }
 #btnReport {
-  margin-left: 35%;
+  margin-left: 45%;
 }
 
 #img {

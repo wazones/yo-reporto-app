@@ -43,10 +43,15 @@ color:white;
 color:white;
 text-align: center
 }
+
 #titulobold{
 color:white;
 font-weight:bold;
 text-align: center
+}
+#titulo2nd{
+color:white;
+font-weight:bold;
 }
 #texto{
 color:white;
@@ -79,7 +84,7 @@ left: 0px;
   margin-left: 20%;
 }
 #btnReport {
-  margin-left: 35%;
+  margin-left: 45%;
 }
 
 #img {

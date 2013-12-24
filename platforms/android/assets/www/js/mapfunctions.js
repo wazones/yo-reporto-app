@@ -97,7 +97,7 @@ function geo_success(position)
       
       var latitud=window.localStorage.getItem("Latitud");
       var longitud=window.localStorage.getItem("Longitud");
-		$.get("http://yoreporto.herokuapp.com/coordinates/",{"lat":latitud,"long":longitud,count:5},"json").
+		$.get("http://yoreporto.herokuapp.com/coordinates/",{"lat":latitud,"long":longitud,count:10},"json").
 		 	done(function(data)
 		 	{
 		 	//alert("hey");		 
