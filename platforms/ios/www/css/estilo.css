@@ -7,6 +7,11 @@
 @viewport{width:device-width;}
 @-ms-viewport{width:device-width;}
 
+#btn-third {
+   width: 20%;
+   display: inline-block;
+}
+
 #homebtn {
   float: left;
   
