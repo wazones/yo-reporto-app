@@ -50,10 +50,10 @@
 				<h1>Inicio</h1>
 			</div>
 			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo1.png); border:none;padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
-				<button id="btn-third" class="third-button" onclick="gotoReport()">Reportar</button>
-				<button id="btn-third" class="third-button" onclick="gotoGraphs()">Indicadores</button>
-				<button id="btn-third" class="third-button" onclick="gotoTwitter()">@UNGRD</button>	
-				<button id="btn-third" class="third-button" onclick="gotoAbout()">Acerca de</button>	
+				<button id="btn-report" class="third-button" onclick="gotoReport()">Reportar</button>
+				<button id="btn-stats" class="third-button" onclick="gotoGraphs()">Indicadores</button>
+				<button id="btn-twitter" class="third-button" onclick="gotoTwitter()">@UNGRD</button>	
+				<button id="btn-about" class="third-button" onclick="gotoAbout()">Acerca de</button>	
 			</div><!--content-->
 			<div data-role="footer" id="footer">
     			<img src="img/logopresidencia.png" alt=" " />
@@ -111,10 +111,9 @@
 							<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/acercade.png" onclick="gotoAbout()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 					</ul>
-					
 				</div><!--navbar-->
-				<h2 id="tituloh3">Reportar</h2>
-				
+			
+					<h2 id="tituloh3">Reportar</h2>
 				<!--	-->
 			</div><!--header-->
 			<div data-role="content" style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
@@ -241,12 +240,9 @@
 				
 				
 				 	<h3 id="tituloh3">Twitter</h3>
-				
-				
-				<img src="" id="twitterheader" style="width:100%;height:30%;max-height:30%;" > </img>
-				
+					
 			</div>
-			
+			<img src="" id="twitterheader" style="width:100%;height:30%;max-height:30%;" > </img>
 			<ul id="tweets" style="display: inline-block; list-style-type: none; padding-right: 20px; vertical-align: middle; "></ul>
 			
 	</div>
