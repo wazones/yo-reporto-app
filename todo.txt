@@ -15,9 +15,12 @@ TODO
 SIMON
 ---------------------------------------
 + Mostrar gráficas por defecto de la ubicación actual
++ Manejo excepción de offline
+
+
 + Gráfica pie y barras: mostrar la sumatoria del último año
 + Revisar "Alerts" (Loading)
-+ Manejo excepción de offline
+
 
 WARNER
 ----------------------------------------

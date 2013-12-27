@@ -2,13 +2,11 @@ function onGraphsReady(){
 	google.load("visualization", "1.0", {packages:["corechart"],callback:llenarDeptos});
     //google.setOnLoadCallback();
     document.body.style.marginTop = "20px";
-   
 }
 var mapaDeptos;
 
 function llenarDeptos()
 {
-
 
 
 	mapaDeptos = new Map;
@@ -71,7 +69,7 @@ function llenarDeptos()
         contentType: "application/text",
         success: function(data){
        		window.db = JSON.parse(data); 
-       		
+       		render0();
         },
         error: processError
     });
@@ -204,6 +202,70 @@ function render()
       	}
       }
 		      
+        var data = google.visualization.arrayToDataTable(mat);
+
+        var options = {
+          title: 'DESASTRES EN '+muni,
+          legend: {position: 'none'}
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
+       
+        chart.draw(data, options);
+      }
+      //*/
+}
+
+function render0()
+{
+  
+  setTimeout(drawChart,0);
+  
+    function drawChart() {
+      var header = ["Mes"];
+      for (x in window.db) {
+        header.push(x);
+      }
+      var mat = [];
+      mat.push(header);
+      months = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+      years = [];
+
+      var currDate = new Date();
+      for(var i = currDate.getMonth()+1;i<12;++i){
+        mat.push([ months[i] ]);
+        years.push(""+(currDate.getYear()+1900-1));
+      }
+      var str = "";
+
+      for(var i = 0;i <=currDate.getMonth();++i){
+        mat.push([ months[i] ]);
+        str+=months[i]+",";
+        years.push(""+(currDate.getYear()+1900));
+      }
+     // alert(str);
+
+      var depto = "BOGOTA D.C.";
+    var muni = "BOGOTA";
+      for(var i = 1;i < header.length;++i){
+        var desastre = header[i];
+        for(var j = 1; j < mat.length;++j){
+      var year = years[ j-1 ];
+      var month = mat[j][0];
+      if(window.db[header[i]] != null &&
+        window.db[header[i]][year] != null &&
+        window.db[header[i]][year][ month ] != null &&
+        window.db[header[i]][year][ month ][ depto ] != null &&
+        window.db[header[i]][year][ month ][ depto ][ muni ] != null
+      ){
+            mat[j].push( window.db[header[i]][year][ month ][ depto ][ muni ] );
+          }
+          else {
+            mat[j].push(0); 
+          }
+        }
+      }
+          
         var data = google.visualization.arrayToDataTable(mat);
 
         var options = {
