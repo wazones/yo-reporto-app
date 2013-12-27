@@ -1,0 +1,31 @@
+* Actualizar profile banner de twitter
+* Revisar municipios cercanos en reportar
+* Cambiar fondo de la primera pantalla (letras como en la pantalla inicio)
+* Reemplazar "Acerca de" por "I"(info)
+* Cambiar menú header por íconos
+* Subir código a Github
+* Agregar botón de inicio a header en la parte superior izquierda
+* Debajo del botón "enviar" agregar texto "enviar"
+
+TODO
+----------------------------------------
+SIMON
+---------------------------------------
++ Mostrar gráficas por defecto de la ubicación actual
++ Gráfica pie y barras: mostrar la sumatoria del último año
++ Revisar "Alerts" (Loading)
++ Manejo excepción de offline
+
+WARNER
+----------------------------------------
++ Botones 60% centrados, letra azul oscura
++ Centrar títulos
++ Dejar los Íconos de la pantalla "reportar"
++ Ícono home en mismo header de los otros íconos
++ Centrar "Enviar"
++ Footer fondo blanco con los 3 logos
++ Enviar info e imagenes de "Acerca de"
+
+
+
+
