@@ -9,6 +9,8 @@
 
 TODO
 ----------------------------------------
++ Segunda vez que se abre "Acerca de" la imagen de fondo se agranda
+
 SIMON
 ---------------------------------------
 + Mostrar gráficas por defecto de la ubicación actual

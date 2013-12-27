@@ -6,6 +6,7 @@ var mapa2;  //""
 var mapa3;
 var canvas;
 
+
 function start() 
 { 
 	//alert("ST");
