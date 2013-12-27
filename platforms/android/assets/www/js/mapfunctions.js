@@ -33,7 +33,7 @@ function map()
         //get geoposition once
         //navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 5000, enableHighAccuracy: true });
         //watch for geoposition change
-        watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: true });   
+        watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 60000, enableHighAccuracy: true });   
       }); 
 }
 
