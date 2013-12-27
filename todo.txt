@@ -10,6 +10,7 @@
 TODO
 ----------------------------------------
 + Segunda vez que se abre "Acerca de" la imagen de fondo se agranda
+	+ Después de ingresar a "Reportar", la imagen de fondo de "Acerca de" se agranda
 
 SIMON
 ---------------------------------------
