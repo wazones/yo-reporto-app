@@ -50,7 +50,7 @@
 			</div>
 			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo1.png); border:none;padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 				<button id="btn-report" onclick="gotoReport()">Reportar</button>
-				<button id="btn-stats" onclick="gotoGraphs()">Indicadores</button>
+				<button id="btn-stats"  onclick="gotoGraphs()">Indicadores</button>
 				<button id="btn-twitter" onclick="gotoTwitter()">@UNGRD</button>	
 				<button id="btn-about" onclick="gotoAbout()">Acerca de</button>	
 			</div><!--content-->
@@ -95,25 +95,24 @@
 				<div data-role="navbar" class="ui-navbar ui-mini" role="navigation">
 					<ul class="ui-grid-b">
 						<li class="ui-block-a">
-						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte.png"  data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnHome"  type="image" src="img/inicio.png" onclick="gotoHome()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-b">
-						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores2.png" onclick="gotoGraphs()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte_over.png"  data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-c">
-							<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter2.png" onclick="gotoTwitter()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores.png" onclick="gotoGraphs()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-d">
-							<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/abt.png" onclick="gotoAbout()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+							<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter.png" onclick="gotoTwitter()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-e">
+							<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/acercade.png" onclick="gotoAbout()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 					</ul>
 				</div><!--navbar-->
-				<div id="homebtn">
-				 	<input  type="image" src="img/home.png" onclick="gotoHome()" ></input> 
-				 </div>
-				 <div id="titulo">
-				 	<h3 id="tituloh3">Reportar</h3>
-				 </div>
+			
+					<h2 id="tituloh3">Reportar</h2>
 				<!--	-->
 			</div><!--header-->
 			<div data-role="content" style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
@@ -121,7 +120,7 @@
 					
         		
 			    <form id="myForm">
-  					<select id="selectEvt">
+  					<select id="selectEvt" >
     					<option>Categoría</option>
   					</select>
   					<select id="selectLevel">
@@ -144,7 +143,7 @@
         		<br>
         		<!-- Map -->
         		    
-        			    <div id="map" style="width:100%;height:13%;">
+        			    <div id="map" style="width:100%;height:18%;">
         			    </div>
         		    <br>
     			   <input id="btnReport" name="btnReport" type="image" value="Reportar" src="img/benv.png" />
@@ -165,25 +164,26 @@
 				<div data-role="navbar" class="ui-navbar ui-mini" role="navigation">
 					<ul class="ui-grid-b">
 						<li class="ui-block-a">
-						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte.png" onclick="gotoReport()"  data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnHome"  type="image" src="img/inicio.png" onclick="gotoHome()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-b">
-						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores1.png" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte.png" onclick="gotoReport()"  data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-c">
-							<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter1.png" onclick="gotoTwitter()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores_over.png" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-d">
-							<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/abt.png" onclick="gotoAbout()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+							<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter.png" onclick="gotoTwitter()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-e">
+							<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/acercade.png" onclick="gotoAbout()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 					</ul>
 				</div><!--navbar-->
-				<div id="homebtn">
-				 	<input  type="image" src="img/home.png" onclick="gotoHome()" ></input> 
-				 </div>
-				 <div id="titulo">
+				
+				 
 				 	<h3 id="tituloh3">Indicadores</h3>
-				 </div>
+				
 			</div>
 				
 				<div data-role="content" style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
@@ -219,31 +219,29 @@
 				<div data-role="navbar" class="ui-navbar ui-mini" role="navigation">
 					<ul class="ui-grid-b">
 						<li class="ui-block-a">
-						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte.png"  onclick="gotoReport()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnHome"  type="image" src="img/inicio.png" onclick="gotoHome()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-b">
-						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores2.png" onclick="gotoGraphs()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte.png"  onclick="gotoReport()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-c">
-							<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter1.png" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores.png" onclick="gotoGraphs()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-d">
-							<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/abt.png" onclick="gotoAbout()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+							<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter_over.png" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-e">
+							<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/acercade.png" onclick="gotoAbout()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 					</ul>
 				</div><!--navbar-->
 
-				<div id="homebtn">
-				 	<input  type="image" src="img/home.png" onclick="gotoHome()" ></input> 
-				 </div>
-				 <div id="titulo">
+				
+				
 				 	<h3 id="tituloh3">Twitter</h3>
-				 </div>
-				
-				<img src="" id="twitterheader" style="width:100%;height:30%;max-height:30%;" > </img>
-				
+					
 			</div>
-			
+			<img src="" id="twitterheader" style="width:100%;height:30%;max-height:30%;" > </img>
 			<ul id="tweets" style="display: inline-block; list-style-type: none; padding-right: 20px; vertical-align: middle; "></ul>
 			
 	</div>
@@ -255,31 +253,32 @@
 				<div data-role="navbar" class="ui-navbar ui-mini" role="navigation">
 					<ul class="ui-grid-b">
 						<li class="ui-block-a">
-						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte.png" onclick="gotoReport()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnHome"  type="image" src="img/inicio.png" onclick="gotoHome()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-b">
-						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores1.png" onclick="gotoGraphs()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte.png" onclick="gotoReport()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-c">
-							<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter2.png" onclick="gotoTwitter()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						 <input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores.png" onclick="gotoGraphs()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 						<li class="ui-block-d">
-							<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/abt.png"  data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+							<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter.png" onclick="gotoTwitter()" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
+						</li>
+						<li class="ui-block-e">
+							<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/acercade_over.png"  data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-iconpos="top" data-theme="a" data-inline="true" class="ui-btn ui-btn-inline ui-btn-icon-top ui-btn-up-a"/>		
 						</li>
 					</ul>
 				</div><!--navbar-->
-				<div id="homebtn">
-				 	<input  type="image" src="img/home.png" onclick="gotoHome()" ></input> 
-				 </div>
-				 <div id="titulo">
+				
+				 
 				 	<h3 id="tituloh3">Acerca de</h3>
-				 </div>
+				
 				
 				
 
 			</div>
-			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo1.png); border:none;padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
-    		
+			<div data-role="content" data-theme="a" style="background-image:url(img/768x860.png); border:none;padding-bottom:140%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+    		<!--
     			<h2 id="tituloh2" >Yo Reporto v1.0</h2>
     			<p id="titulo">UNGRD- Unidad Nacional para la Gestión del Riesgo de Desastres</p>
     			<p id="titulo">2013 - Derechos Reservados</p>
@@ -291,7 +290,7 @@
     			<p id="titulo">Simón Soriano (@simon0191)</p>
     			<p id="titulo">Daniel Cárdenas (@daniellogic)</p>
     			<p id="texto">Tenga en cuenta que esta aplicación requiere acceso a Internet y puede consumir recursos de su plan de datos.</p>
-    			
+    			-->
    			</div>
        <!--cierra about-->
     </body>

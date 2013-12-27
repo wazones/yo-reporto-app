@@ -33,7 +33,7 @@ function map()
         //get geoposition once
         //navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 5000, enableHighAccuracy: true });
         //watch for geoposition change
-        watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });   
+        watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 60000, enableHighAccuracy: true });   
       }); 
 }
 
@@ -47,6 +47,8 @@ function geo_error(error)
     	navigator.notification.alert('Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación',null,'Yo Reporto','Aceptar');
     
     }
+    else 
+    	alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
 }
 
 function geo_success(position) 
