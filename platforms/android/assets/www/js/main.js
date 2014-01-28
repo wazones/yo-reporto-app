@@ -8,7 +8,8 @@ var canvas;
 
 
 function start() 
-{ 
+{  //navigator.notification.activityStart( "cargando");
+
 	//alert("ST");
 	mapa = new Map();
 	mapa2 = new Map();
@@ -129,7 +130,7 @@ function start()
 	
 }//llenargravedad
 
-
+ //navigator.notification.activityStop();
 }//start
 
 function testConnection()
@@ -143,11 +144,11 @@ function testConnection()
 
                         if(navigator.app)
                         {
-                          navigator.app.exitApp();
+                         // navigator.app.exitApp();
                         }
                         else if(navigator.device)
                         {
-                          navigator.device.exitApp();
+                          //navigator.device.exitApp();
                         }
                       }
                       else 
@@ -295,10 +296,10 @@ function processSuccess1(data, status, req)
   {
     var cod;
     alert("Reporte Exitoso");
-    alert(req.responseText);
+    //alert(req.responseText);
     $("EmergenciaComunidad", req.responseText).each(function(){
       cod=$("CodigoEmergenciaComunidad", this).text();
-      alert("Emergencias Reportadas: "+cod);
+      //alert("Emergencias Reportadas: "+cod);
     });
 
     if(imagen!=null)
@@ -349,7 +350,7 @@ function processSuccess2(data, status, req)
   if (status == "success")
   {
    alert("archivo enviado"); 
-   alert(req.responseText);
+  // alert(req.responseText);
  }
  else
  {
@@ -431,7 +432,7 @@ function getPhoto(source)
 
 function onFail(message) 
 { 
-	alert('Foto Cancelada: ' + message); 
+//	alert('Foto Cancelada: ' + message); 
 }
 
 
