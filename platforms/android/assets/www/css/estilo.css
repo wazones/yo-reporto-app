@@ -9,6 +9,8 @@
 
 #footer { display: none }
 
+
+
 #homebtn {
   float: left;
   
@@ -85,9 +87,7 @@ left: 0px;
 #logomintic {
   margin-left: 20%;
 }
-#btnReport {
-  margin-left: 45%;
-}
+
 
 #img {
 	 width: 100%;
@@ -124,7 +124,7 @@ left: 0px;
 	box-shadow: inset 0px 0px 50px #000;
 	}
 .btn{
-	width:100%;
+	width:50%;
 	height:45%;
 	float:left;
 	position:relative;
