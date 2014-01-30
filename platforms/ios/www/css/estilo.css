@@ -9,6 +9,15 @@
 
 #footer { display: none }
 
+input[type=text]{
+  color:#FFFFFF;
+}
+
+#btn-report {
+    height: 100px;
+     width: 400px;
+  
+}
 
 
 #homebtn {

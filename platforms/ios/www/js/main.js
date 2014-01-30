@@ -9,6 +9,10 @@ var canvas;
 
 function start() 
 {  //navigator.notification.activityStart( "cargando");
+//spinnerplugin.show({
+    overlay: false, // defaults to true
+    timeout: 30     // defaults to 0 (no timeout)
+});
 
 	//alert("ST");
 	mapa = new Map();
@@ -129,7 +133,7 @@ function start()
 	}//success00
 	
 }//llenargravedad
-
+//spinnerplugin.hide();
  //navigator.notification.activityStop();
 }//start
 
