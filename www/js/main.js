@@ -8,13 +8,7 @@ var canvas;
 
 
 function start() 
-{  //navigator.notification.activityStart( "cargando");
-//spinnerplugin.show({
-    overlay: false, // defaults to true
-    timeout: 30     // defaults to 0 (no timeout)
-});
-
-	//alert("ST");
+{  
 	mapa = new Map();
 	mapa2 = new Map();
 	mapa3 = new Map();
@@ -181,17 +175,14 @@ function testConnection()
 
          if($("#txtNombre").val()=="")
          {
-   					//alert("");
              navigator.notification.alert('Por Favor Ingresa Tu Nombre',null,'Yo Reporto','Aceptar');
            }
            else if($("#txtTelefono").val()=="")
            {
-   					//alert("");
    					navigator.notification.alert('Por Favor Ingresa Tu Telefono',null,'Yo Reporto','Aceptar');
           }
           else if($("#txtEmail").val()=="")
           {
-   					//alert("");
    					navigator.notification.alert('Por Favor Ingresa Tu e-mail',null,'Yo Reporto','Aceptar');
           }
           else
@@ -282,15 +273,15 @@ function testConnection()
          } //if (comboboxes not OK)
          else if($("#selectLevel").val()=="Nivel")
          {
-          alert("Selecciona un Nivel de Gravedad");
+          navigator.notification.alert('Selecciona un Nivel de Gravedad',null,'Yo Reporto','Aceptar');
         }
         else if($("#selectEvt").val()=="Categoría")
         {
-          alert("Selecciona Una Categoría");
+           navigator.notification.alert('Selecciona Una Categoría',null,'Yo Reporto','Aceptar');
         }
         else if($("#selectMuni").val()=="Municipio")
         {
-          alert("Selecciona Un Municipio");
+          navigator.notification.alert('Selecciona Un Municipio',null,'Yo Reporto','Aceptar');
         }
 }//report
 
@@ -299,7 +290,7 @@ function processSuccess1(data, status, req)
   if (status == "success")
   {
     var cod;
-    alert("Reporte Exitoso");
+   navigator.notification.alert('Reporte Exitoso',null,'Yo Reporto','Aceptar');
     //alert(req.responseText);
     $("EmergenciaComunidad", req.responseText).each(function(){
       cod=$("CodigoEmergenciaComunidad", this).text();
@@ -353,12 +344,12 @@ function processSuccess2(data, status, req)
 { 
   if (status == "success")
   {
-   alert("archivo enviado"); 
+   navigator.notification.alert('Archivo Enviado',null,'Yo Reporto','Aceptar');
   // alert(req.responseText);
  }
  else
  {
-  alert("envio de archivo no exitoso");
+ navigator.notification.alert('Envio de Archivo No Exitoso',null,'Yo Reporto','Aceptar');
 }
 }//success2
 

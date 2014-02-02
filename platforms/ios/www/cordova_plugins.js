@@ -241,13 +241,6 @@ module.exports = [
         "clobbers": [
             "navigator.splashscreen"
         ]
-    },
-    {
-        "file": "plugins/it.mobimentum.phonegapspinnerplugin/www/spinnerplugin.js",
-        "id": "it.mobimentum.phonegapspinnerplugin.SpinnerPlugin",
-        "clobbers": [
-            "window.spinnerplugin"
-        ]
     }
 ]
 });

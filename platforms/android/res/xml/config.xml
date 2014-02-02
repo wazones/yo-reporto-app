@@ -11,9 +11,6 @@
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
-    <feature name="SpinnerPlugin">
-        <param name="android-package" value="it.mobimentum.phonegapspinnerplugin.SpinnerPlugin" />
-    </feature>
     <feature name="Camera">
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
