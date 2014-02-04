@@ -6,13 +6,20 @@
 * Subir código a Github
 * Agregar botón de inicio a header en la parte superior izquierda
 * Debajo del botón "enviar" agregar texto "enviar"
++ Ícono home en mismo header de los otros íconos
++ Enviar info e imagenes de "Acerca de"
++ Centrar "Enviar"
++ Dejar los Íconos de la pantalla "reportar"
+
+
+
 
 TODO
 ----------------------------------------
 + Segunda vez que se abre "Acerca de" la imagen de fondo se agranda
 	+ Después de ingresar a "Reportar", la imagen de fondo de "Acerca de" se agranda
 
-SIMON jaja
+SIMON
 ---------------------------------------
 + Mostrar gráficas por defecto de la ubicación actual
 + Manejo excepción de offline
@@ -26,10 +33,6 @@ WARNER
 ----------------------------------------
 + Botones 60% centrados, letra azul oscura
 + Centrar títulos
-+ Dejar los Íconos de la pantalla "reportar"
-+ Ícono home en mismo header de los otros íconos
-+ Centrar "Enviar"
-+ Enviar info e imagenes de "Acerca de"
 
 
 

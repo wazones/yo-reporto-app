@@ -8,13 +8,7 @@ var canvas;
 
 
 function start() 
-{  //navigator.notification.activityStart( "cargando");
-//spinnerplugin.show({
-    overlay: false, // defaults to true
-    timeout: 30     // defaults to 0 (no timeout)
-});
-
-	//alert("ST");
+{  
 	mapa = new Map();
 	mapa2 = new Map();
 	mapa3 = new Map();
