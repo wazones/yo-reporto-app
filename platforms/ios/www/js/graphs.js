@@ -12,7 +12,7 @@ function llenarDeptos()
 	var requestHeader=window.localStorage.getItem("RequestHeader");
                var soapRequest0 =requestHeader+
                 '<Departamentos xmlns="http://tempuri.org/" /></soap:Body></soap:Envelope>';            
-  $.blockUI({ message: 'Getting dptos'});
+  $.blockUI({ message: 'Cargando Departamentos'});
 		
     $.ajax({
             type: "POST",
@@ -59,7 +59,7 @@ function llenarDeptos()
     
     function llenarEventos()
     {
-    $.blockUI({ message: 'Getting eventos'});
+    $.blockUI({ message: 'Cargando Eventos'});
     	$.ajax({
         type: "GET",
         url: "res/graf5.json",
@@ -86,7 +86,7 @@ function getCodeDept(depto)
 function getMunicipiosDepto() 
 { 
 
-	$.blockUI({ message: 'Getting municipios del depto'});
+	$.blockUI({ message: 'Cargando Municipios'});
 	var sel=document.getElementById("selectMunGraphs");
 	sel.value= "Municipio";
 	sel.options.length = 1;
