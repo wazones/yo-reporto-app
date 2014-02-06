@@ -43,8 +43,9 @@ function start()
 	var requestHeader=window.localStorage.getItem("RequestHeader");
  var soapRequest0 =requestHeader+
  '<Eventos xmlns="http://tempuri.org/" /></soap:Body></soap:Envelope>';            
-
-
+ 
+ $.blockUI({ message: 'Sending POST'});
+ 
  $.ajax({
   type: "POST",
   url: wsUrl,
@@ -106,6 +107,7 @@ function start()
 
       function processSuccess00(data, status, req) 
       { 
+        //$.unblockUI();
         var select = document.getElementById("selectLevel");
         if (status == "success")
         {
@@ -175,17 +177,14 @@ function testConnection()
 
          if($("#txtNombre").val()=="")
          {
-   					//alert("");
              navigator.notification.alert('Por Favor Ingresa Tu Nombre',null,'Yo Reporto','Aceptar');
            }
            else if($("#txtTelefono").val()=="")
            {
-   					//alert("");
    					navigator.notification.alert('Por Favor Ingresa Tu Telefono',null,'Yo Reporto','Aceptar');
           }
           else if($("#txtEmail").val()=="")
           {
-   					//alert("");
    					navigator.notification.alert('Por Favor Ingresa Tu e-mail',null,'Yo Reporto','Aceptar');
           }
           else
@@ -276,15 +275,15 @@ function testConnection()
          } //if (comboboxes not OK)
          else if($("#selectLevel").val()=="Nivel")
          {
-          alert("Selecciona un Nivel de Gravedad");
+          navigator.notification.alert('Selecciona un Nivel de Gravedad',null,'Yo Reporto','Aceptar');
         }
         else if($("#selectEvt").val()=="Categoría")
         {
-          alert("Selecciona Una Categoría");
+           navigator.notification.alert('Selecciona Una Categoría',null,'Yo Reporto','Aceptar');
         }
         else if($("#selectMuni").val()=="Municipio")
         {
-          alert("Selecciona Un Municipio");
+          navigator.notification.alert('Selecciona Un Municipio',null,'Yo Reporto','Aceptar');
         }
 }//report
 
@@ -293,7 +292,7 @@ function processSuccess1(data, status, req)
   if (status == "success")
   {
     var cod;
-    alert("Reporte Exitoso");
+   navigator.notification.alert('Reporte Exitoso',null,'Yo Reporto','Aceptar');
     //alert(req.responseText);
     $("EmergenciaComunidad", req.responseText).each(function(){
       cod=$("CodigoEmergenciaComunidad", this).text();
@@ -347,12 +346,12 @@ function processSuccess2(data, status, req)
 { 
   if (status == "success")
   {
-   alert("archivo enviado"); 
+   navigator.notification.alert('Archivo Enviado',null,'Yo Reporto','Aceptar');
   // alert(req.responseText);
  }
  else
  {
-  alert("envio de archivo no exitoso");
+ navigator.notification.alert('Envio de Archivo No Exitoso',null,'Yo Reporto','Aceptar');
 }
 }//success2
 

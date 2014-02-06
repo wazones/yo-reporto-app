@@ -29,6 +29,7 @@ function map()
     };
   	map = new google.maps.Map(document.getElementById("map"), myOptions);
 
+    $.blockUI({ message: 'Getting Position....'});
   	google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
         //get geoposition once
         //navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 5000, enableHighAccuracy: true });
@@ -41,11 +42,17 @@ function geo_error(error)
 {
     //comment
     //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
-    if(error.code==1)
+    $.unblockUI();
+    if(error.code==1 || error.code == 2)
     {
     	//alert("Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación");
-    	navigator.notification.alert('Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación',null,'Yo Reporto','Aceptar');
-    
+    	//navigator.notification.alert('Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación',null,'Yo Reporto','Aceptar');
+
+      navigator.notification.alert('Servicios de Localización Desabilitados. Se utilizará Localización por torres celulares (menos preciso)',null,'Yo Reporto','Aceptar');
+      
+      //trying low accuracy
+      $.blockUI({ message: 'Getting Position low acc....'});
+      watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 600000, enableHighAccuracy: false });   
     }
     else
     {
@@ -60,7 +67,8 @@ function geo_error(error)
 
 function geo_success(position) 
 {
-
+    $.blockUI({ message: 'Getting Municipios....'});
+    
     map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
     map.setZoom(15);
 
@@ -110,6 +118,7 @@ function geo_success(position)
 		 	done(function(data)
 		 	{
 		 	//alert("hey");		 
+        $.unblockUI();
 		 		var selectM = document.getElementById("selectMuni");
 		 		data.nearest.forEach(function(elem){
 		 		var el = document.createElement("option");
