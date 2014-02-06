@@ -44,7 +44,7 @@ function start()
  var soapRequest0 =requestHeader+
  '<Eventos xmlns="http://tempuri.org/" /></soap:Body></soap:Envelope>';            
  
- $.blockUI({ message: 'Sending POST'});
+ $.blockUI({ message: 'Cargando Datos...'});
  
  $.ajax({
   type: "POST",

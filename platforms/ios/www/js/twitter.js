@@ -1,9 +1,10 @@
  function onTwitterReady()
  {
-
+   $.blockUI({ message: 'Cargando tweets'});
 $.get("http://yoreporto.herokuapp.com/twitter/tweets/",{"count":20},"json").
 		 	done(function(data)
 		 	{
+                $.unblockUI();
 		 		var lista = document.getElementById("tweets");
 		 		for(x in data.tweets)
 		 		{

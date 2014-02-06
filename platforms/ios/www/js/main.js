@@ -43,8 +43,9 @@ function start()
 	var requestHeader=window.localStorage.getItem("RequestHeader");
  var soapRequest0 =requestHeader+
  '<Eventos xmlns="http://tempuri.org/" /></soap:Body></soap:Envelope>';            
-
-
+ 
+ $.blockUI({ message: 'Cargando Datos...'});
+ 
  $.ajax({
   type: "POST",
   url: wsUrl,
@@ -106,6 +107,7 @@ function start()
 
       function processSuccess00(data, status, req) 
       { 
+        //$.unblockUI();
         var select = document.getElementById("selectLevel");
         if (status == "success")
         {

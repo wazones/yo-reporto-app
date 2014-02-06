@@ -29,7 +29,7 @@ function map()
     };
   	map = new google.maps.Map(document.getElementById("map"), myOptions);
 
-    $.blockUI({ message: 'Getting Position....'});
+    $.blockUI({ message: 'Cargando Posición...'});
   	google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
         //get geoposition once
         //navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 5000, enableHighAccuracy: true });
@@ -67,7 +67,7 @@ function geo_error(error)
 
 function geo_success(position) 
 {
-    $.blockUI({ message: 'Getting Municipios....'});
+    $.blockUI({ message: 'Cargando Municipios...'});
     
     map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
     map.setZoom(15);
