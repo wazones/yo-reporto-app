@@ -86,7 +86,6 @@ function getCodeDept(depto)
 
 function getMunicipiosDepto() 
 { 	
-	
 	var selectedDept=$("#selectDeptGraphs").val();
 	if(selectedDept!="Departamento")
 	{

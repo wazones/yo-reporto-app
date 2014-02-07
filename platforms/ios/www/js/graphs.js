@@ -86,7 +86,11 @@ function getCodeDept(depto)
 
 function getMunicipiosDepto() 
 { 	
-	
+	$("#selectMunGraphs").trigger("chosen:updated");
+
+	// $('#selectMunGraphs option:second').attr("selected", 'false');
+	 //$('#selectMunGraphs').selectmenu('refresh');
+	//document.getElementById("selectMunGraphs").innerHTML = "";
 	var selectedDept=$("#selectDeptGraphs").val();
 	if(selectedDept!="Departamento")
 	{
