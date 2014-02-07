@@ -41,7 +41,7 @@ function start()
 	
 	var wsUrl = window.localStorage.getItem("URL");
 	var requestHeader=window.localStorage.getItem("RequestHeader");
- var soapRequest0 =requestHeader+
+ var requestEventos =requestHeader+
  '<Eventos xmlns="http://tempuri.org/" /></soap:Body></soap:Envelope>';            
  
  $.blockUI({ message: 'Cargando Datos...'});
@@ -51,14 +51,14 @@ function start()
   url: wsUrl,
   contentType: "text/xml",
   dataType: "xml",
-  data: soapRequest0,
-  success: processSuccess0,
+  data: requestEventos,
+  success: processSuccessEventos,
   error: processError
 });
 
 
 
- function processSuccess0(data, status, req) 
+ function processSuccessEventos(data, status, req) 
  { 
    var select = document.getElementById("selectEvt");
    if (status == "success")
@@ -93,19 +93,19 @@ function start()
     {
       var wsUrl = window.localStorage.getItem("URL");
       var requestHeader=window.localStorage.getItem("RequestHeader");
-      var soapRequest00 =requestHeader+'<NivelesEstimadosComunidad xmlns="http://tempuri.org/" /></soap:Body></soap:Envelope>';            
+      var requestNiveles =requestHeader+'<NivelesEstimadosComunidad xmlns="http://tempuri.org/" /></soap:Body></soap:Envelope>';            
 
       $.ajax({
         type: "POST",
         url: wsUrl,
         contentType: "text/xml",
         dataType: "xml",
-        data: soapRequest00,
-        success: processSuccess00,
+        data: requestNiveles,
+        success: processSuccessNiveles,
         error: processError
       });
 
-      function processSuccess00(data, status, req) 
+      function processSuccessNiveles(data, status, req) 
       { 
         //$.unblockUI();
         var select = document.getElementById("selectLevel");
@@ -241,7 +241,7 @@ function testConnection()
 		 		
 		 		var wsUrl = window.localStorage.getItem("URL");
        var requestHeader=window.localStorage.getItem("RequestHeader");
-       var soapRequest1 =requestHeader+
+       var requestInsertarEmergencia =requestHeader+
        '<InsertarEmergenciaComunidad xmlns="http://tempuri.org/">'+
        '<Nombres>'+nombreUsuario+'</Nombres>'+
        '<Telefono>'+telefonoUsuario+'</Telefono>'+
@@ -260,13 +260,15 @@ function testConnection()
             '</soap:Body>'+
             '</soap:Envelope>'; 
 
+			// $.blockUI({ message: 'Enviando Reporte...'});
+	
             $.ajax({
               type: "POST",
               url: wsUrl,
               contentType: "text/xml",
               dataType: "xml",
-              data: soapRequest1,
-              success: processSuccess1,
+              data: requestInsertarEmergencia,
+              success: processSuccessInsertarEmergencia,
               error: processError
             });
 
@@ -287,23 +289,38 @@ function testConnection()
         }
 }//report
 
-function processSuccess1(data, status, req) 
+function processSuccessInsertarEmergencia(data, status, req) 
 { 
   if (status == "success")
   {
     var cod;
-   navigator.notification.alert('Reporte Exitoso',null,'Yo Reporto','Aceptar');
+   
+  
     //alert(req.responseText);
     $("EmergenciaComunidad", req.responseText).each(function(){
       cod=$("CodigoEmergenciaComunidad", this).text();
       //alert("Emergencias Reportadas: "+cod);
     });
 
+	if(imagen==null)
+	{
+		navigator.notification.alert('Reporte Exitoso',null,'Yo Reporto','Aceptar');
+		 //$.unblockUI();
+	}
+	
     if(imagen!=null)
-      enviarArchivo(cod);
+    {	 
+     	 enviarArchivo(cod);
+    }
+    
 
 
     }//if success
+    else
+ 	{
+ 		navigator.notification.alert('Reporte No Exitoso',null,'Yo Reporto','Aceptar');
+ 		//$.unblockUI();
+	}
 }//success1
 
 function processError(data, status, req) 
@@ -318,7 +335,7 @@ function enviarArchivo(codigoEme)
   var wsUrl = window.localStorage.getItem("URL");
   var requestHeader=window.localStorage.getItem("RequestHeader");
   var base64 = canvas.toDataURL("image/jpeg");
-  var soapRequest2 =requestHeader+
+  var requestInsertarArchivo =requestHeader+
   '<InsertarArchivoEmergencia xmlns="http://tempuri.org/">'+
   '<File>'+imagen+'</File>'+
   '<NombreArchivo>'+emailUsuario+codigoEme+'.jpg</NombreArchivo>'+
@@ -335,19 +352,19 @@ function enviarArchivo(codigoEme)
     timeout: 1000000, 
     contentType: "text/xml",
     dataType: "xml",
-    data: soapRequest2,
-    success: processSuccess2,
+    data: requestInsertarArchivo,
+    success: processSuccessInsertarArchivo,
     error: processError
   });
 
 }//enviarArchivo
 
-function processSuccess2(data, status, req) 
+function processSuccessInsertarArchivo(data, status, req) 
 { 
   if (status == "success")
   {
-   navigator.notification.alert('Archivo Enviado',null,'Yo Reporto','Aceptar');
-  // alert(req.responseText);
+   navigator.notification.alert('Reporte Exitoso',null,'Yo Reporto','Aceptar');
+    //$.unblockUI();
  }
  else
  {

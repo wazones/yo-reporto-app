@@ -12,7 +12,7 @@ function llenarDeptos()
 	var requestHeader=window.localStorage.getItem("RequestHeader");
                var soapRequest0 =requestHeader+
                 '<Departamentos xmlns="http://tempuri.org/" /></soap:Body></soap:Envelope>';            
-  $.blockUI({ message: 'Getting dptos'});
+  $.blockUI({ message: 'Cargando Departamentos'});
 		
     $.ajax({
             type: "POST",
@@ -59,7 +59,7 @@ function llenarDeptos()
     
     function llenarEventos()
     {
-    $.blockUI({ message: 'Getting eventos'});
+    $.blockUI({ message: 'Cargando Eventos'});
     	$.ajax({
         type: "GET",
         url: "res/graf5.json",
@@ -86,7 +86,7 @@ function getCodeDept(depto)
 function getMunicipiosDepto() 
 { 
 
-	$.blockUI({ message: 'Getting municipios del depto'});
+	$.blockUI({ message: 'Cargando Municipios'});
 	var sel=document.getElementById("selectMunGraphs");
 	sel.value= "Municipio";
 	sel.options.length = 1;
@@ -283,5 +283,65 @@ function changeGraphs()
 {
      var selectedGraph =$("#selectType").val();
      alert('should change the graph to: ' + selectedGraph +'\n');
+    if(selectedGraph == 'Torta') {
+        alert('rendering Torta');
+        renderTorta();
+    }
 
+}
+
+
+function renderTorta()
+{
+    $.unblockUI();
+    setTimeout(drawChart,0);
+
+    function drawChart() {
+        var months2 = [];
+        months = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+        var years = [];
+        
+        var currDate = new Date();
+        for(var i = currDate.getMonth()+1;i<12;++i){
+            months2.push([ months[i] ]);
+            years.push(""+(currDate.getYear()+1900-1));
+        }
+        for(var i = 0;i <=currDate.getMonth();++i){
+            months2.push([ months[i] ]);
+            years.push(""+(currDate.getYear()+1900));
+        }
+
+
+
+        var data = [['Desastres','Ocurrencias']];
+        var depto = $("#selectDeptGraphs").val();
+        var muni = $("#selectMunGraphs").val();
+        for (x in window.db) {
+            var sum = 0;
+            for(var i = 0;i<months2.length;++i) {
+                var month = months2[i];
+                var year = years[i];
+                if(window.db[x] != null &&
+                    window.db[x][year] != null &&
+                    window.db[x][year][ month ] != null &&
+                    window.db[x][year][ month ][ depto ] != null &&
+                    window.db[x][year][ month ][ depto ][ muni ] != null
+                    ){
+                    sum+=window.db[x][year][ month ][ depto ][ muni ];
+                }
+            }
+            data.push([x,sum]);
+        }
+
+
+
+        var data = google.visualization.arrayToDataTable(data);
+        var options = {
+            title: 'Desastres',
+            is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div3'));
+        chart.draw(data, options);
+    }
 }
