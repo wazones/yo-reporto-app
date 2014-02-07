@@ -7,14 +7,12 @@ var mapaDeptos;
 
 function llenarDeptos()
 {
-
-
 	mapaDeptos = new Map;
 	var wsUrl = window.localStorage.getItem("URL");
 	var requestHeader=window.localStorage.getItem("RequestHeader");
                var soapRequest0 =requestHeader+
                 '<Departamentos xmlns="http://tempuri.org/" /></soap:Body></soap:Envelope>';            
-
+  $.blockUI({ message: 'Cargando Departamentos'});
 		
     $.ajax({
             type: "POST",
@@ -61,7 +59,7 @@ function llenarDeptos()
     
     function llenarEventos()
     {
-    
+    $.blockUI({ message: 'Cargando Eventos'});
     	$.ajax({
         type: "GET",
         url: "res/graf5.json",
@@ -88,7 +86,7 @@ function getCodeDept(depto)
 function getMunicipiosDepto() 
 { 
 
-	
+	$.blockUI({ message: 'Cargando Municipios'});
 	var sel=document.getElementById("selectMunGraphs");
 	sel.value= "Municipio";
 	sel.options.length = 1;
@@ -128,6 +126,7 @@ function getMunicipiosDepto()
               var cont=0;
               $("Municipio", req.responseText).each(function()
               {
+                $.unblockUI();
               	var todo=$("Codigo", this).text();
               	var cod=$("Descripcion", this).text();
               	var index=todo.indexOf(cod);
@@ -218,7 +217,7 @@ function render()
 
 function render0()
 {
-  
+  $.unblockUI();
   setTimeout(drawChart,0);
   
     function drawChart() {
@@ -278,4 +277,11 @@ function render0()
         chart.draw(data, options);
       }
       //*/
+}
+
+function changeGraphs()
+{
+     var selectedGraph =$("#selectType").val();
+     alert('should change the graph to: ' + selectedGraph +'\n');
+
 }

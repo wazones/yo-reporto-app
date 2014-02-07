@@ -1,325 +1,302 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8"/>
-    <meta name="format-detection" content="telephone=no"/>
-    <!-- Style -->
-    <link rel="stylesheet" type="text/css" href="css/ungrd.css"/>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css"/>
-    <link rel="stylesheet" type="text/css" href="css/spinner.css"/>
-    <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css"/>
-    <!-- JS -->
-    <!-- Third party -->
-    <script src="cordova.js" type="text/javascript"></script>
-    <script src="js/thirdparty/jquery-1.9.1.min.js"></script>
-    <script src="js/thirdparty/jquery.mobile-1.3.2.min.js"></script>
-    <script src="js/thirdparty/jquery.blockUI.min.js"></script>
-    <script src="js/thirdparty/Map.js" type="text/javascript"></script>
-    <script src="js/thirdparty/googleapi.js" type="text/javascript"></script>
-    <!-- Own -->
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/mapfunctions.js"></script>
-    <script type="text/javascript" src="js/graphs.js"></script>
-    <script type="text/javascript" src="js/twitter.js"></script>
-    <script type="text/javascript" src="js/navbar.js"></script>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<!-- Style -->
+		<link rel="stylesheet" type="text/css" href="css/ungrd.css"/>
+		<link rel="stylesheet" type="text/css" href="css/estilo.css"/>
+		<link rel="stylesheet" type="text/css" href="css/spinner.css"/>
+		<link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css"/>
+		<!-- JS -->
+		<!-- Third party -->
+		<script src="cordova.js" type="text/javascript"></script>
+		<script src="js/thirdparty/jquery-1.9.1.min.js"></script>
+		<script src="js/thirdparty/jquery.mobile-1.3.2.min.js"></script>
+		<script src="js/thirdparty/Map.js" type="text/javascript"></script>
+		<script src="js/thirdparty/googleapi.js" type="text/javascript"></script>
+		<script src="js/thirdparty/jquery.blockUI.js" type="text/javascript"></script>
+		<!-- Own -->
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/mapfunctions.js"></script>
+		<script type="text/javascript" src="js/graphs.js"></script>
+		<script type="text/javascript" src="js/twitter.js" ></script>
+		<script type="text/javascript" src="js/navbar.js" ></script>
+		
+		
+		<script>
+		app.initialize();
+		document.addEventListener("deviceready", testConnection, false);
+			$(document).on('pageinit', '#pg-report', function(){
+					onDeviceReady();
+					start();
+				});
+				$(document).on('pageinit', '#pg-graphs', function(){
+				onGraphsReady();
+				});
+				$(document).on('pageinit', '#pg-twitter', function(){
+				onTwitterReady();
+				});
+		</script>
+		
+		<title>Yo Reporto</title>
+	</head>
+	
+	
+	<body>
+		<div id="deviceready" class="blink"></div>
+		
+		
+		<!--third -->
+		<div id="pg-third" data-role="page">
+			<div data-role="header" data-position="fixed">
+				<h1>Inicio</h1>
+			</div>
+			<div data-role="content" data-theme="a" style="background-image:url(img/Fondo1.png);border:none;padding-bottom:110%;-webkit-background-size:cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+				<button id="btn-report" onclick="navbar.gotoReport()">Reportar</button>
+				<button id="btn-stats"  onclick="navbar.gotoGraphs()">Indicadores</button>
+				<button id="btn-twitter" onclick="navbar.gotoTwitter()">@UNGRD</button>
+				<button id="btn-about" onclick="navbar.gotoAbout()">Acerca de</button>
+			</div><!--content-->
+				
+		</div><!--page-->
+		<!-- CIERRA third-->
+					
+					<!-- second -->
+					<div id="pg-second" data-role="page"  style="background-image:url(img/Fondo1.png);">
+						<div data-role="header" data-position="fixed">
+							<h4>Datos Personales</h4>
+						</div>
+						<div data-role="content" data-theme="a" style="background-image:url(img/Fondo1.png); border:none;padding-bottom:120%;">
+							<form id="secondForm">
+								<p id="titulo2nd">Nombre:</p>
+								<input id="txtNombre" type="text"></input>
+								<br/>
+								<p id="titulo2nd">Telefono:</p>
+								<input id="txtTelefono" type="text" ></input>
+								<br/>
+								<p id="titulo2nd">E-Mail::</p>
+								<input id="txtEmail" type="text" />
+								<br/>
+								<p id="titulo2nd">Entidad:</p>
+								<input id="txtEntidad" type="text" />
+								<br>
+							</form>
+							<br>
+							<button id="btnGuardarConfig" onclick="goThird()">Guardar Datos</button>
+							<br>
+						</div>
+					</div>
+					<!-- CIERRA second-->
+					
+					
+					<!-- Report -->
+					<div id="pg-report" data-role="page">
+						
+						<div data-role="header" data-position="fixed">
+							<!-- ABRE Navbar-->
+							<div data-role="navbar"  data-role="navigation">
+								<ul class="ui-grid-d">
+									<li class="ui-block-a">
+										<input class="ui-btn-inner" id="btnHome"  type="image" src="img/inicio.png" onclick="navbar.gotoHome()"/>
+									</li>
+									<li class="ui-block-b">
+										<input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte_over.png" />
+									</li>
+									<li class="ui-block-c">
+										<input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores.png"
+										onclick="navbar.gotoGraphs()"/>
+									</li>
+									<li class="ui-block-d">
+										<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter.png" onclick="navbar.gotoTwitter()"/>
+									</li>
+									<li class="ui-block-e">
+										<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/acerca_de.png" onclick="navbar.gotoAbout()"/>
+									</li>
+								</ul>
+							</div>
+							<!-- CIERRA Navbar-->
+							
+							<h2 id="tituloh3">Reportar</h2>
+							<!--	-->
+							</div><!--header-->
+							<div data-role="content" style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+								
 
-
-    <script>
-        app.initialize();
-        document.addEventListener("deviceready", testConnection, false);
-        $(document).on('pageinit', '#pg-report', function () {
-            onDeviceReady();
-            start();
-        });
-        $(document).on('pageinit', '#pg-graphs', function () {
-            graphsController.init();
-            //onGraphsReady();
-        });
-        $(document).on('pageinit', '#pg-twitter', function () {
-            onTwitterReady();
-        });
-    </script>
-
-    <title>Yo Reporto</title>
-</head>
-
-
-<body>
-<div id="deviceready" class="blink"></div>
-
-
-<!--third -->
-<div id="pg-third" data-role="page">
-    <div data-role="header" data-position="fixed">
-        <h1>Inicio</h1>
-    </div>
-    <div data-role="content" data-theme="a"
-         style="background-image:url(img/Fondo1.png);border:none;padding-bottom:110%;-webkit-background-size:cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
-        <button id="btn-report" onclick="navbar.gotoReport()">Reportar</button>
-        <button id="btn-stats" onclick="navbar.gotoGraphs()">Indicadores</button>
-        <button id="btn-twitter" onclick="navbar.gotoTwitter()">@UNGRD</button>
-        <button id="btn-about" onclick="navbar.gotoAbout()">Acerca de</button>
-    </div>
-    <!--content-->
-
-</div>
-<!--page-->
-<!-- CIERRA third-->
-
-<!-- second -->
-<div id="pg-second" data-role="page" style="background-image:url(img/Fondo1.png);">
-    <div data-role="header" data-position="fixed">
-        <h4>Datos Personales</h4>
-    </div>
-    <div data-role="content" data-theme="a"
-         style="background-image:url(img/Fondo1.png); border:none;padding-bottom:120%;">
-        <form id="secondForm">
-            <p id="titulo2nd">Nombre:</p>
-            <input id="txtNombre" type="text"></input>
-            <br/>
-
-            <p id="titulo2nd">Telefono:</p>
-            <input id="txtTelefono" type="text"></input>
-            <br/>
-
-            <p id="titulo2nd">E-Mail::</p>
-            <input id="txtEmail" type="text"/>
-            <br/>
-
-            <p id="titulo2nd">Entidad:</p>
-            <input id="txtEntidad" type="text"/>
-            <br>
-        </form>
-        <br>
-        <button id="btnGuardarConfig" onclick="goThird()">Guardar Datos</button>
-        <br>
-    </div>
-</div>
-<!-- CIERRA second-->
-
-
-<!-- Report -->
-<div id="pg-report" data-role="page">
-
-    <div data-role="header" data-position="fixed">
-        <!-- ABRE Navbar-->
-        <div data-role="navbar" data-role="navigation">
-            <ul class="ui-grid-d">
-                <li class="ui-block-a">
-                    <input class="ui-btn-inner" id="btnHome" type="image" src="img/inicio.png"
-                           onclick="navbar.gotoHome()"/>
-                </li>
-                <li class="ui-block-b">
-                    <input class="ui-btn-inner" id="btnReporte" type="image" src="img/reporte_over.png"/>
-                </li>
-                <li class="ui-block-c">
-                    <input class="ui-btn-inner" id="btnReporte" type="image" src="img/indicadores.png"
-                           onclick="navbar.gotoGraphs()"/>
-                </li>
-                <li class="ui-block-d">
-                    <input class="ui-btn-inner" id="btnTwitter" type="image" src="img/twitter.png"
-                           onclick="navbar.gotoTwitter()"/>
-                </li>
-                <li class="ui-block-e">
-                    <input class="ui-btn-inner" id="btnAbout" type="image" src="img/acerca_de.png"
-                           onclick="navbar.gotoAbout()"/>
-                </li>
-            </ul>
-        </div>
-        <!-- CIERRA Navbar-->
-
-        <h2 id="tituloh3">Reportar</h2>
-        <!--	-->
-    </div>
-    <!--header-->
-    <div data-role="content"
-         style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
-
-
-        <form id="myForm">
-            <select id="selectEvt">
-                <option>Categoría</option>
-            </select>
-            <select id="selectLevel">
-                <option>Nivel</option>
-            </select>
-            <select id="selectMuni">
-                <option>Municipio</option>
-            </select>
-        </form>
-
-
-        <!-- Camera -->
-        <div id="btnsypic">
-            <input id="capture" type="image" src="img/btf.png"></input>
-            <input id="pictureSource" type="image" src="img/bdg.png"></input>
-        </div>
-        <div id="simg">
-            <img src="" id="smallImage" style="display:none;width:85%;height:15%;max-height:15%;"> </img>
-        </div>
-        <br>
-        <!-- Map -->
-
-        <div id="map" style="width:100%;height:18%;">
-        </div>
-        <br>
-
-        <div style="text-align:center;">
-            <input id="btnReport" name="btnReport" type="image" value="Reportar" src="img/btn_enviar.png"/>
-        </div>
-    </div>
-    <!--content-->
-
-</div>
-<!--page-->
-
-<!-- CIERRA report-->
-
-
-<!-- ABRE graphs-->
-<div id="pg-graphs" data-role="page">
-    <div data-role="header" data-position="fixed">
-        <!-- ABRE Navbar-->
-        <div data-role="navbar" data-role="navigation">
-            <ul class="ui-grid-d">
-                <li class="ui-block-a">
-                    <input class="ui-btn-inner" id="btnHome" type="image" src="img/inicio.png"
-                           onclick="navbar.gotoHome()"/>
-                </li>
-                <li class="ui-block-b">
-                    <input class="ui-btn-inner" id="btnReporte" type="image" src="img/reporte.png"
-                           onclick="navbar.gotoReport()"/>
-                </li>
-                <li class="ui-block-c">
-                    <input class="ui-btn-inner" id="btnReporte" type="image" src="img/indicadores_over.png"/>
-                </li>
-                <li class="ui-block-d">
-                    <input class="ui-btn-inner" id="btnTwitter" type="image" src="img/twitter.png"
-                           onclick="navbar.gotoTwitter()"/>
-                </li>
-                <li class="ui-block-e">
-                    <input class="ui-btn-inner" id="btnAbout" type="image" src="img/acerca_de.png"
-                           onclick="navbar.gotoAbout()"/>
-                </li>
-            </ul>
-        </div>
-        <!-- CIERRA Navbar-->
-
-
-        <h3 id="tituloh3">Indicadores</h3>
-
-    </div>
-
-    <div data-role="content"
-         style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
-
-        <br>
-
-        <form id="formGraphs">
-            <select id="selectType">
-                <option>Linea de Tiempo</option>
-                <option>Torta</option>
-                <option>Barras</option>
-            </select>
-            <select id="selectDeptGraphs" onchange="getMunicipiosDepto()">
-                <option>Departamento</option>
-            </select>
-            <select id="selectMunGraphs">
-                <option>Municipio</option>
-            </select>
-
-        </form>
-        <button onclick="render()"> PINTAR</button>
-
-        <div id="chart_div3"></div>
-    </div>
-
-
-</div>
-<!-- CIERRA graphs-->
-
-
-<!-- ABRE twitter -->
-<div id="pg-twitter" data-role="page">
-    <div data-role="header" data-position="fixed">
-        <!-- ABRE Navbar-->
-        <div data-role="navbar" data-role="navigation">
-            <ul class="ui-grid-d">
-                <li class="ui-block-a">
-                    <input class="ui-btn-inner" id="btnHome" type="image" src="img/inicio.png"
-                           onclick="navbar.gotoHome()"/>
-                </li>
-                <li class="ui-block-b">
-                    <input class="ui-btn-inner" id="btnReporte" type="image" src="img/reporte.png"
-                           onclick="navbar.gotoReport()"/>
-                </li>
-                <li class="ui-block-c">
-                    <input class="ui-btn-inner" id="btnReporte" type="image" src="img/indicadores.png"
-                           onclick="navbar.gotoGraphs()"
-                            />
-                </li>
-                <li class="ui-block-d">
-                    <input class="ui-btn-inner" id="btnTwitter" type="image" src="img/twitter_over.png"
-                            />
-                </li>
-                <li class="ui-block-e">
-                    <input class="ui-btn-inner" id="btnAbout" type="image" src="img/acerca_de.png"
-                           onclick="navbar.gotoAbout()"
-                            />
-                </li>
-            </ul>
-        </div>
-        <!-- CIERRA Navbar-->
-
-
-        <h3 id="tituloh3">Twitter</h3>
-
-    </div>
-    <img src="" id="twitterheader" style="width:100%;height:30%;max-height:30%;"> </img>
-    <ul id="tweets"
-        style="display: inline-block; list-style-type: none; padding-right: 20px; vertical-align: middle; "></ul>
-
-</div>
-<!-- CIERRA twitter-->
-
-<!-- ABRE about-->
-<div id="pg-about" data-role="page">
-    <div data-role="header" data-position="fixed">
-        <!-- ABRE Navbar-->
-        <div data-role="navbar" data-role="navigation">
-            <ul class="ui-grid-d">
-                <li class="ui-block-a">
-                    <input class="ui-btn-inner" id="btnHome" type="image" src="img/inicio.png"
-                           onclick="navbar.gotoHome()"/>
-                </li>
-                <li class="ui-block-b">
-                    <input class="ui-btn-inner" id="btnReporte" type="image" src="img/reporte.png"
-                           onclick="navbar.gotoReport()"/>
-                </li>
-                <li class="ui-block-c">
-                    <input class="ui-btn-inner" id="btnReporte" type="image" src="img/indicadores.png"
-                           onclick="navbar.gotoGraphs()"/>
-                </li>
-                <li class="ui-block-d">
-                    <input class="ui-btn-inner" id="btnTwitter" type="image" src="img/twitter.png"
-                           onclick="navbar.gotoTwitter()"/>
-                </li>
-                <li class="ui-block-e">
-                    <input class="ui-btn-inner" id="btnAbout" type="image" src="img/acerca_de_over.png"/>
-                </li>
-            </ul>
-        </div>
-        <!-- CIERRA Navbar-->
-
-
-        <h3 id="tituloh3">Acerca de</h3>
-
-
-    </div>
-    <div data-role="content" data-theme="a"
-         style="background-image:url(img/708x1004.png); border:none;padding-bottom:140%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
-    </div>
-    <!-- CIERRA about-->
-</body>
-</html>
+								
+								<form id="myForm">
+									<select id="selectEvt" >
+										<option>Categoría</option>
+									</select>
+									<select id="selectLevel">
+										<option>Nivel</option>
+									</select>
+									<select id="selectMuni">
+										<option>Municipio</option>
+									</select>
+								</form>
+								 
+								
+								<!-- Camera -->
+								<div id="btnsypic">
+									<input id="capture" type="image" src="img/btf.png"></input>
+									<input id="pictureSource" type="image" src="img/bdg.png"></input>
+								</div>
+								<div id="simg">
+									<img src="" id="smallImage" style="display:none;width:85%;height:15%;max-height:15%;"> </img>
+								</div>
+								<br>
+								<!-- Map -->
+								
+								<div id="map" style="width:100%;height:18%;">
+								</div>
+								<br>
+								<div style="text-align:center;">
+								<input id="btnReport" name="btnReport" type="image" value="Reportar" src="img/btn_enviar.png" />
+								</div>
+								</div><!--content-->
+								
+								</div><!--page-->
+								
+								<!-- CIERRA report-->
+								
+								
+								
+								
+								
+								<!-- ABRE graphs-->
+								<div id="pg-graphs" data-role="page">
+									<div data-role="header" data-position="fixed">
+										<!-- ABRE Navbar-->
+										<div data-role="navbar"  data-role="navigation">
+											<ul class="ui-grid-d">
+												<li class="ui-block-a">
+													<input class="ui-btn-inner" id="btnHome"  type="image" src="img/inicio.png" onclick="navbar.gotoHome()"/>
+												</li>
+												<li class="ui-block-b">
+													<input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte.png" onclick="navbar.gotoReport()"/>
+												</li>
+												<li class="ui-block-c">
+													<input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores_over.png"/>
+												</li>
+												<li class="ui-block-d">
+													<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter.png" onclick="navbar.gotoTwitter()"/>
+												</li>
+												<li class="ui-block-e">
+													<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/acerca_de.png" onclick="navbar.gotoAbout()"/>
+												</li>
+											</ul>
+										</div>
+										<!-- CIERRA Navbar-->
+										
+										
+										<h3 id="tituloh3">Indicadores</h3>
+										
+									</div>
+									
+									<div data-role="content" style="background-image:url(img/Fondo1.png); border:none;height:30%;bottom: 0px; padding-bottom:110%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+										
+										<br>
+										<form id="formGraphs">
+											<select id="selectType" onchange="changeGraphs()">
+												<option>Linea de Tiempo</option>
+												<option>Torta</option>
+												<option>Barras</option>
+											</select>
+											<select id="selectDeptGraphs" onchange="getMunicipiosDepto()">
+												<option>Departamento</option>
+											</select>
+											<select id="selectMunGraphs">
+												<option>Municipio</option>
+											</select>
+											
+										</form>
+										<button  onclick="render()"> PINTAR </button>
+										
+										<div id="chart_div3"></div>
+									</div>
+									
+									
+								</div>
+								<!-- CIERRA graphs-->
+								
+								
+								<!-- ABRE twitter -->
+								<div id="pg-twitter" data-role="page">
+									<div data-role="header" data-position="fixed">
+										<!-- ABRE Navbar-->
+										<div data-role="navbar"  data-role="navigation">
+											<ul class="ui-grid-d">
+												<li class="ui-block-a">
+													<input class="ui-btn-inner" id="btnHome"  type="image" src="img/inicio.png" onclick="navbar.gotoHome()"/>
+												</li>
+												<li class="ui-block-b">
+													<input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte.png" onclick="navbar.gotoReport()"/>
+												</li>
+												<li class="ui-block-c">
+													<input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores.png"
+													onclick="navbar.gotoGraphs()"
+													/>
+												</li>
+												<li class="ui-block-d">
+													<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter_over.png"
+													/>
+												</li>
+												<li class="ui-block-e">
+													<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/acerca_de.png"
+													onclick="navbar.gotoAbout()"
+													/>
+												</li>
+											</ul>
+										</div>
+										<!-- CIERRA Navbar-->
+										
+										
+										<h3 id="tituloh3">Twitter</h3>
+										
+									</div>
+									<img src="" id="twitterheader" style="width:100%;height:30%;max-height:30%;" > </img>
+								<ul id="tweets" style="display: inline-block; list-style-type: none; padding-right: 20px; vertical-align: middle; "></ul>
+								
+							</div>
+							<!-- CIERRA twitter-->
+							
+							<!-- ABRE about-->
+							<div id="pg-about" data-role="page">
+								<div data-role="header" data-position="fixed">
+									<!-- ABRE Navbar-->
+									<div data-role="navbar"  data-role="navigation">
+										<ul class="ui-grid-d">
+											<li class="ui-block-a">
+												<input class="ui-btn-inner" id="btnHome"  type="image" src="img/inicio.png" onclick="navbar.gotoHome()"/>
+											</li>
+											<li class="ui-block-b">
+												<input class="ui-btn-inner" id="btnReporte"  type="image" src="img/reporte.png"
+												onclick="navbar.gotoReport()" />
+											</li>
+											<li class="ui-block-c">
+												<input class="ui-btn-inner" id="btnReporte"  type="image" src="img/indicadores.png"
+												onclick="navbar.gotoGraphs()"/>
+											</li>
+											<li class="ui-block-d">
+												<input class="ui-btn-inner" id="btnTwitter"  type="image" src="img/twitter.png" onclick="navbar.gotoTwitter()"/>
+											</li>
+											<li class="ui-block-e">
+												<input class="ui-btn-inner" id="btnAbout"  type="image" src="img/acerca_de_over.png"/>
+											</li>
+										</ul>
+									</div>
+									<!-- CIERRA Navbar-->
+									
+									
+									<h3 id="tituloh3">Acerca de</h3>
+									
+									
+									
+								</div>
+								<div data-role="content" data-theme="a" style="background-image:url(img/708x1004.png); border:none;padding-bottom:140%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
+								</div>
+								<!-- CIERRA about-->
+							</body>
+						</html>
