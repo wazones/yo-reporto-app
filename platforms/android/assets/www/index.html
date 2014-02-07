@@ -39,6 +39,20 @@
 				onTwitterReady();
 				});
 		</script>
+
+		<script>
+		document.addEventListener("backbutton", function(e){
+			if($.mobile.activePage.is('#pg-third')){
+				e.preventDefault();
+				navigator.app.exitApp();
+			}
+			else {
+				//navigator.app.backHistory()
+				//nada
+			}
+		}, false);
+
+		</script>
 		
 		<title>Yo Reporto</title>
 	</head>
