@@ -260,7 +260,7 @@ function testConnection()
             '</soap:Body>'+
             '</soap:Envelope>'; 
 
-			// $.blockUI({ message: 'Enviando Reporte...'});
+			 $.blockUI({ message: 'Enviando Reporte...'});
 	
             $.ajax({
               type: "POST",
@@ -305,7 +305,7 @@ function processSuccessInsertarEmergencia(data, status, req)
 	if(imagen==null)
 	{
 		navigator.notification.alert('Reporte Exitoso',null,'Yo Reporto','Aceptar');
-		 //$.unblockUI();
+		 $.unblockUI();
 	}
 	
     if(imagen!=null)
@@ -319,7 +319,7 @@ function processSuccessInsertarEmergencia(data, status, req)
     else
  	{
  		navigator.notification.alert('Reporte No Exitoso',null,'Yo Reporto','Aceptar');
- 		//$.unblockUI();
+ 		$.unblockUI();
 	}
 }//success1
 
@@ -364,11 +364,12 @@ function processSuccessInsertarArchivo(data, status, req)
   if (status == "success")
   {
    navigator.notification.alert('Reporte Exitoso',null,'Yo Reporto','Aceptar');
-    //$.unblockUI();
+    $.unblockUI();
  }
  else
  {
- navigator.notification.alert('Envio de Archivo No Exitoso',null,'Yo Reporto','Aceptar');
+ 	navigator.notification.alert('Envio de Archivo No Exitoso',null,'Yo Reporto','Aceptar');
+ 	$.unblockUI();
 }
 }//success2
 
