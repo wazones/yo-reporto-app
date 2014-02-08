@@ -1,4 +1,5 @@
 function onGraphsReady(){
+	$.blockUI({ message: 'Cargando Departamentos'});
 	google.load("visualization", "1.0", {packages:["corechart"],callback:llenarDeptos});
     //google.setOnLoadCallback();
     document.body.style.marginTop = "20px";
@@ -12,7 +13,7 @@ function llenarDeptos()
 	var requestHeader=window.localStorage.getItem("RequestHeader");
                var soapRequest0 =requestHeader+
                 '<Departamentos xmlns="http://tempuri.org/" /></soap:Body></soap:Envelope>';            
-  $.blockUI({ message: 'Cargando Departamentos'});
+  
 		
     $.ajax({
             type: "POST",
@@ -84,21 +85,23 @@ function getCodeDept(depto)
 
 
 function getMunicipiosDepto() 
-{ 
-
-	$.blockUI({ message: 'Cargando Municipios'});
-	var sel=document.getElementById("selectMunGraphs");
-	sel.value= "Municipio";
-	sel.options.length = 1;
-
-
+{ 	
 	var selectedDept=$("#selectDeptGraphs").val();
-	var selectMuni = document.getElementById("selectMunGraphs");
+	if(selectedDept!="Departamento")
+	{
+		$.blockUI({ message: 'Cargando Municipios'});
+		var sel=document.getElementById("selectMunGraphs");
+		sel.value= "Municipio";
+		sel.options.length = 1;
 
-	var codDepto=getCodeDept($("#selectDeptGraphs").val());
 
-	var wsUrl = window.localStorage.getItem("URL");
-	var requestHeader=window.localStorage.getItem("RequestHeader");
+		var selectedDept=$("#selectDeptGraphs").val();
+		var selectMuni = document.getElementById("selectMunGraphs");
+
+		var codDepto=getCodeDept($("#selectDeptGraphs").val());
+
+		var wsUrl = window.localStorage.getItem("URL");
+		var requestHeader=window.localStorage.getItem("RequestHeader");
                var soapRequest0 =requestHeader+
                 '<Municipios xmlns="http://tempuri.org/">'+
                  '<CodigoDepartamento>'+codDepto+'</CodigoDepartamento>'+
@@ -106,7 +109,7 @@ function getMunicipiosDepto()
                  '</soap:Body>'+
                  '</soap:Envelope>'; 
 		
-    $.ajax({
+    	$.ajax({
             type: "POST",
             url: wsUrl,
             contentType: "text/xml",
@@ -114,46 +117,60 @@ function getMunicipiosDepto()
             data: soapRequest0,
             success: processSuccess0,
             error: processError
-    });
+    	});
 
            
 
-    function processSuccess0(data, status, req) 
-    { 
-       	 var select = document.getElementById("selectMunGraphs");
-         if (status == "success")
-         {
-              var cont=0;
-              $("Municipio", req.responseText).each(function()
-              {
-                $.unblockUI();
-              	var todo=$("Codigo", this).text();
-              	var cod=$("Descripcion", this).text();
-              	var index=todo.indexOf(cod);
-              	var number=todo.substring(0,index);
-          	  	var el = document.createElement("option");
-          	  	el.textContent = cod;
-          	  	el.value = cod;
-          	  	select.appendChild(el);
-          	  	cont++;
-      		  });
+    	function processSuccess0(data, status, req) 
+    	{ 
+       		 var select = document.getElementById("selectMunGraphs");
+         	if (status == "success")
+         	{
+           	   	var cont=0;
+              	$("Municipio", req.responseText).each(function()
+              	{
+                	$.unblockUI();
+              		var todo=$("Codigo", this).text();
+              		var cod=$("Descripcion", this).text();
+              		var index=todo.indexOf(cod);
+              		var number=todo.substring(0,index);
+          	  		var el = document.createElement("option");
+          	  		el.textContent = cod;
+          	  		el.value = cod;
+          	  		select.appendChild(el);
+          	  		cont++;
+      		  	});
                
         	 
-        }//if success
+        	}//if success
         	
         	
-    }//success0
+    	}//success0
         
     function processError(data, status, req) 
     {
         alert('err '+data.state);
     } 
+    
+    }//if selected !=departamento
 	
 }//getmunicipiosdepto 
 
 function render()
 {
 	
+	var selectedGraph =$("#selectType").val();
+	var selectedDept=$("#selectDeptGraphs").val();
+	var selectedMun = $("#selectMunGraphs").val(); 
+	if(selectedDept!="Departamento" && selectedMun != "Municipio" )
+	{
+	
+	if(selectedGraph=="Torta")
+	{
+		renderTorta();
+	}
+	else
+	{
 	setTimeout(drawChart,0);
 	
     function drawChart() {
@@ -212,7 +229,8 @@ function render()
        
         chart.draw(data, options);
       }
-      //*/
+      }//selectedgraph!= torta
+      }//depto!= departamento
 }
 
 function render0()
@@ -279,16 +297,16 @@ function render0()
       //*/
 }
 
-function changeGraphs()
+/*function changeGraphs()
 {
      var selectedGraph =$("#selectType").val();
-     alert('should change the graph to: ' + selectedGraph +'\n');
+    // alert('should change the graph to: ' + selectedGraph +'\n');
     if(selectedGraph == 'Torta') {
-        alert('rendering Torta');
+        //alert('rendering Torta');
         renderTorta();
     }
 
-}
+}*/
 
 
 function renderTorta()

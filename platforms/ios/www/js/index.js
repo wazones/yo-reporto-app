@@ -1,20 +1,20 @@
 var app = {
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         this.bindEvents();
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
+    bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.addEventListener('offline',this.onOffline, false);
+        document.addEventListener('offline', this.onOffline, false);
     },
-    onDeviceReady: function() {	 
+    onDeviceReady: function () {
         console.log('ready papa2');
     },
-    onOffline: function() {
+    onOffline: function () {
         console.log('offline papa');
         navigator.notification.alert('Para usar esta aplicación debes tener conexión a internet');
     }
