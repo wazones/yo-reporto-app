@@ -2,6 +2,7 @@
 old.*
 
 # ANDROID / ECLIPSE
+.settings/
 
 # built application files
 *.apk
@@ -51,4 +52,6 @@ IOS/www/
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
+# WebStorm
 /.idea

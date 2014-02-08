@@ -321,6 +321,7 @@ function renderTorta()
                 var month = months2[i];
                 var year = years[i];
                 if(window.db[x] != null &&
+
                     window.db[x][year] != null &&
                     window.db[x][year][ month ] != null &&
                     window.db[x][year][ month ][ depto ] != null &&

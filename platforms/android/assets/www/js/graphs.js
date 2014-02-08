@@ -300,7 +300,6 @@ function renderTorta()
         var months2 = [];
         months = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
         var years = [];
-        
         var currDate = new Date();
         for(var i = currDate.getMonth()+1;i<12;++i){
             months2.push([ months[i] ]);
@@ -322,6 +321,7 @@ function renderTorta()
                 var month = months2[i];
                 var year = years[i];
                 if(window.db[x] != null &&
+
                     window.db[x][year] != null &&
                     window.db[x][year][ month ] != null &&
                     window.db[x][year][ month ][ depto ] != null &&
