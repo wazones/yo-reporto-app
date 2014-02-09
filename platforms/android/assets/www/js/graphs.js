@@ -61,7 +61,6 @@ function llenarDeptos() {
             contentType: "application/text",
             success: function (data) {
                 window.db = JSON.parse(data);
-                //render0();
                 firstRender();
             },
             error: processError
@@ -210,75 +209,19 @@ function render() {
     if (selectedDept != "Departamento" && selectedMun != "Municipio") {
 
         if (selectedGraph == "Torta") {
-            renderTorta();
+            renderPieChart();
         }
-        else {
-            setTimeout(drawChart, 0);
-
-            function drawChart() {
-                var header = ["Mes"];
-                for (x in window.db) {
-                    header.push(x);
-                }
-                var mat = [];
-                mat.push(header);
-                months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
-                years = [];
-
-                var currDate = new Date();
-                for (var i = currDate.getMonth() + 1; i < 12; ++i) {
-                    mat.push([ months[i] ]);
-                    years.push("" + (currDate.getYear() + 1900 - 1));
-                }
-                var str = "";
-
-                for (var i = 0; i <= currDate.getMonth(); ++i) {
-                    mat.push([ months[i] ]);
-                    str += months[i] + ",";
-                    years.push("" + (currDate.getYear() + 1900));
-                }
-                // alert(str);
-
-                var depto = $("#selectDeptGraphs").val();
-                var muni = $("#selectMunGraphs").val();
-                for (var i = 1; i < header.length; ++i) {
-                    var desastre = header[i];
-                    for (var j = 1; j < mat.length; ++j) {
-                        var year = years[ j - 1 ];
-                        var month = mat[j][0];
-                        if (window.db[header[i]] != null &&
-                            window.db[header[i]][year] != null &&
-                            window.db[header[i]][year][ month ] != null &&
-                            window.db[header[i]][year][ month ][ depto ] != null &&
-                            window.db[header[i]][year][ month ][ depto ][ muni ] != null
-                            ) {
-                            mat[j].push(window.db[header[i]][year][ month ][ depto ][ muni ]);
-                        }
-                        else {
-                            mat[j].push(0);
-                        }
-                    }
-                }
-
-                var data = google.visualization.arrayToDataTable(mat);
-
-                var options = {
-                    title: 'DESASTRES EN ' + muni,
-                    legend: {position: 'none'}
-                };
-
-                var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
-
-                chart.draw(data, options);
-            }
+        else if (selectedGraph == "Linea de Tiempo") {
+            renderLineChart();
         }//selectedgraph!= torta
+        else {
+            renderColumnChart();
+        }
     }//depto!= departamento
 }
-
-function render0() {
+function renderLineChart() {
     $.unblockUI();
     setTimeout(drawChart, 0);
-
     function drawChart() {
         var header = ["Mes"];
         for (x in window.db) {
@@ -303,8 +246,8 @@ function render0() {
         }
         // alert(str);
 
-        var depto = "BOGOTA D.C.";
-        var muni = "BOGOTA";
+        var depto = $("#selectDeptGraphs").val();
+        var muni = $("#selectMunGraphs").val();
         for (var i = 1; i < header.length; ++i) {
             var desastre = header[i];
             for (var j = 1; j < mat.length; ++j) {
@@ -337,65 +280,7 @@ function render0() {
     }
 }
 
-function renderLineChart(depto, muni) {
-    $.unblockUI();
-    setTimeout(drawChart, 0);
-    function drawChart() {
-        var header = ["Mes"];
-        for (x in window.db) {
-            header.push(x);
-        }
-        var mat = [];
-        mat.push(header);
-        months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
-        years = [];
-
-        var currDate = new Date();
-        for (var i = currDate.getMonth() + 1; i < 12; ++i) {
-            mat.push([ months[i] ]);
-            years.push("" + (currDate.getYear() + 1900 - 1));
-        }
-        var str = "";
-
-        for (var i = 0; i <= currDate.getMonth(); ++i) {
-            mat.push([ months[i] ]);
-            str += months[i] + ",";
-            years.push("" + (currDate.getYear() + 1900));
-        }
-
-        for (var i = 1; i < header.length; ++i) {
-            var desastre = header[i];
-            for (var j = 1; j < mat.length; ++j) {
-                var year = years[ j - 1 ];
-                var month = mat[j][0];
-                if (window.db[header[i]] != null &&
-                    window.db[header[i]][year] != null &&
-                    window.db[header[i]][year][ month ] != null &&
-                    window.db[header[i]][year][ month ][ depto ] != null &&
-                    window.db[header[i]][year][ month ][ depto ][ muni ] != null
-                    ) {
-                    mat[j].push(window.db[header[i]][year][ month ][ depto ][ muni ]);
-                }
-                else {
-                    mat[j].push(0);
-                }
-            }
-        }
-
-        var data = google.visualization.arrayToDataTable(mat);
-
-        var options = {
-            title: 'DESASTRES EN ' + muni,
-            legend: {position: 'none'}
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
-
-        chart.draw(data, options);
-    }
-}
-
-function renderTorta() {
+function renderPieChart() {
     $.unblockUI();
     setTimeout(drawChart, 0);
 
@@ -419,6 +304,7 @@ function renderTorta() {
         ];
         var depto = $("#selectDeptGraphs").val();
         var muni = $("#selectMunGraphs").val();
+        var total = 0;
         for (x in window.db) {
             var sum = 0;
             for (var i = 0; i < months2.length; ++i) {
@@ -435,9 +321,11 @@ function renderTorta() {
                 }
             }
             data.push([x, sum]);
+            total+=sum;
         }
+        if(total == 0) {
 
-
+        }
         var data = google.visualization.arrayToDataTable(data);
         var options = {
             title: 'Desastres',
@@ -445,6 +333,68 @@ function renderTorta() {
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('chart_div3'));
+        chart.draw(data, options);
+    }
+}
+function renderColumnChart() {
+    $.unblockUI();
+    //isStacked: true,
+    setTimeout(drawChart, 0);
+    function drawChart() {
+        var header = ["Mes"];
+        for (x in window.db) {
+            header.push(x);
+        }
+        var mat = [];
+        mat.push(header);
+        months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+        years = [];
+
+        var currDate = new Date();
+        for (var i = currDate.getMonth() + 1; i < 12; ++i) {
+            mat.push([ months[i] ]);
+            years.push("" + (currDate.getYear() + 1900 - 1));
+        }
+        var str = "";
+
+        for (var i = 0; i <= currDate.getMonth(); ++i) {
+            mat.push([ months[i] ]);
+            str += months[i] + ",";
+            years.push("" + (currDate.getYear() + 1900));
+        }
+        // alert(str);
+
+        var depto = $("#selectDeptGraphs").val();
+        var muni = $("#selectMunGraphs").val();
+        for (var i = 1; i < header.length; ++i) {
+            var desastre = header[i];
+            for (var j = 1; j < mat.length; ++j) {
+                var year = years[ j - 1 ];
+                var month = mat[j][0];
+                if (window.db[header[i]] != null &&
+                    window.db[header[i]][year] != null &&
+                    window.db[header[i]][year][ month ] != null &&
+                    window.db[header[i]][year][ month ][ depto ] != null &&
+                    window.db[header[i]][year][ month ][ depto ][ muni ] != null
+                    ) {
+                    mat[j].push(window.db[header[i]][year][ month ][ depto ][ muni ]);
+                }
+                else {
+                    mat[j].push(0);
+                }
+            }
+        }
+
+        var data = google.visualization.arrayToDataTable(mat);
+
+        var options = {
+            title: 'DESASTRES EN ' + muni,
+            legend: {position: 'none'},
+            isStacked:true
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div3'));
+
         chart.draw(data, options);
     }
 }
