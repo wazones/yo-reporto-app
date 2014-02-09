@@ -28,7 +28,7 @@ function map()
         //get geoposition once
         //navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 5000, enableHighAccuracy: true });
         //watch for geoposition change
-        watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 50000, enableHighAccuracy: true });   
+        watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });   
       }); 
 }
 
@@ -46,7 +46,7 @@ function geo_error(error)
       
       //trying low accuracy
       $.blockUI({ message: 'Cargando posición por red...'});
-      watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 50000, enableHighAccuracy: false });   
+      watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });   
     }
     else
     {
@@ -72,12 +72,12 @@ function onTimeout(button)
   if(button == 2)
   {
     $.blockUI({ message: 'Cargando posición por red...'});
-    watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 50000, enableHighAccuracy: false });
+    watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
   }
   else
   {
     $.blockUI({ message: 'Cargando posición por GPS...'});
-    watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 50000, enableHighAccuracy: true });
+    watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });
   } 
   
 
