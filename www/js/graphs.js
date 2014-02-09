@@ -69,7 +69,7 @@ function llenarDeptos() {
     }
 }
 function firstRender() {
-    $.blockUI({ message: 'Calculando posición'});
+    $.blockUI({ message: 'Cargando posición por GPS...'});
     navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 600000, enableHighAccuracy: true });
     function geo_error(error)
     {
@@ -84,20 +84,28 @@ function firstRender() {
             navigator.notification.alert('Servicios de Localización Desabilitados. Se utilizará Localización por torres celulares (menos preciso)',null,'Yo Reporto','Aceptar');
 
             //trying low accuracy
-            $.blockUI({ message: 'Getting Position low acc....'});
+            $.blockUI({ message: 'Cargando posición por red...'});
             navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 600000, enableHighAccuracy: false });
         }
         else
         {
             if(error.code==3)
             {
-                navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posición',null,'Yo Reporto','Aceptar');
+                //navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posición',null,'Yo Reporto','Aceptar');
+                if(error.code==3)
+                {
+                navigator.notification.confirm(
+                'Error: Tiempo de espera agotado para solicitar la posición',  // message
+                 onTimeout,              // callback to invoke with index of button pressed
+                'Yo Reporto',            // title
+                'Reintentar,Posición por red'          // buttonLabels
+                 );
 
+                }
             }
-        }
         //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+        }
     }
-
     function geo_success(position)
     {
         $.blockUI({ message: 'Cargando Municipios...'});
@@ -131,6 +139,24 @@ function firstRender() {
                 alert('Intenta más tarde');
             });
     };
+
+    function onTimeout(button)
+    {
+      //alert("seleccionaste: "+button);
+      
+          if(button == 2)
+          {
+            $.blockUI({ message: 'Cargando posición por red...'});
+            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 50000, enableHighAccuracy: false });
+          }
+          else
+          {
+            $.blockUI({ message: 'Cargando posición por GPS...'});
+            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 50000, enableHighAccuracy: true });
+          } 
+      
+
+    }
 }
 function getCodeDept(depto) {
     return mapaDeptos.get(depto);
