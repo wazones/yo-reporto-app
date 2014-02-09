@@ -4,13 +4,7 @@ var infowindow;
 var watchID;
 
 
-function onDeviceReady() 
-{
-  //$(window).unbind();
-  /*$(window).bind('pageshow resize orientationchange', function(e){
-    max_height();
-  });*/
-  //alert("MF");
+function onDeviceReady() {
   max_height();
   document.body.style.marginTop = "20px";
   google.load("maps", "3.8", {"callback": map, other_params: "sensor=true&language=es"});
