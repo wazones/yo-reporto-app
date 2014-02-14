@@ -4,13 +4,7 @@ var infowindow;
 var watchID;
 
 
-function onDeviceReady() 
-{
-  //$(window).unbind();
-  /*$(window).bind('pageshow resize orientationchange', function(e){
-    max_height();
-  });*/
-  //alert("MF");
+function onDeviceReady() {
   max_height();
   document.body.style.marginTop = "20px";
   google.load("maps", "3.8", {"callback": map, other_params: "sensor=true&language=es"});
@@ -29,12 +23,12 @@ function map()
     };
   	map = new google.maps.Map(document.getElementById("map"), myOptions);
 
-    $.blockUI({ message: 'Cargando Posición...'});
+    $.blockUI({ message: 'Cargando posición por GPS...'});
   	google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
         //get geoposition once
         //navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 5000, enableHighAccuracy: true });
         //watch for geoposition change
-        watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 600000, enableHighAccuracy: true });   
+        watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });   
       }); 
 }
 
@@ -48,21 +42,45 @@ function geo_error(error)
     	//alert("Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación");
     	//navigator.notification.alert('Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación',null,'Yo Reporto','Aceptar');
 
-      navigator.notification.alert('Servicios de Localización Desabilitados. Se utilizará Localización por torres celulares (menos preciso)',null,'Yo Reporto','Aceptar');
+      navigator.notification.alert('Servicios de Localización Desabilitados. Se utilizará localización por torres celulares (menos preciso)',null,'Yo Reporto','Aceptar');
       
       //trying low accuracy
-      $.blockUI({ message: 'Getting Position low acc....'});
-      watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 600000, enableHighAccuracy: false });   
+      $.blockUI({ message: 'Cargando posición por red...'});
+      watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });   
     }
     else
     {
     	if(error.code==3)
     	{
-    		navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posición',null,'Yo Reporto','Aceptar');
+        navigator.notification.confirm(
+        'Error: Tiempo de espera agotado para solicitar la posición',  // message
+         onTimeout,              // callback to invoke with index of button pressed
+        'Yo Reporto',            // title
+        'Reintentar,Posición por red'          // buttonLabels
+         );
+    		//navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posición',null,'Yo Reporto','Aceptar');
     
     	}
     }
     	//alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+}
+
+function onTimeout(button)
+{
+  //alert("seleccionaste: "+button);
+  
+  if(button == 2)
+  {
+    $.blockUI({ message: 'Cargando posición por red...'});
+    watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
+  }
+  else
+  {
+    $.blockUI({ message: 'Cargando posición por GPS...'});
+    watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });
+  } 
+  
+
 }
 
 function geo_success(position) 

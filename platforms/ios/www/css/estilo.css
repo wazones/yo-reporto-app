@@ -11,16 +11,15 @@
 
 input[type=text]{
   color:#FFFFFF;
-  font-weight:bold;
+  
 }
 input[type=number]{
   color:#FFFFFF;
-  font-weight:bold;
+  
 }
 
 #btn-report {
-    height: 100px;
-     width: 400px;
+   
   
 }
 
