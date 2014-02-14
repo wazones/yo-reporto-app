@@ -296,7 +296,7 @@ function renderLineChart() {
         var data = google.visualization.arrayToDataTable(mat);
 
         var options = {
-            title: 'DESASTRES EN ' + muni,
+            title: 'EVENTOS EN ' + muni,
             legend: {position: 'none'}
         };
 
@@ -354,7 +354,7 @@ function renderPieChart() {
         }
         var data = google.visualization.arrayToDataTable(data);
         var options = {
-            title: 'Desastres',
+               title: 'EVENTOS EN ' + muni,
             is3D: true
         };
 
@@ -414,7 +414,7 @@ function renderColumnChart() {
         var data = google.visualization.arrayToDataTable(mat);
 
         var options = {
-            title: 'DESASTRES EN ' + muni,
+            title: 'EVENTOS EN ' + muni,
             legend: {position: 'none'},
             isStacked:true
         };
