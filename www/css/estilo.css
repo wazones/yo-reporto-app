@@ -12,6 +12,12 @@
 @viewport{width:device-width;}
 @-ms-viewport{width:device-width;}
 
+#botones{
+	width:70%;
+	margin-left:15%;
+}
+
+
 /*Propiedad general para el pie de página*/
 #footer { display: none }
 
@@ -57,12 +63,6 @@ font-weight:bold;
 	height:5em;
 	background-image:url(../img/Fondo12.png);
 }*/
-
-#pg-graphs{
-	width:100%;
-	height:5em;
-	background-image:url(../img/Fondo12.png);
-}
 
 /*content*/
 #ctnt {

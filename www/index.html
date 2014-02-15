@@ -68,15 +68,16 @@
 				<h1>Inicio</h1>
 			</div>
 			<div data-role="content" data-theme="a" >
-				<button id="btn-report" onclick="navbar.gotoReport()">Reportar</button>
-				<button id="btn-stats"  onclick="navbar.gotoGraphs()">Indicadores</button>
-				<button id="btn-twitter" onclick="navbar.gotoTwitter()">@UNGRD</button>
-				<button id="btn-about" onclick="navbar.gotoAbout()">Acerca de</button>
+			  <div id="botones">
+				<br><button id="btn-report" onclick="navbar.gotoReport()">Reportar</button>
+				<br><button id="btn-stats"  onclick="navbar.gotoGraphs()">Indicadores</button>
+				<br><button id="btn-twitter" onclick="navbar.gotoTwitter()">@UNGRD</button>
+				<br><button id="btn-about" onclick="navbar.gotoAbout()">Acerca de</button>
 				  <!--  <div data-role="button" id="test" data-inline="true" style="font-size:12pt;line-height:100%;font-weight:60;padding: 0px 0px" onclick="navbar.gotoReport()">Reportar</div>
 				<br><div data-role="button" id="test" data-inline="true" style="font-size:12pt;line-height:100%;font-weight:60;padding: 0px 0px" onclick="navbar.gotoGraphs()">Indicadores</div>
 				<br><div data-role="button" id="test" data-inline="true" style="font-size:12pt;line-height:100%;font-weight:60;padding: 0px 0px" onclick="navbar.gotoTwitter()">@UNGRD</div>
 				<br><div data-role="button" id="test" data-inline="true" style="font-size:12pt;line-height:100%;font-weight:60;padding: 0px 0px" onclick="navbar.gotoAbout()">Acerca de</div>
--->
+-->			  </div>
 			</div><!--content-->
 				
 		</div><!--page-->
@@ -88,7 +89,8 @@
 							<h4>Datos Personales</h4>
 						</div>
 						<div data-role="content" data-theme="a" style="background-image:url(img/Fondo12.png); border:none;height:30%;bottom: 0px; padding-bottom:100%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
-							<form id="secondForm">
+							 <div id="botones">
+							   <form id="secondForm">
 								<p id="titulo2nd">Nombre:</p>
 								<input id="txtNombre" type="text"></input>
 								<br/>
@@ -101,9 +103,12 @@
 								<p id="titulo2nd">Entidad:</p>
 								<input id="txtEntidad" type="text" />
 								<br>
+								<button id="btnGuardarConfig" onclick="goThird()">Guardar Datos</button>
 							</form>
-							<br>
-							<button id="btnGuardarConfig" onclick="goThird()">Guardar Datos</button>
+							
+							
+							 	
+							 </div>
 							<br>
 						</div>
 					</div>
@@ -143,7 +148,7 @@
 							<div data-role="content" style="background-image:url(img/Fondo12.png); border:none;height:30%;bottom: 0px; padding-bottom:100%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 								
 
-								
+								 <div id="botones">
 								<form id="myForm">
 									<select id="selectEvt" >
 										<option>Categoría</option>
@@ -155,6 +160,7 @@
 										<option>Municipio</option>
 									</select>
 								</form>
+								</div>
 								 
 								
 								<!-- Camera -->
@@ -214,10 +220,11 @@
 										
 									</div>
 									
-									<div data-role="content">
+							<div data-role="content" style="background-image:url(img/Fondo12.png); border:none;height:30%;bottom: 0px; padding-bottom:100%;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
 										
 										<br>
-										<form id="formGraphs">
+										 <div id="botones">
+										   <form id="formGraphs">
 											<select id="selectType" onchange="render()">
 												<option>Linea de Tiempo</option>
 												<option>Torta</option>
@@ -230,7 +237,8 @@
 												<option>Municipio</option>
 											</select>
 											
-										</form>
+										  </form>
+										</div>
 										
 										
 										<div id="chart_div3"></div>
