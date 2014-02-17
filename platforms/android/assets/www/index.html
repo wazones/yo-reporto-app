@@ -38,6 +38,9 @@
 				$(document).on('pageinit', '#pg-twitter', function(){
 				onTwitterReady();
 				});
+                $(document).on('pageinit', '#pg-about', function(){
+				onAboutReady();
+				});
 		</script>
 
 		<script>
@@ -73,11 +76,7 @@
 				<br><button id="btn-stats"  onclick="navbar.gotoGraphs()">Indicadores</button>
 				<br><button id="btn-twitter" onclick="navbar.gotoTwitter()">@UNGRD</button>
 				<br><button id="btn-about" onclick="navbar.gotoAbout()">Acerca de</button>
-				  <!--  <div data-role="button" id="test" data-inline="true" style="font-size:12pt;line-height:100%;font-weight:60;padding: 0px 0px" onclick="navbar.gotoReport()">Reportar</div>
-				<br><div data-role="button" id="test" data-inline="true" style="font-size:12pt;line-height:100%;font-weight:60;padding: 0px 0px" onclick="navbar.gotoGraphs()">Indicadores</div>
-				<br><div data-role="button" id="test" data-inline="true" style="font-size:12pt;line-height:100%;font-weight:60;padding: 0px 0px" onclick="navbar.gotoTwitter()">@UNGRD</div>
-				<br><div data-role="button" id="test" data-inline="true" style="font-size:12pt;line-height:100%;font-weight:60;padding: 0px 0px" onclick="navbar.gotoAbout()">Acerca de</div>
--->			  </div>
+			  </div>
 			</div><!--content-->
 				
 		</div><!--page-->
@@ -323,7 +322,7 @@
 									
 									
 								</div>
-								<img border="0" src="img/708x1004.png" alt="Pulpit rock" width="100%">
+								<img id="imageabout" border="0" src="img/about/default.png" alt=" " width="100%">
 
 								</div>
 								<!-- CIERRA about-->

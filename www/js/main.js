@@ -1,4 +1,4 @@
-﻿var pictureSource; // fuente de la foto
+var pictureSource; // fuente de la foto
 var destinationType; // formato de lo retornado 
 var imagen;   //donde se guarda el codigo base64 de la foto
 var mapa;  //un map para almacenar datos
@@ -6,6 +6,37 @@ var mapa2;  //""
 var mapa3;
 var canvas;
 
+
+function onAboutReady()
+{
+    //alert("height: "+screen.height);
+    //alert("width: "+screen.width);
+    var imageContainer = document.getElementById("imageabout");
+    if(screen.height==568&&screen.width==320)//iphone 5
+    {
+          imageContainer.src="img/about/i5.png"
+          
+    }
+    else if(screen.height==480&&screen.width==320)//otros iphone
+    {
+        imageContainer.src="img/about/i4.png"
+    }
+    
+    else if(screen.height==1024&&screen.width==768)//ipads
+    {
+        imageContainer.src="img/about/ipad.png"
+    }
+    else if(screen.height==2464&&screen.width==1600)//nexus 10
+    {
+          imageContainer.src="img/about/nexus10.png"
+    }
+    else 
+    {
+          imageContainer.src="img/about/default.png"
+    }
+    
+    
+}
 
 function start() 
 {  
@@ -364,6 +395,7 @@ function processSuccessInsertarArchivo(data, status, req)
   if (status == "success")
   {
    navigator.notification.alert('Reporte Exitoso',null,'Yo Reporto','Aceptar');
+    // alert(req.responseText);
     $.unblockUI();
  }
  else
@@ -434,14 +466,15 @@ function getBase64FromImageUrl(URL)
 function capturePhoto() 
 { 
 	navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 10, 
-		destinationType: destinationType.DATA_URL }); 
+		destinationType: destinationType.DATA_URL, correctOrientation: true,
+        targetWidth: 480, targetHeight: 480}); 
 	//alert("destino: "+destinationType.DATA_URL);
 } 
 
 function getPhoto(source) 
 { 
 	navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
-		destinationType: destinationType.FILE_URI, 
+		destinationType: destinationType.FILE_URI, correctOrientation: true, 
 		sourceType: source }); 
 } 
 
@@ -449,5 +482,7 @@ function onFail(message)
 { 
 //	alert('Foto Cancelada: ' + message); 
 }
+
+
 
 
