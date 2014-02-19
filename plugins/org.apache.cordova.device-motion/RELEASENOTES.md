@@ -45,3 +45,13 @@
 * [CB-4825] avoid retain cycle in update block
 * [CB-4825] use CoreMotion framework for accelerometer
 * [CB-4915] Incremented plugin version on dev branch.
+
+### 0.2.4 (Dec 4, 2013)
+* add ubuntu platform
+* 1. Added amazon-fireos platform. 2. Change to use amazon-fireos as the platform if the user agent string contains 'cordova-amazon-fireos'
+
+### 0.2.5 (Jan 02, 2014)
+* CB-5658 Add doc/index.md for Device Motion plugin
+
+### 0.2.6 (Feb 05, 2014)
+* Add Tizen support

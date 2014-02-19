@@ -158,11 +158,8 @@ public class FileTransfer extends CordovaPlugin {
             return updateBytesRead(super.read());
         }
 
-        @Override
-        public int read(byte[] buffer) throws IOException {
-            return updateBytesRead(super.read(buffer));
-        }
-
+        // Note: FilterInputStream delegates read(byte[] bytes) to the below method,
+        // so we don't override it or else double count (CB-5631).
         @Override
         public int read(byte[] bytes, int offset, int count) throws IOException {
             return updateBytesRead(super.read(bytes, offset, count));
@@ -760,8 +757,10 @@ public class FileTransfer extends CordovaPlugin {
                         if (connection.getContentEncoding() == null || connection.getContentEncoding().equalsIgnoreCase("gzip")) {
                             // Only trust content-length header if we understand
                             // the encoding -- identity or gzip
-                            progress.setLengthComputable(true);
-                            progress.setTotal(connection.getContentLength());
+                            if (connection.getContentLength() != -1) {
+                                progress.setLengthComputable(true);
+                                progress.setTotal(connection.getContentLength());
+                            }
                         }
                         inputStream = getInputStream(connection);
                     }

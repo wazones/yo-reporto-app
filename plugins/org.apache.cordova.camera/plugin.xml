@@ -3,7 +3,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="org.apache.cordova.camera"
-    version="0.2.4">
+    version="0.2.7">
     <name>Camera</name>
     <description>Cordova Camera Plugin</description>
     <license>Apache 2.0</license>
@@ -25,6 +25,19 @@
         <clobbers target="navigator.camera" />
     </js-module>
 
+    <!-- firefoxos -->
+    <platform name="firefoxos">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Camera">
+                <param name="firefoxos-package" value="Camera" />
+            </feature>
+        </config-file>                                         
+        
+        <js-module src="src/firefoxos/CameraProxy.js" name="CameraProxy">
+          <runs />
+        </js-module>
+    </platform>  
+    
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
@@ -44,6 +57,48 @@
             <clobbers target="CameraPopoverHandle" />
         </js-module>
 
+     </platform>
+
+    <!-- amazon-fireos -->
+    <platform name="amazon-fireos">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Camera">
+                <param name="android-package" value="org.apache.cordova.camera.CameraLauncher"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+
+        <source-file src="src/android/CameraLauncher.java" target-dir="src/org/apache/cordova/camera" />
+        <source-file src="src/android/FileHelper.java" target-dir="src/org/apache/cordova/camera" />
+        <source-file src="src/android/ExifHelper.java" target-dir="src/org/apache/cordova/camera" />
+
+        <js-module src="www/CameraPopoverHandle.js" name="CameraPopoverHandle">
+            <clobbers target="CameraPopoverHandle" />
+        </js-module>
+
+     </platform>
+     
+     <!-- ubuntu -->
+     <platform name="ubuntu">
+         <config-file target="config.xml" parent="/*">
+             <feature name="Camera">
+                 <param policy_group="camera" policy_version="1" />
+             </feature>
+         </config-file>
+         <js-module src="www/CameraPopoverHandle.js" name="CameraPopoverHandle">
+            <clobbers target="CameraPopoverHandle" />
+         </js-module>
+         <header-file src="src/ubuntu/camera.h" />
+         <source-file src="src/ubuntu/camera.cpp" />
+
+         <resource-file src="src/ubuntu/back.png" />
+         <resource-file src="src/ubuntu/CaptureWidget.qml" />
+         <resource-file src="src/ubuntu/shoot.png" />
+         <resource-file src="src/ubuntu/toolbar-left.png" />
+         <resource-file src="src/ubuntu/toolbar-middle.png" />
+         <resource-file src="src/ubuntu/toolbar-right.png" />
      </platform>
 
      <!-- ios -->
@@ -76,7 +131,9 @@
         <config-file target="www/config.xml" parent="/widget">
             <feature name="Camera" value="Camera"/>
         </config-file>
-
+        <config-file target="www/config.xml" parent="/widget/rim:permissions">
+          <rim:permit>access_shared</rim:permit>
+        </config-file>
         <js-module src="www/CameraPopoverHandle.js" name="CameraPopoverHandle">
             <clobbers target="CameraPopoverHandle" />
         </js-module>
@@ -138,21 +195,6 @@
             <merges target="" />
         </js-module>
 
-    </platform>
- 
-    <!-- firefoxos -->
-    <platform name="firefoxos">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Camera">
-                <param name="firefoxos-package" value="Camera" />
-            </feature>
-        </config-file> 
-        <js-module src="www/CameraPopoverHandle.js" name="CameraPopoverHandle">
-            <clobbers target="CameraPopoverHandle" />
-        </js-module>                                        
-        <js-module src="src/firefoxos/CameraProxy.js" name="CameraProxy">
-            <runs />
-        </js-module>
     </platform>
 
 </plugin>

@@ -1,4 +1,4 @@
-cordova.define("org.apache.cordova.file.DirectoryEntry", function(require, exports, module) {/*
+cordova.define("org.apache.cordova.file.DirectoryEntry", function(require, exports, module) { /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -45,7 +45,7 @@ utils.extend(DirectoryEntry, Entry);
  * Creates a new DirectoryReader to read entries from this directory
  */
 DirectoryEntry.prototype.createReader = function() {
-    return new DirectoryReader(this.fullPath);
+    return new DirectoryReader(this.toURL());
 };
 
 /**
@@ -66,7 +66,7 @@ DirectoryEntry.prototype.getDirectory = function(path, options, successCallback,
     var fail = errorCallback && function(code) {
         errorCallback(new FileError(code));
     };
-    exec(win, fail, "File", "getDirectory", [this.fullPath, path, options]);
+    exec(win, fail, "File", "getDirectory", [this.filesystem.__format__(this.fullPath), path, options]);
 };
 
 /**
@@ -80,7 +80,7 @@ DirectoryEntry.prototype.removeRecursively = function(successCallback, errorCall
     var fail = errorCallback && function(code) {
         errorCallback(new FileError(code));
     };
-    exec(successCallback, fail, "File", "removeRecursively", [this.fullPath]);
+    exec(successCallback, fail, "File", "removeRecursively", [this.filesystem.__format__(this.fullPath)]);
 };
 
 /**
@@ -102,8 +102,9 @@ DirectoryEntry.prototype.getFile = function(path, options, successCallback, erro
     var fail = errorCallback && function(code) {
         errorCallback(new FileError(code));
     };
-    exec(win, fail, "File", "getFile", [this.fullPath, path, options]);
+    exec(win, fail, "File", "getFile", [this.filesystem.__format__(this.fullPath), path, options]);
 };
 
 module.exports = DirectoryEntry;
+
 });

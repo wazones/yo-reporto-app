@@ -53,7 +53,7 @@ function llenarDeptos() {
     }
 
     function llenarEventos() {
-        $.blockUI({ message: 'Cargando Eventos'});
+        $.blockUI({ message: 'Cargando Eventos...'});
         $.ajax({
             type: "GET",
             url: "res/graf5.json",

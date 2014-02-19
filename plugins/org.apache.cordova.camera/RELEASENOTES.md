@@ -42,8 +42,29 @@
 * No longer causes a stack trace, but it doesn't cause the error to be called.
 * CB-4889 renaming org.apache.cordova.core.camera to org.apache.cordova.camera
 
-### 0.2.4 (Oct 28, 2013)
+ ### 0.2.4 (Oct 28, 2013)
 * CB-5128: added repo + issue tag to plugin.xml for camera plugin
 * CB-4958 - iOS - Camera plugin should not show the status bar
 * [CB-4919] updated plugin.xml for FxOS
 * [CB-4915] Incremented plugin version on dev branch.
+
+### 0.2.5 (Dec 4, 2013)
+* fix camera for firefox os
+* getPicture via web activities
+* [ubuntu] specify policy_group
+* add ubuntu platform
+* 1. User Agent detection now detects AmazonWebView. 2. Change to use amazon-fireos as the platform if user agent string contains 'cordova-amazon-fireos'
+* Added amazon-fireos platform.
+
+### 0.2.6 (Jan 02, 2014)
+* CB-5658 Add doc/index.md for Camera plugin
+* CB-2442 CB-2419 Use Windows.Storage.ApplicationData.current.localFolder, instead of writing to app package.
+* [BlackBerry10] Adding platform level permissions
+* CB-5599 Android: Catch and ignore OutOfMemoryError in getRotatedBitmap()
+
+### 0.2.7 (Feb 05, 2014)
+* CB-4919 firefox os quirks added and supported platforms list is updated
+* getPicture via web activities
+* Documented quirk for CB-5335 + CB-5206 for WP7+8
+* reference the correct firefoxos implementation
+* [BlackBerry10] Add permission to access_shared

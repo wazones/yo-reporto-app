@@ -118,7 +118,7 @@ module.exports = {
                 var start = 0;
                 var end = bytesPerChunk;
                 while (start < file.size) {
-                    var chunk = file.slice(start, end, mimeType);
+                    var chunk = file.nativeFile.slice(start, end, mimeType);
                     uploadFile(chunk);
                     start = end;
                     end = start + bytesPerChunk;
@@ -146,7 +146,7 @@ module.exports = {
         xhr = new XMLHttpRequest();
 
         function writeFile(entry) {
-            entry.createWriter(function (writer) {
+            entry.nativeEntry.createWriter(function (writer) {
                 fileWriter = writer;
                 fileWriter.onwriteend = function (evt) {
                     if (!evt.target.error) {
@@ -188,13 +188,13 @@ module.exports = {
         xhr.onprogress = function (evt) {
             win(evt);
         };
-
         xhr.open("GET", source, true);
         for (var header in headers) {
             if (headers.hasOwnProperty(header)) {
                 xhr.setRequestHeader(header, headers[header]);
             }
         }
+        xhr.responseType = "blob";
         xhr.send();
         return { "status" : cordova.callbackStatus.NO_RESULT, "message" : "async"};
     }
