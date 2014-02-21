@@ -28,7 +28,7 @@ function map()
         //get geoposition once
         //navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 5000, enableHighAccuracy: true });
         //watch for geoposition change
-        watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });   
+        watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 15000, enableHighAccuracy: false });   
       }); 
 }
 
@@ -42,7 +42,7 @@ function geo_error(error)
     	//alert("Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación");
     	//navigator.notification.alert('Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación',null,'Yo Reporto','Aceptar');
 
-      navigator.notification.alert('Servicios de Localización Desabilitados. Se utilizará localización por torres celulares (menos preciso)',null,'Yo Reporto','Aceptar');
+      //navigator.notification.alert('Servicios de localización desabilitados. Se utilizará localización por torres celulares (menos preciso)',null,'Yo Reporto','Aceptar');
       
       //trying low accuracy
       $.blockUI({ message: 'Cargando posición por red...'});
@@ -52,12 +52,14 @@ function geo_error(error)
     {
     	if(error.code==3)
     	{
-        navigator.notification.confirm(
+        /*navigator.notification.confirm(
         'Error: Tiempo de espera agotado para solicitar la posición',  // message
          onTimeout,              // callback to invoke with index of button pressed
         'Yo Reporto',            // title
         'Reintentar,Posición por red'          // buttonLabels
-         );
+         );*/
+        watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });   
+
     		//navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posición',null,'Yo Reporto','Aceptar');
     
     	}
@@ -85,7 +87,7 @@ function onTimeout(button)
 
 function geo_success(position) 
 {
-    $.blockUI({ message: 'Cargando Municipios...'});
+    $.blockUI({ message: 'Cargando municipios...'});
     
     map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
     map.setZoom(15);

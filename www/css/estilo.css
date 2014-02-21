@@ -26,6 +26,10 @@ input[type=text]{
   color:#FFFFFF;  
 }
 
+input[type=email]{
+  color:#FFFFFF;  
+}
+
 /*Propiedad general para todos los campos de tipo numerico del aplicativo*/
 
 input[type=number]{

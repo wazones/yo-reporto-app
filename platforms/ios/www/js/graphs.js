@@ -70,7 +70,7 @@ function llenarDeptos() {
 }
 function firstRender() {
     $.blockUI({ message: 'Cargando posición por GPS...'});
-    navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });
+    navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 15000, enableHighAccuracy: false });
     function geo_error(error)
     {
         //comment
@@ -95,7 +95,7 @@ function firstRender() {
                 if(error.code==3)
                 {
                 navigator.notification.confirm(
-                'Error: Tiempo de espera agotado para solicitar la posición',  // message
+                'Error: tiempo de espera agotado para solicitar la posición',  // message
                  onTimeout,              // callback to invoke with index of button pressed
                 'Yo Reporto',            // title
                 'Reintentar,Posición por red'          // buttonLabels
@@ -164,6 +164,9 @@ function getCodeDept(depto) {
 
 
 function getMunicipiosDepto() {
+	$('#selectMunGraphs option:first').attr("selected", 'true');
+	 $('#selectMunGraphs').selectmenu('refresh');
+		
     var selectedDept = $("#selectDeptGraphs").val();
     if (selectedDept != "Departamento") {
         $.blockUI({ message: 'Cargando Municipios'});
@@ -237,7 +240,7 @@ function render() {
         if (selectedGraph == "Torta") {
             renderPieChart();
         }
-        else if (selectedGraph == "Linea de Tiempo") {
+        else if (selectedGraph == "Linea de tiempo") {
             renderLineChart();
         }//selectedgraph!= torta
         else {

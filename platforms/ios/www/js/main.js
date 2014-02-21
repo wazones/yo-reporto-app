@@ -9,8 +9,8 @@ var canvas;
 
 function onAboutReady()
 {
-    //alert("height: "+screen.height);
-    //alert("width: "+screen.width);
+   // alert("height: "+screen.height);
+  //  alert("width: "+screen.width);
     var imageContainer = document.getElementById("imageabout");
     if(screen.height==568&&screen.width==320)//iphone 5
     {
@@ -26,9 +26,13 @@ function onAboutReady()
     {
         imageContainer.src="img/about/ipad.png"
     }
-    else if(screen.height==2464&&screen.width==1600)//nexus 10
+    else if(screen.height==1232&&screen.width==800)//nexus 10
     {
           imageContainer.src="img/about/nexus10.png"
+    }
+    else if(screen.height==1024&&screen.width==600)//samsung chirreta
+    {
+          imageContainer.src="img/about/1024x600.png"
     }
     else 
     {
@@ -75,7 +79,7 @@ function start()
  var requestEventos =requestHeader+
  '<Eventos xmlns="http://tempuri.org/" /></soap:Body></soap:Envelope>';            
  
- $.blockUI({ message: 'Cargando Datos...'});
+ $.blockUI({ message: 'Cargando datos...'});
  
  $.ajax({
   type: "POST",
@@ -171,7 +175,7 @@ function testConnection()
  if (networkState==Connection.NONE)
  {
                         //alert("no hay conexion a internet. Intenta Mas Tarde");
-                        navigator.notification.alert('no hay conexion a internet. Intenta Mas Tarde',null,'Yo Reporto','Aceptar');
+                        navigator.notification.alert('no hay conexion a internet. Intenta más tarde',null,'Yo Reporto','Aceptar');
 
                         if(navigator.app)
                         {
@@ -208,23 +212,36 @@ function testConnection()
 
          if($("#txtNombre").val()=="")
          {
-             navigator.notification.alert('Por Favor Ingresa Tu Nombre',null,'Yo Reporto','Aceptar');
+             navigator.notification.alert('Por favor ingresa tu nombre',null,'Yo Reporto','Aceptar');
            }
            else if($("#txtTelefono").val()=="")
            {
-   					navigator.notification.alert('Por Favor Ingresa Tu Telefono',null,'Yo Reporto','Aceptar');
+   					navigator.notification.alert('Por favor ingresa tu teléfono',null,'Yo Reporto','Aceptar');
           }
           else if($("#txtEmail").val()=="")
           {
-   					navigator.notification.alert('Por Favor Ingresa Tu e-mail',null,'Yo Reporto','Aceptar');
+   					navigator.notification.alert('Por favor ingresa tu e-mail',null,'Yo Reporto','Aceptar');
           }
-          else
+          else if($("#txtEmail").val()!="")
           {
-           window.localStorage.setItem("NombreUsuario", $("#txtNombre").val());
-           window.localStorage.setItem("TelefonoUsuario", $("#txtTelefono").val());
-           window.localStorage.setItem("EmailUsuario", $("#txtEmail").val());
-           window.localStorage.setItem("EntidadUsuario", $("#txtEntidad").val());
-           $.mobile.navigate("#pg-third",{allowSamePageTransition:true,reloadPage:true,changeHash:true,transition:"none"});
+          	var x=$("#txtEmail").val()
+			var atpos=x.indexOf("@");
+			var dotpos=x.lastIndexOf(".");
+			if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+  			{
+  				navigator.notification.alert('Introduce una dirección de e-mail válida',null,'Yo Reporto','Aceptar');
+  			
+  			}
+          
+          	else
+          	{
+          
+          	 window.localStorage.setItem("NombreUsuario", $("#txtNombre").val());
+          	 window.localStorage.setItem("TelefonoUsuario", $("#txtTelefono").val());
+           	 window.localStorage.setItem("EmailUsuario", $("#txtEmail").val());
+           	 window.localStorage.setItem("EntidadUsuario", $("#selectEntidad").val());
+           	 $.mobile.navigate("#pg-third",{allowSamePageTransition:true,reloadPage:true,changeHash:true,transition:"none"});
+         	}
          }
  		}//gothird
 
@@ -308,15 +325,15 @@ function testConnection()
          } //if (comboboxes not OK)
          else if($("#selectLevel").val()=="Nivel")
          {
-          navigator.notification.alert('Selecciona un Nivel de Gravedad',null,'Yo Reporto','Aceptar');
+          navigator.notification.alert('Selecciona un nivel de gravedad',null,'Yo Reporto','Aceptar');
         }
         else if($("#selectEvt").val()=="Categoría")
         {
-           navigator.notification.alert('Selecciona Una Categoría',null,'Yo Reporto','Aceptar');
+           navigator.notification.alert('Selecciona una categoría',null,'Yo Reporto','Aceptar');
         }
         else if($("#selectMuni").val()=="Municipio")
         {
-          navigator.notification.alert('Selecciona Un Municipio',null,'Yo Reporto','Aceptar');
+          navigator.notification.alert('Selecciona un municipio',null,'Yo Reporto','Aceptar');
         }
 }//report
 
@@ -335,8 +352,15 @@ function processSuccessInsertarEmergencia(data, status, req)
 
 	if(imagen==null)
 	{
-		navigator.notification.alert('Reporte Exitoso',null,'Yo Reporto','Aceptar');
+		navigator.notification.alert('Reporte exitoso',null,'Yo Reporto','Aceptar');
 		 $.unblockUI();
+		  $('#selectLevel option:first').attr("selected", 'true');
+		  $('#selectLevel').selectmenu('refresh');
+		   $('#selectEvt option:first').attr("selected", 'true');
+		  $('#selectEvt').selectmenu('refresh');
+		   $('#selectMuni option:first').attr("selected", 'true');
+		  $('#selectMuni').selectmenu('refresh');
+		  
 	}
 	
     if(imagen!=null)
@@ -349,7 +373,7 @@ function processSuccessInsertarEmergencia(data, status, req)
     }//if success
     else
  	{
- 		navigator.notification.alert('Reporte No Exitoso',null,'Yo Reporto','Aceptar');
+ 		navigator.notification.alert('Reporte no exitoso',null,'Yo Reporto','Aceptar');
  		$.unblockUI();
 	}
 }//success1
@@ -394,13 +418,19 @@ function processSuccessInsertarArchivo(data, status, req)
 { 
   if (status == "success")
   {
-   navigator.notification.alert('Reporte Exitoso',null,'Yo Reporto','Aceptar');
+   navigator.notification.alert('Reporte exitoso',null,'Yo Reporto','Aceptar');
     // alert(req.responseText);
     $.unblockUI();
+    $('#selectLevel option:first').attr("selected", 'true');
+    $('#selectLevel').selectmenu('refresh');
+    $('#selectEvt option:first').attr("selected", 'true');
+	$('#selectEvt').selectmenu('refresh');
+	$('#selectMuni option:first').attr("selected", 'true');
+	$('#selectMuni').selectmenu('refresh');
  }
  else
  {
- 	navigator.notification.alert('Envio de Archivo No Exitoso',null,'Yo Reporto','Aceptar');
+ 	navigator.notification.alert('Envio de archivo no exitoso',null,'Yo Reporto','Aceptar');
  	$.unblockUI();
 }
 }//success2
@@ -465,7 +495,7 @@ function getBase64FromImageUrl(URL)
 
 function capturePhoto() 
 { 
-	navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 10, 
+	navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50, 
 		destinationType: destinationType.DATA_URL, correctOrientation: true,
         targetWidth: 480, targetHeight: 480}); 
 	//alert("destino: "+destinationType.DATA_URL);
