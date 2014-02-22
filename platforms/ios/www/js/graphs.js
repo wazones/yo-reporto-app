@@ -1,5 +1,8 @@
 function onGraphsReady() {
     $.blockUI({ message: 'Cargando Departamentos'});
+    window.localStorage.setItem("URL", "http://www.gestiondelriesgo.gov.co/ServicioApp/EventosComunidad.asmx");
+    	window.localStorage.setItem("RequestHeader", '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>');
+
     google.load("visualization", "1.0", {packages: ["corechart"], callback: llenarDeptos});
     //google.setOnLoadCallback();
     document.body.style.marginTop = "20px";
@@ -75,7 +78,7 @@ function firstRender() {
     {
         //comment
         //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
-        $.unblockUI();
+        //$.unblockUI();
         if(error.code==1 || error.code == 2)
         {
             //alert("Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación");
@@ -108,7 +111,7 @@ function firstRender() {
     }
     function geo_success(position)
     {
-        $.blockUI({ message: 'Cargando Municipios...'});
+        //$.blockUI({ message: 'Cargando Municipios...'});
         window.localStorage.setItem("Latitud", position.coords.latitude);
         window.localStorage.setItem("Longitud", position.coords.longitude);
 
@@ -133,9 +136,9 @@ function firstRender() {
                     //$("#selectMunGraphs").val(muni.nombre);
                     //render();
                 });
-                $.unblockUI();
+               // $.unblockUI();
             }).fail(function(){
-                $.unblockUI();
+               // $.unblockUI();
                 alert('Intenta más tarde');
             });
     };
@@ -239,17 +242,20 @@ function render() {
 
         if (selectedGraph == "Torta") {
             renderPieChart();
+            $.unblockUI();
         }
         else if (selectedGraph == "Linea de tiempo") {
             renderLineChart();
+            $.unblockUI();
         }//selectedgraph!= torta
         else {
             renderColumnChart();
+            $.unblockUI();
         }
     }//depto!= departamento
 }
 function renderLineChart() {
-    $.unblockUI();
+    
     setTimeout(drawChart, 0);
     function drawChart() {
         var header = ["Mes"];

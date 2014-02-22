@@ -9,8 +9,8 @@ var canvas;
 
 function onAboutReady()
 {
-   // alert("height: "+screen.height);
-  //  alert("width: "+screen.width);
+    //alert("height: "+screen.height);
+    //alert("width: "+screen.width);
     var imageContainer = document.getElementById("imageabout");
     if(screen.height==568&&screen.width==320)//iphone 5
     {
@@ -33,6 +33,14 @@ function onAboutReady()
     else if(screen.height==1024&&screen.width==600)//samsung chirreta
     {
           imageContainer.src="img/about/1024x600.png"
+    }
+    else if(screen.height==455&&screen.width==320)//galaxy ace
+    {
+          imageContainer.src="img/about/galaxyace.png"
+    }
+    else if(screen.height==592&&screen.width==360)//moto x
+    {
+          imageContainer.src="img/about/motox.png"
     }
     else 
     {
