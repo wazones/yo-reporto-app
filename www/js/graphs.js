@@ -167,8 +167,8 @@ function getCodeDept(depto) {
 
 
 function getMunicipiosDepto() {
-	$('#selectMunGraphs option:first').attr("selected", 'true');
-	 $('#selectMunGraphs').selectmenu('refresh');
+	$('#selectMunGraphs').val('Municipio');
+    $('#selectMunGraphs').selectmenu('refresh');
 		
     var selectedDept = $("#selectDeptGraphs").val();
     if (selectedDept != "Departamento") {

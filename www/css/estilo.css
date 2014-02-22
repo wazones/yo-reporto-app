@@ -13,8 +13,8 @@
 @-ms-viewport{width:device-width;}
 
 #botones{
-	width:70%;
-	margin-left:15%;
+	width:80%;
+	margin-left:10%;
 }
 
 
@@ -56,11 +56,11 @@ font-weight:bold;
 
 
 /*estilo de la tercera pagina (cuatro botones)*/
-#pg-third{
+/*#pg-third{
 	width:100%;
 	height:5em;
 	background-image:url(../img/Fondo12.png);
-}
+}*/
 
 /*#pg-report{
 	width:100%;
@@ -75,6 +75,26 @@ width: 100%;
 margin: 0px;
 left: 0px;
 }
+
+#map{
+width: 100%;
+height:60%;
+}
+
+#content-background{
+background-image:url(../img/Fondo12.png);
+    border:none;
+    height:30%;
+    bottom: 0px; 
+    padding-bottom:100%;  
+    -webkit-background-size: cover; 
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+    background-size: cover;
+
+}
+
+
 
 /*botones de tomar foto, galeria y visualizador de foto*/
 #btnsypic {

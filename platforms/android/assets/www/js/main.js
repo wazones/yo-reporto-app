@@ -6,6 +6,14 @@ var mapa2;  //""
 var mapa3;
 var canvas;
 
+ function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(4.00, -74.00),
+          zoom: 10
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      }
 
 function onAboutReady()
 {
@@ -316,7 +324,7 @@ function testConnection()
             '</soap:Body>'+
             '</soap:Envelope>'; 
 
-			 $.blockUI({ message: 'Enviando Reporte...'});
+			 $.blockUI({ message: 'Enviando reporte...'});
 	
             $.ajax({
               type: "POST",
@@ -361,13 +369,10 @@ function processSuccessInsertarEmergencia(data, status, req)
 	if(imagen==null)
 	{
 		navigator.notification.alert('Reporte exitoso',null,'Yo Reporto','Aceptar');
+        resetMenus();
 		 $.unblockUI();
-		  $('#selectLevel option:first').attr("selected", 'true');
-		  $('#selectLevel').selectmenu('refresh');
-		   $('#selectEvt option:first').attr("selected", 'true');
-		  $('#selectEvt').selectmenu('refresh');
-		   $('#selectMuni option:first').attr("selected", 'true');
-		  $('#selectMuni').selectmenu('refresh');
+        
+		
 		  
 	}
 	
@@ -427,14 +432,9 @@ function processSuccessInsertarArchivo(data, status, req)
   if (status == "success")
   {
    navigator.notification.alert('Reporte exitoso',null,'Yo Reporto','Aceptar');
-    // alert(req.responseText);
+    resetMenus();
     $.unblockUI();
-    $('#selectLevel option:first').attr("selected", 'true');
-    $('#selectLevel').selectmenu('refresh');
-    $('#selectEvt option:first').attr("selected", 'true');
-	$('#selectEvt').selectmenu('refresh');
-	$('#selectMuni option:first').attr("selected", 'true');
-	$('#selectMuni').selectmenu('refresh');
+  
  }
  else
  {
@@ -519,6 +519,15 @@ function getPhoto(source)
 function onFail(message) 
 { 
 //	alert('Foto Cancelada: ' + message); 
+}
+
+function resetMenus(){ 
+    $('#selectLevel').val('Nivel');
+    $('#selectLevel').selectmenu('refresh');
+    $('#selectEvt').val('Categoría');
+    $('#selectEvt').selectmenu('refresh');
+    $('#selectMuni').val('Municipio');
+    $('#selectMuni').selectmenu('refresh');
 }
 
 

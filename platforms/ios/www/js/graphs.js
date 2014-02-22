@@ -1,5 +1,5 @@
 function onGraphsReady() {
-    $.blockUI({ message: 'Cargando Departamentos'});
+    $.blockUI({ message: 'Cargando departamentos'});
     window.localStorage.setItem("URL", "http://www.gestiondelriesgo.gov.co/ServicioApp/EventosComunidad.asmx");
     	window.localStorage.setItem("RequestHeader", '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>');
 
@@ -56,7 +56,7 @@ function llenarDeptos() {
     }
 
     function llenarEventos() {
-        $.blockUI({ message: 'Cargando Eventos...'});
+        $.blockUI({ message: 'Cargando eventos'});
         $.ajax({
             type: "GET",
             url: "res/graf5.json",
@@ -172,7 +172,7 @@ function getMunicipiosDepto() {
 		
     var selectedDept = $("#selectDeptGraphs").val();
     if (selectedDept != "Departamento") {
-        $.blockUI({ message: 'Cargando Municipios'});
+        $.blockUI({ message: 'Cargando municipios...'});
         var sel = document.getElementById("selectMunGraphs");
         sel.value = "Municipio";
         sel.options.length = 1;
