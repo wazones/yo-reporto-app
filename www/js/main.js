@@ -402,7 +402,8 @@ function enviarArchivo(codigoEme)
   var emailUsuario = window.localStorage.getItem("EmailUsuario");
   var wsUrl = window.localStorage.getItem("URL");
   var requestHeader=window.localStorage.getItem("RequestHeader");
-  var base64 = canvas.toDataURL("image/jpeg");
+  //var base64 = canvas.toDataURL("image/jpeg");
+  //alert(base64);
   var requestInsertarArchivo =requestHeader+
   '<InsertarArchivoEmergencia xmlns="http://tempuri.org/">'+
   '<File>'+imagen+'</File>'+
@@ -455,28 +456,41 @@ function onPhotoDataSuccess(imageData)
   imagen=imageData;
   var img = document.createElement("img");
   img.src = "data:image/gif;base64," + imageData;
-
-  canvas = document.createElement("canvas");
+  alert(imagen);
+  /*canvas = document.createElement("canvas");
   canvas.width = img.width;
   canvas.height = img.height;
   var ctx = canvas.getContext("2d");
   ctx.scale(0.25, 0.25);
-  ctx.drawImage(img);
+  ctx.drawImage(img);*/
 } 
 
 function onPhotoURISuccess(imageURI) 
 { 
   var largeImage = document.getElementById('smallImage'); 
    largeImage.style.display = 'block';
-    largeImage.src = imageURI;
-    imagen=getBase64FromImageUrl(imageURI);
-    alert(imagen);
+   //alert("imageURI: "+ imageURI);
+   //alert("imageURI src: "+ imageURI.src);
+   //alert("imageURIMod:" + imageURI.substr(imageURI.lastIndexOf('/')+1)+".jpg");  
+   largeImage.src = "data:image/jpeg;base64," + imageURI;
+   imagen=imageURI;
+   var img = document.createElement("img");
+   img.src = "data:image/gif;base64," + imageURI;
+   //alert(imagen);
+
+    /*var img = new Image();
+    img.src = imageURI;
     canvas = document.createElement("canvas");
-  canvas.width = largeImage.width;
-  canvas.height = largeImage.height;
-  var ctx = canvas.getContext("2d");
-  ctx.scale(0.25, 0.25);
-  ctx.drawImage(largeImage);
+    canvas.width = largeImage.width;
+    canvas.height = largeImage.height;
+    img.onload = function() {
+      var ctx = canvas.getContext("2d");
+      ctx.scale(0.25, 0.25);
+      ctx.drawImage(img);
+      alert("done image to canvas");*/
+    //imagen=getBase64FromImageUrl(imageURI);
+    
+  
     
 } 
 
@@ -510,7 +524,7 @@ function capturePhoto()
 function getPhoto(source) 
 { 
 	navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
-		destinationType: destinationType.FILE_URI, correctOrientation: true, 
+		destinationType: destinationType.DATA_URL, correctOrientation: true, 
 		sourceType: source }); 
 } 
 

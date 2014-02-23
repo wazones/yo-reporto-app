@@ -49,7 +49,6 @@ function onDeviceReady() {
         var longitud = window.localStorage.getItem("Longitud");
 
         var mapSize;
-<<<<<<< HEAD
         if(screen.height<=455)//pantallas pequeñas
         {
             mapSize="320x320";
@@ -70,21 +69,7 @@ function onDeviceReady() {
         $.get("http://yoreporto.herokuapp.com/coordinates/",{"lat":latitud,"long":longitud,count:10},"json").
 done(function(data)
 {
-=======
-        if (screen.height <= 455) {
-            mapSize = "320x320";
-        }
-        else {
-            mapSize = "640x640";
-        }
 
-
-        var imageMapa = document.getElementById("img-map2");
-        imageMapa.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitud + "," + longitud + "&zoom=15&size=" + mapSize + "&scale=2&maptype=roadmap&markers=color:red%7Clabel:S%7C" + latitud + "," + longitud + "&sensor=true&key=AIzaSyDJ2xqGVummcNqdYjcbkB3blCzox-OjNss";
-
-        $.get("http://yoreporto.herokuapp.com/coordinates/", {"lat": latitud, "long": longitud, count: 10}, "json").
-            done(function (data) {
->>>>>>> 98a847202c6ef81cbc00f1279d43fc16c9cc75d4
 //alert("hey");	
 
                 var selectM = document.getElementById("selectMuni");
