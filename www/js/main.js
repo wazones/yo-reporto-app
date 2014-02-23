@@ -434,6 +434,7 @@ function processSuccessInsertarArchivo(data, status, req)
    navigator.notification.alert('Reporte exitoso',null,'Yo Reporto','Aceptar');
     resetMenus();
     $.unblockUI();
+      alert(req.responseText);
   
  }
  else
@@ -466,20 +467,17 @@ function onPhotoDataSuccess(imageData)
 function onPhotoURISuccess(imageURI) 
 { 
   var largeImage = document.getElementById('smallImage'); 
-  var texto = document.getElementById('txtDescripcion'); 
-  var code=getBase64FromImageUrl(imageURI)
-  largeImage.style.display = 'block';  
-  largeImage.src = imageURI; 
-  texto.value=code;
-  var c = document.getElementById("myCanvas");
-  var ctx = c.getContext("2d");
-  var img = document.getElementById("smallImage");
-  ctx.drawImage(img, 10, 10);
-  var todo = c.toDataURL();
-  var index=todo.indexOf("base64,");
-  index+=7;
-  var newData=todo.substring(index);
-  window.localStorage.setItem("CodigoFoto", newData);
+   largeImage.style.display = 'block';
+    largeImage.src = imageURI;
+    imagen=getBase64FromImageUrl(imageURI);
+    alert(imagen);
+    canvas = document.createElement("canvas");
+  canvas.width = largeImage.width;
+  canvas.height = largeImage.height;
+  var ctx = canvas.getContext("2d");
+  ctx.scale(0.25, 0.25);
+  ctx.drawImage(largeImage);
+    
 } 
 
 function getBase64FromImageUrl(URL) 

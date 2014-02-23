@@ -54,13 +54,17 @@ function onDeviceReady() {
         var longitud=window.localStorage.getItem("Longitud");
         
         var mapSize;
-        if(screen.height<=455)
+        if(screen.height<=455)//pantallas pequeñas
         {
             mapSize="320x320";
         }
-        else
-        {   
+        else if(screen.height>=1232)//pantallas grandes
+        {
             mapSize="640x640";
+        }
+        else   //pantallas normales'
+        {   
+            mapSize="420x420";
         }
         
         
