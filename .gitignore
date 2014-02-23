@@ -13,6 +13,7 @@ old.*
 
 # Java class files
 *.class
+*.jar
 
 # generated files - android project subfolder
 android/bin/
@@ -56,4 +57,7 @@ IOS/www/
 # WebStorm
 /.idea
 
-platforms\ios
+platforms/android/ant-build/
+platforms/android/ant-gen/
+platforms/android/CordovaLib/ant-build/
+platforms/android/CordovaLib/ant-gen/
