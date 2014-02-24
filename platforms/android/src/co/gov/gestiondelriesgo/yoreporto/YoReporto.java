@@ -33,7 +33,7 @@ public class YoReporto extends CordovaActivity
         super.loadUrl(Config.getStartUrl());
         super.setIntegerProperty("splashscreen", R.drawable.splash);
         super.loadUrl("file:///android_asset/www/index.html", 2500);
-        //super.loadUrl("file:///android_asset/www/index.html")
+        //super.loadUrl("file:///android_asset/www/index.html");
     }
 }
 

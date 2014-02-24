@@ -188,22 +188,8 @@ function testConnection()
 {
 
  var networkState=navigator.network.connection.type;
- if (networkState==Connection.NONE)
- {
-                        //alert("no hay conexion a internet. Intenta Mas Tarde");
-                        navigator.notification.alert('no hay conexion a internet. Intenta más tarde',null,'Yo Reporto','Aceptar');
-
-                        if(navigator.app)
-                        {
-                         // navigator.app.exitApp();
-                        }
-                        else if(navigator.device)
-                        {
-                          //navigator.device.exitApp();
-                        }
-                      }
-                      else 
-                      {
+ 
+                    
                        var value = window.localStorage.getItem("NombreUsuario");
                        if(value!=null)
                        {
@@ -215,8 +201,8 @@ function testConnection()
 		 			   //alert("no user");
              $.mobile.navigate("#pg-second",{allowSamePageTransition:false,reloadPage:false,changeHash:true,transition:"none"});
            }
-         }
-       }
+         
+}
 
 
 
