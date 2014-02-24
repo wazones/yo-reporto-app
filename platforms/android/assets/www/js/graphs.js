@@ -249,7 +249,67 @@ function renderPieChart() {
 
 }
 function renderColumnChart() {
+    $('#chart_div canvas').remove();
+    $('#legend').remove();
+    var elementID = 'chartCanvas'; // Unique ID
+    $('<canvas>').attr({
+        id: elementID
+    }).css({
+            background: "#FFFFFF"
+        }).appendTo('#chart_div');
 
+    $('<div>').attr({
+        id: 'legend'
+    }).css({
+            background: "#FFFFFF"
+        }).appendTo('#chart_div');
+    var canvas = document.getElementById(elementID); // Use the created element
+    var ctx = canvas.getContext("2d");
+
+    var monthsAndYears = genMonthsAndYears();
+    var months = monthsAndYears.months;
+    var years = monthsAndYears.years;
+    var datasets = [];
+    var depto = $("#selectDeptGraphs").val();
+    var muni = $("#selectMunGraphs").val();
+    for (x in window.db) {
+        var data = [];
+        var hasEvents = false;
+        for(var i = 0;i<months.length;++i) {
+            if (window.db[x] != null &&
+                window.db[x][years[i]] != null &&
+                window.db[x][years[i]][ months[i] ] != null &&
+                window.db[x][years[i]][ months[i] ][ depto ] != null &&
+                window.db[x][years[i]][ months[i] ][ depto ][ muni ] != null
+                ) {
+                data.push(window.db[x][years[i]][ months[i] ][ depto ][ muni ]);
+                hasEvents = true;
+            }
+            else {
+                data.push(0);
+            }
+        }
+        if(hasEvents) {
+            datasets.push(new DataSet({title:x,data:data}));
+        }
+    }
+    if(datasets.length > 0) {
+        var chartData = {labels: months,datasets:datasets};
+        new Chart(ctx).Bar(
+            chartData,
+            {animation: true, animationSteps:10 ,scaleShowLabels: true,scaleFontSize:9}
+        );
+        legend(document.getElementById('legend'), chartData);
+    }
+    else {
+        $('#chart_div canvas').remove();
+        $('#legend').remove();
+        $('<div>No hay eventos registrados</div>').attr({
+            id: 'legend'
+        }).css({
+                background: "#FFFFFF"
+            }).appendTo('#chart_div');
+    }
 }
 function renderLineChart() {
     $('#chart_div canvas').remove();
@@ -300,7 +360,7 @@ function renderLineChart() {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Line(
             chartData,
-            {animation: true, animationSteps:10 ,scaleShowLabels: true}
+            {animation: true, animationSteps:10 ,scaleShowLabels: true,scaleFontSize:9}
         );
         legend(document.getElementById('legend'), chartData);
     }
