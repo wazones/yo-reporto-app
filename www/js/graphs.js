@@ -1,10 +1,9 @@
 function onGraphsReady() {
     $.blockUI({ message: 'Cargando departamentos'});
     window.localStorage.setItem("URL", "http://www.gestiondelriesgo.gov.co/ServicioApp/EventosComunidad.asmx");
-    	window.localStorage.setItem("RequestHeader", '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>');
+    window.localStorage.setItem("RequestHeader", '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>');
 
-    google.load("visualization", "1.0", {packages: ["corechart"], callback: llenarDeptos});
-    //google.setOnLoadCallback();
+    llenarDeptos();
     document.body.style.marginTop = "20px";
 }
 var mapaDeptos;
@@ -74,90 +73,81 @@ function llenarDeptos() {
 function firstRender() {
     $.blockUI({ message: 'Cargando posición por GPS...'});
     navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 15000, enableHighAccuracy: false });
-    function geo_error(error)
-    {
+    function geo_error(error) {
         //comment
         //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
         //$.unblockUI();
-        if(error.code==1 || error.code == 2)
-        {
+        if (error.code == 1 || error.code == 2) {
             //alert("Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación");
             //navigator.notification.alert('Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación',null,'Yo Reporto','Aceptar');
 
-            navigator.notification.alert('Servicios de Localización Desabilitados. Se utilizará Localización por torres celulares (menos preciso)',null,'Yo Reporto','Aceptar');
+            navigator.notification.alert('Servicios de Localización Desabilitados. Se utilizará Localización por torres celulares (menos preciso)', null, 'Yo Reporto', 'Aceptar');
 
             //trying low accuracy
             $.blockUI({ message: 'Cargando posición por red...'});
             navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
         }
-        else
-        {
-            if(error.code==3)
-            {
+        else {
+            if (error.code == 3) {
                 //navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posición',null,'Yo Reporto','Aceptar');
-                if(error.code==3)
-                {
-                navigator.notification.confirm(
-                'Error: tiempo de espera agotado para solicitar la posición',  // message
-                 onTimeout,              // callback to invoke with index of button pressed
-                'Yo Reporto',            // title
-                'Reintentar,Posición por red'          // buttonLabels
-                 );
+                if (error.code == 3) {
+                    navigator.notification.confirm(
+                        'Error: tiempo de espera agotado para solicitar la posición',  // message
+                        onTimeout,              // callback to invoke with index of button pressed
+                        'Yo Reporto',            // title
+                        'Reintentar,Posición por red'          // buttonLabels
+                    );
 
                 }
             }
-        //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+            //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
         }
     }
-    function geo_success(position)
-    {
+
+    function geo_success(position) {
         //$.blockUI({ message: 'Cargando Municipios...'});
         window.localStorage.setItem("Latitud", position.coords.latitude);
         window.localStorage.setItem("Longitud", position.coords.longitude);
 
-        var latitud=window.localStorage.getItem("Latitud");
-        var longitud=window.localStorage.getItem("Longitud");
-        $.get("http://yoreporto.herokuapp.com/coordinates/",{"lat":latitud,"long":longitud,count:1},"json").
-            done(function(data)
-            {
+        var latitud = window.localStorage.getItem("Latitud");
+        var longitud = window.localStorage.getItem("Longitud");
+        $.get("http://yoreporto.herokuapp.com/coordinates/", {"lat": latitud, "long": longitud, count: 1}, "json").
+            done(function (data) {
                 //Solo 1 muni
-                data.nearest.forEach(function(elem){
+                data.nearest.forEach(function (elem) {
                     var muni = {};
-                    muni.id=elem.ID_MUNICIPIO;
-                    muni.nombre=elem.NOMBRE_MUNICIPIO;
-                    muni.codDepto=elem.ID_DEPARTAMENTO;
+                    muni.id = elem.ID_MUNICIPIO;
+                    muni.nombre = elem.NOMBRE_MUNICIPIO;
+                    muni.codDepto = elem.ID_DEPARTAMENTO;
                     muni.nombreDepto = elem.NOMBRE_DEPARTAMENTO;
                     $("#selectDeptGraphs").val(muni.nombreDepto);
                     $("#selectDeptGraphs").trigger('change');
-                    $("#selectMunGraphs").one('loadMunis',function(){
+                    $("#selectMunGraphs").one('loadMunis', function () {
                         $("#selectMunGraphs").val(muni.nombre);
                         $("#selectMunGraphs").trigger("change");
                     });
                     //$("#selectMunGraphs").val(muni.nombre);
                     //render();
                 });
-               // $.unblockUI();
-            }).fail(function(){
-               // $.unblockUI();
+                // $.unblockUI();
+            }).fail(function () {
+                // $.unblockUI();
                 alert('Intenta más tarde');
             });
     };
 
-    function onTimeout(button)
-    {
-      //alert("seleccionaste: "+button);
-      
-          if(button == 2)
-          {
+    function onTimeout(button) {
+        //alert("seleccionaste: "+button);
+
+        if (button == 2) {
             $.blockUI({ message: 'Cargando posición por red...'});
             watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
-          }
-          else
-          {
+        }
+        else {
             $.blockUI({ message: 'Cargando posición por GPS...'});
             watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });
-          } 
-      
+        }
+
 
     }
 }
@@ -167,9 +157,9 @@ function getCodeDept(depto) {
 
 
 function getMunicipiosDepto() {
-	$('#selectMunGraphs').val('Municipio');
+    $('#selectMunGraphs').val('Municipio');
     $('#selectMunGraphs').selectmenu('refresh');
-		
+
     var selectedDept = $("#selectDeptGraphs").val();
     if (selectedDept != "Departamento") {
         $.blockUI({ message: 'Cargando municipios...'});
@@ -254,182 +244,142 @@ function render() {
         }
     }//depto!= departamento
 }
-function renderLineChart() {
-    
-    setTimeout(drawChart, 0);
-    function drawChart() {
-        var header = ["Mes"];
-        for (x in window.db) {
-            header.push(x);
-        }
-        var mat = [];
-        mat.push(header);
-        months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
-        years = [];
-
-        var currDate = new Date();
-        for (var i = currDate.getMonth() + 1; i < 12; ++i) {
-            mat.push([ months[i] ]);
-            years.push("" + (currDate.getYear() + 1900 - 1));
-        }
-        var str = "";
-
-        for (var i = 0; i <= currDate.getMonth(); ++i) {
-            mat.push([ months[i] ]);
-            str += months[i] + ",";
-            years.push("" + (currDate.getYear() + 1900));
-        }
-        // alert(str);
-
-        var depto = $("#selectDeptGraphs").val();
-        var muni = $("#selectMunGraphs").val();
-        for (var i = 1; i < header.length; ++i) {
-            var desastre = header[i];
-            for (var j = 1; j < mat.length; ++j) {
-                var year = years[ j - 1 ];
-                var month = mat[j][0];
-                if (window.db[header[i]] != null &&
-                    window.db[header[i]][year] != null &&
-                    window.db[header[i]][year][ month ] != null &&
-                    window.db[header[i]][year][ month ][ depto ] != null &&
-                    window.db[header[i]][year][ month ][ depto ][ muni ] != null
-                    ) {
-                    mat[j].push(window.db[header[i]][year][ month ][ depto ][ muni ]);
-                }
-                else {
-                    mat[j].push(0);
-                }
-            }
-        }
-
-        var data = google.visualization.arrayToDataTable(mat);
-
-        var options = {
-            title: 'EVENTOS EN ' + muni,
-            legend: {position: 'none'}
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div3'));
-
-        chart.draw(data, options);
-    }
-}
 
 function renderPieChart() {
-    $.unblockUI();
-    setTimeout(drawChart, 0);
 
-    function drawChart() {
-        var months2 = [];
-        months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
-        var years = [];
-        var currDate = new Date();
-        for (var i = currDate.getMonth() + 1; i < 12; ++i) {
-            months2.push([ months[i] ]);
-            years.push("" + (currDate.getYear() + 1900 - 1));
-        }
-        for (var i = 0; i <= currDate.getMonth(); ++i) {
-            months2.push([ months[i] ]);
-            years.push("" + (currDate.getYear() + 1900));
-        }
+    
 
-
-        var data = [
-            ['Desastres', 'Ocurrencias']
-        ];
-        var depto = $("#selectDeptGraphs").val();
-        var muni = $("#selectMunGraphs").val();
-        var total = 0;
-        for (x in window.db) {
-            var sum = 0;
-            for (var i = 0; i < months2.length; ++i) {
-                var month = months2[i];
-                var year = years[i];
-                if (window.db[x] != null &&
-
-                    window.db[x][year] != null &&
-                    window.db[x][year][ month ] != null &&
-                    window.db[x][year][ month ][ depto ] != null &&
-                    window.db[x][year][ month ][ depto ][ muni ] != null
-                    ) {
-                    sum += window.db[x][year][ month ][ depto ][ muni ];
-                }
-            }
-            data.push([x, sum]);
-            total+=sum;
-        }
-        if(total == 0) {
-
-        }
-        var data = google.visualization.arrayToDataTable(data);
-        var options = {
-               title: 'EVENTOS EN ' + muni,
-            is3D: true
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div3'));
-        chart.draw(data, options);
-    }
 }
 function renderColumnChart() {
-    $.unblockUI();
-    //isStacked: true,
-    setTimeout(drawChart, 0);
-    function drawChart() {
-        var header = ["Mes"];
-        for (x in window.db) {
-            header.push(x);
+
+}
+function renderLineChart() {
+    $('#chart_div canvas').remove();
+    $('#legend').remove();
+    var elementID = 'chartCanvas'; // Unique ID
+    $('<canvas>').attr({
+        id: elementID
+    }).css({
+            background: "#FFFFFF"
+        }).appendTo('#chart_div');
+
+    $('<div>').attr({
+        id: 'legend'
+    }).css({
+            background: "#FFFFFF"
+        }).appendTo('#chart_div');
+    var canvas = document.getElementById(elementID); // Use the created element
+    var ctx = canvas.getContext("2d");
+
+    var monthsAndYears = genMonthsAndYears();
+    var months = monthsAndYears.months;
+    var years = monthsAndYears.years;
+    var datasets = [];
+    var depto = $("#selectDeptGraphs").val();
+    var muni = $("#selectMunGraphs").val();
+    for (x in window.db) {
+        var data = [];
+        var hasEvents = false;
+        for(var i = 0;i<months.length;++i) {
+             if (window.db[x] != null &&
+             window.db[x][years[i]] != null &&
+             window.db[x][years[i]][ months[i] ] != null &&
+             window.db[x][years[i]][ months[i] ][ depto ] != null &&
+             window.db[x][years[i]][ months[i] ][ depto ][ muni ] != null
+             ) {
+                data.push(window.db[x][years[i]][ months[i] ][ depto ][ muni ]);
+                 hasEvents = true;
+             }
+             else {
+                data.push(0);
+             }
         }
-        var mat = [];
-        mat.push(header);
-        months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
-        years = [];
-
-        var currDate = new Date();
-        for (var i = currDate.getMonth() + 1; i < 12; ++i) {
-            mat.push([ months[i] ]);
-            years.push("" + (currDate.getYear() + 1900 - 1));
+        if(hasEvents) {
+            datasets.push(new DataSet({title:x,data:data}));
         }
-        var str = "";
+    }
+    if(datasets.length > 0) {
+        var chartData = {labels: months,datasets:datasets};
+        new Chart(ctx).Line(
+            chartData,
+            {animation: true, animationSteps:10 ,scaleShowLabels: true}
+        );
+        legend(document.getElementById('legend'), chartData);
+    }
+    else {
+        $('#chart_div canvas').remove();
+        $('#legend').remove();
+        $('<div>No hay eventos registrados</div>').attr({
+            id: 'legend'
+        }).css({
+                background: "#FFFFFF"
+            }).appendTo('#chart_div');
+    }
 
-        for (var i = 0; i <= currDate.getMonth(); ++i) {
-            mat.push([ months[i] ]);
-            str += months[i] + ",";
-            years.push("" + (currDate.getYear() + 1900));
-        }
-        // alert(str);
+}
 
-        var depto = $("#selectDeptGraphs").val();
-        var muni = $("#selectMunGraphs").val();
-        for (var i = 1; i < header.length; ++i) {
-            var desastre = header[i];
-            for (var j = 1; j < mat.length; ++j) {
-                var year = years[ j - 1 ];
-                var month = mat[j][0];
-                if (window.db[header[i]] != null &&
-                    window.db[header[i]][year] != null &&
-                    window.db[header[i]][year][ month ] != null &&
-                    window.db[header[i]][year][ month ][ depto ] != null &&
-                    window.db[header[i]][year][ month ][ depto ][ muni ] != null
-                    ) {
-                    mat[j].push(window.db[header[i]][year][ month ][ depto ][ muni ]);
-                }
-                else {
-                    mat[j].push(0);
-                }
-            }
-        }
+function legend(parent, data) {
+    parent.className = 'legend';
+    var datas = data.hasOwnProperty('datasets') ? data.datasets : data;
 
-        var data = google.visualization.arrayToDataTable(mat);
+    datas.forEach(function (d) {
+        var title = document.createElement('span');
+        title.className = 'title';
+        title.style.borderColor = d.hasOwnProperty('strokeColor') ? d.strokeColor : d.color;
+        title.style.borderStyle = 'solid';
+        parent.appendChild(title);
 
-        var options = {
-            title: 'EVENTOS EN ' + muni,
-            legend: {position: 'none'},
-            isStacked:true
-        };
+        var text = document.createTextNode(d.title);
+        title.appendChild(text);
+    });
+}
+function DataSet(options) {
+    if (!options) {
+        options = {};
+    }
+    var myColor =  new RandomRgb();
+    this.fillColor = myColor.alpha(0.5).toString();
+    this.strokeColor = myColor.alpha(1).toString();
+    this.pointColor = myColor.alpha(1).toString();
+    this.pointStrokeColor = "#fff";
+    this.data = options.data || [];
+    this.title = options.title || "";
+}
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div3'));
+function RandomRgb() {
+    this.r = randomColor();
+    this.g = randomColor();
+    this.b = randomColor();
+    this.a = 1;
 
-        chart.draw(data, options);
+    this.alpha = function(_a) {
+        this.a=_a;
+        return this;
+    };
+    this.toString=  function() {
+        return "rgba("+this.r+","+this.g+","+this.b+","+this.a+")";
+    }
+    function randomColor() {
+        return Math.floor(((1 + Math.floor(Math.random() * 254))+254)/2);
     }
 }
+ function genMonthsAndYears() {
+     var months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+
+     var years = [];
+     var months2 = []
+
+     var currDate = new Date();
+     for (var i = currDate.getMonth() + 1; i < 12; ++i) {
+         months2.push(months[i]);
+         years.push("" + (currDate.getYear() + 1900 - 1));
+     }
+     for (var i = 0; i <= currDate.getMonth(); ++i) {
+         months2.push(months[i]);
+         years.push("" + (currDate.getYear() + 1900));
+     }
+     return {
+         months:months2,
+         years:years
+     };
+ }
