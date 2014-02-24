@@ -246,7 +246,69 @@ function render() {
 }
 
 function renderPieChart() {
+    $('#chart_div canvas').remove();
+    $('#legend').remove();
+    var elementID = 'chartCanvas'; // Unique ID
+    $('<canvas>').attr({
+        id: elementID
+    }).css({
+            background: "#FFFFFF"
+        }).appendTo('#chart_div');
 
+    $('<div>').attr({
+        id: 'legend'
+    }).css({
+            background: "#FFFFFF"
+        }).appendTo('#chart_div');
+    var canvas = document.getElementById(elementID); // Use the created element
+    var ctx = canvas.getContext("2d");
+
+    var monthsAndYears = genMonthsAndYears();
+    var months = monthsAndYears.months;
+    var years = monthsAndYears.years;
+    var datasets = [];
+    var depto = $("#selectDeptGraphs").val();
+    var muni = $("#selectMunGraphs").val();
+    var total = 0;
+    for (x in window.db) {
+        var data = 0;
+        var hasEvents = false;
+        for(var i = 0;i<months.length;++i) {
+            if (window.db[x] != null &&
+                window.db[x][years[i]] != null &&
+                window.db[x][years[i]][ months[i] ] != null &&
+                window.db[x][years[i]][ months[i] ][ depto ] != null &&
+                window.db[x][years[i]][ months[i] ][ depto ][ muni ] != null
+                ) {
+                total+=(window.db[x][years[i]][ months[i] ][ depto ][ muni ]);
+                data+=(window.db[x][years[i]][ months[i] ][ depto ][ muni ]);
+                hasEvents = true;
+            }
+        }
+        if(hasEvents) {
+            var color = new RandomRgb().toString();
+            datasets.push({title:x,value:data,color:color});
+        }
+    }
+    if(datasets.length > 0) {
+        for(x in datasets) {
+            datasets[x].title+=( " "+((datasets[x].value*100)/total).toFixed(2)+"%" );
+        }
+        new Chart(ctx).Pie(
+            datasets,
+            {animation: true, animationSteps:10}
+        );
+        legend(document.getElementById('legend'), datasets);
+    }
+    else {
+        $('#chart_div canvas').remove();
+        $('#legend').remove();
+        $('<div>No hay eventos registrados</div>').attr({
+            id: 'legend'
+        }).css({
+                background: "#FFFFFF"
+            }).appendTo('#chart_div');
+    }
 }
 function renderColumnChart() {
     $('#chart_div canvas').remove();
