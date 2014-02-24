@@ -8,7 +8,7 @@ function onDeviceReady() {
     // max_height();
     document.body.style.marginTop = "20px";
     $.blockUI({ message: 'Cargando posición por GPS...'});
-    navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 15000, enableHighAccuracy: false });
+    navigator.geolocation.getCurrentPosition(geo_success, geo_error, { timeout: 15000, enableHighAccuracy: false });
     function geo_error(error) {
         //comment
         //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
@@ -21,7 +21,7 @@ function onDeviceReady() {
 
             //trying low accuracy
             $.blockUI({ message: 'Cargando posición por red...'});
-            navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
+            navigator.geolocation.getCurrentPosition(geo_success, geo_error, { timeout: 20000, enableHighAccuracy: false });
         }
         else {
             if (error.code == 3) {
@@ -58,19 +58,50 @@ function onDeviceReady() {
             mapSize="640x640";
         }
         else   //pantallas normales'
-        {   
+        {
             mapSize="420x420";
         }
-        
-        
-            var imageMapa = document.getElementById("img-map2");
-            imageMapa.src = "http://maps.googleapis.com/maps/api/staticmap?center="+latitud+","+longitud+"&zoom=15&size="+mapSize+"&scale=2&maptype=roadmap&markers=color:red%7Clabel:S%7C"+latitud+","+longitud+"&sensor=true&key=AIzaSyDJ2xqGVummcNqdYjcbkB3blCzox-OjNss";
-        
-        $.get("http://yoreporto.herokuapp.com/coordinates/",{"lat":latitud,"long":longitud,count:10},"json").
-done(function(data)
-{
 
-//alert("hey");	
+
+        /*var imageMapa = document.getElementById("img-map2");
+         imageMapa.src = "http://maps.googleapis.com/maps/api/staticmap?center="+latitud+","+longitud+"&zoom=15&size="+mapSize+"&scale=2&maptype=roadmap&markers=color:red%7Clabel:S%7C"+latitud+","+longitud+"&sensor=true&key=AIzaSyDJ2xqGVummcNqdYjcbkB3blCzox-OjNss";
+         */
+        //$('#content').height(getRealContentHeight()+1000);
+        //alert("height: "+getRealContentHeight()+1000);
+        //alert("width: "+ document.getElementById("map").offsetWidth);
+        $('#content').height(document.getElementById("map").offsetWidth * 1.5);
+
+
+
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: new google.maps.LatLng(latitud,longitud),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        var point = new google.maps.LatLng(latitud,longitud);
+        if(!marker)
+        {
+            //create marker
+            marker = new google.maps.Marker({
+                position: point,
+                map: map
+            });
+        }else
+        {
+            //move marker to new position
+            marker.setPosition(point);
+        }
+        /*
+         google.maps.event.addListener(marker, 'click', function() {
+         infowindow.open(map,marker);
+         }); */
+
+
+        $.get("http://yoreporto.herokuapp.com/coordinates/",{"lat":latitud,"long":longitud,count:10},"json").
+            done(function(data)
+            {
+
+//alert("hey");
 
                 var selectM = document.getElementById("selectMuni");
                 data.nearest.forEach(function (elem) {
@@ -93,19 +124,20 @@ done(function(data)
 
         if (button == 2) {
             $.blockUI({ message: 'Cargando posición por red...'});
-            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
+            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { timeout: 20000, enableHighAccuracy: false });
         }
         else {
             $.blockUI({ message: 'Cargando posición por GPS...'});
-            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });
+            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { timeout: 10000, enableHighAccuracy: true });
         }
     }
 }
 
 function refreshMap() {
-    alert('Regargando posición');
+    resetMenus();
+    //alert('Regargando posición');
     $.blockUI({ message: 'Cargando posición por GPS...'});
-    navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 15000, enableHighAccuracy: false });
+    navigator.geolocation.getCurrentPosition(geo_success, geo_error, { timeout: 15000, enableHighAccuracy: false });
     function geo_error(error) {
         if (error.code == 3) {
             navigator.notification.confirm(
@@ -126,17 +158,37 @@ function refreshMap() {
         var latitud = window.localStorage.getItem("Latitud");
         var longitud = window.localStorage.getItem("Longitud");
 
-        var mapSize;
-        if (screen.height <= 455) {
-            mapSize = "320x320";
-        }
-        else {
-            mapSize = "640x640";
-        }
+        /*
+
+         var mapSize;
+         if (screen.height <= 455) {
+         mapSize = "320x320";
+         }
+         else {
+         mapSize = "640x640";
+         }
 
 
-        var imageMapa = document.getElementById("img-map2");
-        imageMapa.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitud + "," + longitud + "&zoom=15&size=" + mapSize + "&scale=2&maptype=roadmap&markers=color:red%7Clabel:S%7C" + latitud + "," + longitud + "&sensor=true&key=AIzaSyDJ2xqGVummcNqdYjcbkB3blCzox-OjNss";
+         var imageMapa = document.getElementById("img-map2");
+         imageMapa.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitud + "," + longitud + "&zoom=15&size=" + mapSize + "&scale=2&maptype=roadmap&markers=color:red%7Clabel:S%7C" + latitud + "," + longitud + "&sensor=true&key=AIzaSyDJ2xqGVummcNqdYjcbkB3blCzox-OjNss";
+         */
+        //alert("ihazpozition");
+        var point = new google.maps.LatLng(latitud,longitud);
+        if(!marker)
+        {
+            //create marker
+            marker = new google.maps.Marker({
+                position: point,
+                map: map
+            });
+        }else
+        {
+            //move marker to new position
+            marker.setPosition(point);
+        }
+
+        map.panTo(point);
+
         $.unblockUI();
     }
     function onTimeout(button) {
@@ -144,12 +196,27 @@ function refreshMap() {
 
         if (button == 2) {
             $.blockUI({ message: 'Cargando posición por red...'});
-            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
+            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, {timeout: 20000, enableHighAccuracy: false });
         }
         else {
             $.blockUI({ message: 'Cargando posición por GPS...'});
-            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });
+            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, {timeout: 10000, enableHighAccuracy: true });
         }
     }
 
+
+
+}
+
+function getRealContentHeight() {
+    var header = $.mobile.activePage.find("div[data-role='header']:visible");
+    var footer = $.mobile.activePage.find("div[data-role='footer']:visible");
+    var content = $.mobile.activePage.find("div[data-role='content']:visible:visible");
+    var viewport_height = $(window).height();
+
+    var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
+    if((content.outerHeight() - header.outerHeight() - footer.outerHeight()) <= viewport_height) {
+        content_height -= (content.outerHeight() - content.height());
+    }
+    return content_height;
 }

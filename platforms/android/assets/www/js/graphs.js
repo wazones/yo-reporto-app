@@ -223,7 +223,12 @@ function getMunicipiosDepto() {
 
 }//getmunicipiosdepto 
 
+function workarround() {
+    $('#chart_div canvas').parents("*").css("overflow", "visible");
+    $('[data-role="page"]').bind('pageshow', function() { $("#chart_div canvas").parents("*").css("overflow", "visible"); });
+}
 function render() {
+    workarround();
 
     var selectedGraph = $("#selectType").val();
     var selectedDept = $("#selectDeptGraphs").val();
@@ -243,23 +248,13 @@ function render() {
             $.unblockUI();
         }
     }//depto!= departamento
+    workarround();
 }
 
 function renderPieChart() {
-    $('#chart_div canvas').remove();
-    $('#legend').remove();
+    workarround();
     var elementID = 'chartCanvas'; // Unique ID
-    $('<canvas>').attr({
-        id: elementID
-    }).css({
-            background: "#FFFFFF"
-        }).appendTo('#chart_div');
-
-    $('<div>').attr({
-        id: 'legend'
-    }).css({
-            background: "#FFFFFF"
-        }).appendTo('#chart_div');
+    initCanvas();
     var canvas = document.getElementById(elementID); // Use the created element
     var ctx = canvas.getContext("2d");
 
@@ -296,7 +291,7 @@ function renderPieChart() {
         }
         new Chart(ctx).Pie(
             datasets,
-            {animation: true, animationSteps:10}
+            {animation: false}
         );
         legend(document.getElementById('legend'), datasets);
     }
@@ -309,22 +304,12 @@ function renderPieChart() {
                 background: "#FFFFFF"
             }).appendTo('#chart_div');
     }
+    workarround();
 }
 function renderColumnChart() {
-    $('#chart_div canvas').remove();
-    $('#legend').remove();
+    workarround();
     var elementID = 'chartCanvas'; // Unique ID
-    $('<canvas>').attr({
-        id: elementID
-    }).css({
-            background: "#FFFFFF"
-        }).appendTo('#chart_div');
-
-    $('<div>').attr({
-        id: 'legend'
-    }).css({
-            background: "#FFFFFF"
-        }).appendTo('#chart_div');
+    initCanvas();
     var canvas = document.getElementById(elementID); // Use the created element
     var ctx = canvas.getContext("2d");
 
@@ -359,7 +344,7 @@ function renderColumnChart() {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Bar(
             chartData,
-            {animation: true, animationSteps:10 ,scaleShowLabels: true,scaleFontSize:9}
+            {animation: false, scaleShowLabels: true,scaleFontSize:9}
         );
         legend(document.getElementById('legend'), chartData);
     }
@@ -372,22 +357,12 @@ function renderColumnChart() {
                 background: "#FFFFFF"
             }).appendTo('#chart_div');
     }
+    workarround();
 }
 function renderLineChart() {
-    $('#chart_div canvas').remove();
-    $('#legend').remove();
+    workarround();
     var elementID = 'chartCanvas'; // Unique ID
-    $('<canvas>').attr({
-        id: elementID
-    }).css({
-            background: "#FFFFFF"
-        }).appendTo('#chart_div');
-
-    $('<div>').attr({
-        id: 'legend'
-    }).css({
-            background: "#FFFFFF"
-        }).appendTo('#chart_div');
+    initCanvas();
     var canvas = document.getElementById(elementID); // Use the created element
     var ctx = canvas.getContext("2d");
 
@@ -422,7 +397,7 @@ function renderLineChart() {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Line(
             chartData,
-            {animation: true, animationSteps:10 ,scaleShowLabels: true,scaleFontSize:9}
+            {animation: false, scaleShowLabels: true,scaleFontSize:9}
         );
         legend(document.getElementById('legend'), chartData);
     }
@@ -435,7 +410,7 @@ function renderLineChart() {
                 background: "#FFFFFF"
             }).appendTo('#chart_div');
     }
-
+    workarround();
 }
 
 function legend(parent, data) {
@@ -503,3 +478,23 @@ function RandomRgb() {
          years:years
      };
  }
+
+function initCanvas() {
+    var elementID = 'chartCanvas'; // Unique ID
+    $('#chart_div canvas').remove();
+    $('#legend').remove();
+
+    $('<canvas>').attr({
+        id: elementID,
+        width: document.getElementById("selectMunGraphs").offsetWidth,
+        height: document.getElementById("selectMunGraphs").offsetWidth*0.7
+    }).css({
+            background: "#FFFFFF"
+        }).appendTo('#chart_div');
+
+    $('<div>').attr({
+        id: 'legend'
+    }).css({
+            background: "#FFFFFF"
+        }).appendTo('#chart_div');
+}
