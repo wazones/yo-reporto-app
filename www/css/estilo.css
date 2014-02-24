@@ -17,10 +17,6 @@
 	margin-left:10%;
 }
 
-
-/*Propiedad general para el pie de página*/
-#footer { display: none }
-
 /*Propiedad general para todos los campos de texto del aplicativo*/
 input[type=text]{
   color:#FFFFFF;  

@@ -344,7 +344,7 @@ function renderColumnChart() {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Bar(
             chartData,
-            {animation: false, scaleShowLabels: true,scaleFontSize:9}
+            {animation: false, scaleShowLabels: true,scaleFontSize:7}
         );
         legend(document.getElementById('legend'), chartData);
     }
@@ -397,7 +397,7 @@ function renderLineChart() {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Line(
             chartData,
-            {animation: false, scaleShowLabels: true,scaleFontSize:9}
+            {animation: false, scaleShowLabels: true,scaleFontSize:7}
         );
         legend(document.getElementById('legend'), chartData);
     }

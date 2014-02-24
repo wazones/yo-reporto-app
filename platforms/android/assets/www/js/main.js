@@ -289,21 +289,11 @@ function testConnection()
        var latitud = window.localStorage.getItem("Latitud");
        var longitud = window.localStorage.getItem("Longitud");
        var descripcion;
-       var now = new Date();
+       var now = new Date().toISOString();
 
        var departamento=getCodeMuni($("#selectMuni").val()).codDepto;
        var municipio=getCodeMuni($("#selectMuni").val()).idMun;
-			//formatDate(now);
-			//alert(now);
-
-		 	//$.get("http://yoreporto.herokuapp.com/coordenates/",{"lat":latitud,"long":longitud},"json").
-		 	//done(function(data)
-		 	//{
-		 		
-		 		//var depto=data.nearest[0].ID_DEPARTAMENTO;
-		 		//var municipio=data.nearest[0].ID_MUNICIPIO;
-		 		
-		 		var wsUrl = window.localStorage.getItem("URL");
+	    var wsUrl = window.localStorage.getItem("URL");
        var requestHeader=window.localStorage.getItem("RequestHeader");
        var requestInsertarEmergencia =requestHeader+
        '<InsertarEmergenciaComunidad xmlns="http://tempuri.org/">'+
@@ -319,7 +309,7 @@ function testConnection()
        '<Entidad>'+entidadUsuario+'</Entidad>'+
        '<CodigoEstado>1</CodigoEstado>'+
        '<CodigoEvento>'+codeEvent+'</CodigoEvento>'+
-      			 // '<FechaEvento>'+now+'</FechaEvento>'+
+      	'<FechaEvento>'+now+'</FechaEvento>'+
             '</InsertarEmergenciaComunidad>'+
             '</soap:Body>'+
             '</soap:Envelope>'; 
@@ -435,7 +425,7 @@ function processSuccessInsertarArchivo(data, status, req)
    navigator.notification.alert('Reporte exitoso',null,'Yo Reporto','Aceptar');
     resetMenus();
     $.unblockUI();
-      alert(req.responseText);
+    //alert(req.responseText);
   
  }
  else
@@ -456,42 +446,18 @@ function onPhotoDataSuccess(imageData)
   imagen=imageData;
   var img = document.createElement("img");
   img.src = "data:image/gif;base64," + imageData;
-  alert(imagen);
-  /*canvas = document.createElement("canvas");
-  canvas.width = img.width;
-  canvas.height = img.height;
-  var ctx = canvas.getContext("2d");
-  ctx.scale(0.25, 0.25);
-  ctx.drawImage(img);*/
+  //alert(imagen);
 } 
 
 function onPhotoURISuccess(imageURI) 
 { 
   var largeImage = document.getElementById('smallImage'); 
    largeImage.style.display = 'block';
-   //alert("imageURI: "+ imageURI);
-   //alert("imageURI src: "+ imageURI.src);
-   //alert("imageURIMod:" + imageURI.substr(imageURI.lastIndexOf('/')+1)+".jpg");  
    largeImage.src = "data:image/jpeg;base64," + imageURI;
    imagen=imageURI;
    var img = document.createElement("img");
    img.src = "data:image/gif;base64," + imageURI;
    //alert(imagen);
-
-    /*var img = new Image();
-    img.src = imageURI;
-    canvas = document.createElement("canvas");
-    canvas.width = largeImage.width;
-    canvas.height = largeImage.height;
-    img.onload = function() {
-      var ctx = canvas.getContext("2d");
-      ctx.scale(0.25, 0.25);
-      ctx.drawImage(img);
-      alert("done image to canvas");*/
-    //imagen=getBase64FromImageUrl(imageURI);
-    
-  
-    
 } 
 
 function getBase64FromImageUrl(URL) 
