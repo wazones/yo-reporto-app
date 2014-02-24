@@ -289,7 +289,7 @@ function testConnection()
        var latitud = window.localStorage.getItem("Latitud");
        var longitud = window.localStorage.getItem("Longitud");
        var descripcion;
-       var now = new Date();
+       var now = new Date().toISOString();
 
        var departamento=getCodeMuni($("#selectMuni").val()).codDepto;
        var municipio=getCodeMuni($("#selectMuni").val()).idMun;
@@ -319,7 +319,7 @@ function testConnection()
        '<Entidad>'+entidadUsuario+'</Entidad>'+
        '<CodigoEstado>1</CodigoEstado>'+
        '<CodigoEvento>'+codeEvent+'</CodigoEvento>'+
-      			 // '<FechaEvento>'+now+'</FechaEvento>'+
+       '<FechaEvento>'+now+'</FechaEvento>'+
             '</InsertarEmergenciaComunidad>'+
             '</soap:Body>'+
             '</soap:Envelope>'; 
@@ -435,7 +435,7 @@ function processSuccessInsertarArchivo(data, status, req)
    navigator.notification.alert('Reporte exitoso',null,'Yo Reporto','Aceptar');
     resetMenus();
     $.unblockUI();
-      alert(req.responseText);
+      //imalert(req.responseText);
   
  }
  else
@@ -456,7 +456,7 @@ function onPhotoDataSuccess(imageData)
   imagen=imageData;
   var img = document.createElement("img");
   img.src = "data:image/gif;base64," + imageData;
-  alert(imagen);
+  //alert(imagen);
   /*canvas = document.createElement("canvas");
   canvas.width = img.width;
   canvas.height = img.height;

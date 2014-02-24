@@ -296,7 +296,7 @@ function renderPieChart() {
         }
         new Chart(ctx).Pie(
             datasets,
-            {animation: true, animationSteps:10}
+            {animation: false}
         );
         legend(document.getElementById('legend'), datasets);
     }
@@ -359,7 +359,7 @@ function renderColumnChart() {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Bar(
             chartData,
-            {animation: true, animationSteps:10 ,scaleShowLabels: true,scaleFontSize:9}
+            {animation: false,scaleShowLabels: true,scaleFontSize:9}
         );
         legend(document.getElementById('legend'), chartData);
     }
@@ -422,7 +422,7 @@ function renderLineChart() {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Line(
             chartData,
-            {animation: true, animationSteps:10 ,scaleShowLabels: true,scaleFontSize:9}
+            {animation: false ,scaleShowLabels: true,scaleFontSize:9}
         );
         legend(document.getElementById('legend'), chartData);
     }
