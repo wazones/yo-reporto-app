@@ -410,6 +410,8 @@ function processSuccessInsertarArchivo(data, status, req)
   {
    navigator.notification.alert('Reporte exitoso',null,'Yo Reporto','Aceptar');
     resetMenus();
+    var img = document.getElementById('smallImage');
+    img.style.visibility = ('hidden');
     $.unblockUI();
     //alert(req.responseText);
   
@@ -432,7 +434,7 @@ function onPhotoDataSuccess(imageData)
   imagen=imageData;
   var img = document.createElement("img");
   img.src = "data:image/gif;base64," + imageData;
-  //alert(imagen);
+  smallImage.style.visibility = ('visible');
 } 
 
 function onPhotoURISuccess(imageURI) 
@@ -443,7 +445,7 @@ function onPhotoURISuccess(imageURI)
    imagen=imageURI;
    var img = document.createElement("img");
    img.src = "data:image/gif;base64," + imageURI;
-   //alert(imagen);
+   largeImage.style.visibility = ('visible');
 } 
 
 function getBase64FromImageUrl(URL) 
