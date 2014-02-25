@@ -16,6 +16,7 @@ var app = {
     },
     onOffline: function () {
         console.log('offline papa');
-        navigator.notification.alert('Para usar esta aplicación debes tener conexión a internet');
+          $.mobile.navigate("#pg-fakeAbout", {allowSamePageTransition: true, reloadPage: false, changeHash: true, transition: "none", speed: 50});
+        navigator.notification.alert('no hay conexion a internet. Intenta más tarde',null,'Yo Reporto','Aceptar');
     }
 };

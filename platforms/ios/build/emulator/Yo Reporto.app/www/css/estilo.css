@@ -13,8 +13,13 @@
 @-ms-viewport{width:device-width;}
 
 #botones{
-	width:80%;
-	margin-left:10%;
+	width:85%;
+	margin-left:7%;
+}
+
+#botones2{
+	width:85%;
+	margin-left:7%;
 }
 
 #mapaEstilo{

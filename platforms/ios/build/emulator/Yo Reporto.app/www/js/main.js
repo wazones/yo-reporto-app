@@ -188,22 +188,8 @@ function testConnection()
 {
 
  var networkState=navigator.network.connection.type;
- if (networkState==Connection.NONE)
- {
-                        //alert("no hay conexion a internet. Intenta Mas Tarde");
-                        navigator.notification.alert('no hay conexion a internet. Intenta más tarde',null,'Yo Reporto','Aceptar');
-
-                        if(navigator.app)
-                        {
-                         // navigator.app.exitApp();
-                        }
-                        else if(navigator.device)
-                        {
-                          //navigator.device.exitApp();
-                        }
-                      }
-                      else 
-                      {
+ 
+                    
                        var value = window.localStorage.getItem("NombreUsuario");
                        if(value!=null)
                        {
@@ -215,8 +201,8 @@ function testConnection()
 		 			   //alert("no user");
              $.mobile.navigate("#pg-second",{allowSamePageTransition:false,reloadPage:false,changeHash:true,transition:"none"});
            }
-         }
-       }
+         
+}
 
 
 
@@ -434,6 +420,8 @@ function processSuccessInsertarArchivo(data, status, req)
   {
    navigator.notification.alert('Reporte exitoso',null,'Yo Reporto','Aceptar');
     resetMenus();
+      var img = document.getElementById('smallImage');
+    img.style.visibility = ('hidden');
     $.unblockUI();
       //imalert(req.responseText);
   
@@ -456,39 +444,18 @@ function onPhotoDataSuccess(imageData)
   imagen=imageData;
   var img = document.createElement("img");
   img.src = "data:image/gif;base64," + imageData;
-  //alert(imagen);
-  /*canvas = document.createElement("canvas");
-  canvas.width = img.width;
-  canvas.height = img.height;
-  var ctx = canvas.getContext("2d");
-  ctx.scale(0.25, 0.25);
-  ctx.drawImage(img);*/
+  smallImage.style.visibility = ('visible');
 } 
 
 function onPhotoURISuccess(imageURI) 
 { 
   var largeImage = document.getElementById('smallImage'); 
    largeImage.style.display = 'block';
-   //alert("imageURI: "+ imageURI);
-   //alert("imageURI src: "+ imageURI.src);
-   //alert("imageURIMod:" + imageURI.substr(imageURI.lastIndexOf('/')+1)+".jpg");  
    largeImage.src = "data:image/jpeg;base64," + imageURI;
    imagen=imageURI;
    var img = document.createElement("img");
    img.src = "data:image/gif;base64," + imageURI;
-   //alert(imagen);
-
-    /*var img = new Image();
-    img.src = imageURI;
-    canvas = document.createElement("canvas");
-    canvas.width = largeImage.width;
-    canvas.height = largeImage.height;
-    img.onload = function() {
-      var ctx = canvas.getContext("2d");
-      ctx.scale(0.25, 0.25);
-      ctx.drawImage(img);
-      alert("done image to canvas");*/
-    //imagen=getBase64FromImageUrl(imageURI);
+   largeImage.style.visibility = ('visible');
     
   
     
@@ -540,6 +507,7 @@ function resetMenus(){
     $('#selectEvt').selectmenu('refresh');
     $('#selectMuni').val('Municipio');
     $('#selectMuni').selectmenu('refresh');
+ 
 }
 
 

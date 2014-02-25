@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/daniel/Desktop/yo-reporto-app/platforms/ios/CordovaLib/Classes/UIDevice+Extensions.m \
-  /Users/daniel/Desktop/yo-reporto-app/platforms/ios/CordovaLib/Classes/UIDevice+Extensions.h
+  /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/CordovaLib/Classes/UIDevice+Extensions.m \
+  /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/CordovaLib/Classes/UIDevice+Extensions.h
