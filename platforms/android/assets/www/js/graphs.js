@@ -71,31 +71,31 @@ function llenarDeptos() {
     }
 }
 function firstRender() {
-    $.blockUI({ message: 'Cargando posici√≥n por GPS...'});
+    $.blockUI({ message: 'Cargando posiciÛn por GPS...'});
     navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 15000, enableHighAccuracy: false });
     function geo_error(error) {
         //comment
         //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
         //$.unblockUI();
         if (error.code == 1 || error.code == 2) {
-            //alert("Servicios de Localizaci√≥n Desabilitados. Debes encender tu GPS y volver a abrir la aplicaci√≥n");
-            //navigator.notification.alert('Servicios de Localizaci√≥n Desabilitados. Debes encender tu GPS y volver a abrir la aplicaci√≥n',null,'Yo Reporto','Aceptar');
+            //alert("Servicios de LocalizaciÛn Desabilitados. Debes encender tu GPS y volver a abrir la aplicaciÛn");
+            //navigator.notification.alert('Servicios de LocalizaciÛn Desabilitados. Debes encender tu GPS y volver a abrir la aplicaciÛn',null,'Yo Reporto','Aceptar');
 
-            navigator.notification.alert('Servicios de Localizaci√≥n Desabilitados. Se utilizar√° Localizaci√≥n por torres celulares (menos preciso)', null, 'Yo Reporto', 'Aceptar');
+            navigator.notification.alert('Servicios de LocalizaciÛn Desabilitados. Se utilizar· LocalizaciÛn por torres celulares (menos preciso)', null, 'Yo Reporto', 'Aceptar');
 
             //trying low accuracy
-            $.blockUI({ message: 'Cargando posici√≥n por red...'});
+            $.blockUI({ message: 'Cargando posiciÛn por red...'});
             navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
         }
         else {
             if (error.code == 3) {
-                //navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posici√≥n',null,'Yo Reporto','Aceptar');
+                //navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posiciÛn',null,'Yo Reporto','Aceptar');
                 if (error.code == 3) {
                     navigator.notification.confirm(
-                        'Error: tiempo de espera agotado para solicitar la posici√≥n',  // message
+                        'Error: tiempo de espera agotado para solicitar la posiciÛn',  // message
                         onTimeout,              // callback to invoke with index of button pressed
                         'Yo Reporto',            // title
-                        'Reintentar,Posici√≥n por red'          // buttonLabels
+                        'Reintentar,PosiciÛn por red'          // buttonLabels
                     );
 
                 }
@@ -132,7 +132,7 @@ function firstRender() {
                 // $.unblockUI();
             }).fail(function () {
                 // $.unblockUI();
-                alert('Intenta m√°s tarde');
+                alert('Intenta m·s tarde');
             });
     };
 
@@ -140,11 +140,11 @@ function firstRender() {
         //alert("seleccionaste: "+button);
 
         if (button == 2) {
-            $.blockUI({ message: 'Cargando posici√≥n por red...'});
+            $.blockUI({ message: 'Cargando posiciÛn por red...'});
             watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
         }
         else {
-            $.blockUI({ message: 'Cargando posici√≥n por GPS...'});
+            $.blockUI({ message: 'Cargando posiciÛn por GPS...'});
             watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });
         }
 
@@ -319,7 +319,9 @@ function renderColumnChart() {
     var datasets = [];
     var depto = $("#selectDeptGraphs").val();
     var muni = $("#selectMunGraphs").val();
+	var max = 1;
     for (x in window.db) {
+		var total = 0;
         var data = [];
         var hasEvents = false;
         for(var i = 0;i<months.length;++i) {
@@ -329,22 +331,29 @@ function renderColumnChart() {
                 window.db[x][years[i]][ months[i] ][ depto ] != null &&
                 window.db[x][years[i]][ months[i] ][ depto ][ muni ] != null
                 ) {
-                data.push(window.db[x][years[i]][ months[i] ][ depto ][ muni ]);
+				var curr = window.db[x][years[i]][ months[i] ][ depto ][ muni ]; 
+                data.push(curr);
                 hasEvents = true;
+				total+=curr;
+				max = Math.max(max,curr);
             }
             else {
                 data.push(0);
             }
         }
         if(hasEvents) {
-            datasets.push(new DataSet({title:x,data:data}));
+			var title = x+" ("+total+")";
+            datasets.push(new DataSet({title:title,data:data}));
         }
     }
     if(datasets.length > 0) {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Bar(
             chartData,
-            {animation: false, scaleShowLabels: true,scaleFontSize:7}
+            {animation: false, scaleShowLabels: true,scaleFontSize:7,
+				scaleSteps : max,
+				scaleStepWidth :1,
+				scaleOverride: true}
         );
         legend(document.getElementById('legend'), chartData);
     }
@@ -372,7 +381,9 @@ function renderLineChart() {
     var datasets = [];
     var depto = $("#selectDeptGraphs").val();
     var muni = $("#selectMunGraphs").val();
+	var max = 1;
     for (x in window.db) {
+		var total = 0;
         var data = [];
         var hasEvents = false;
         for(var i = 0;i<months.length;++i) {
@@ -382,22 +393,32 @@ function renderLineChart() {
              window.db[x][years[i]][ months[i] ][ depto ] != null &&
              window.db[x][years[i]][ months[i] ][ depto ][ muni ] != null
              ) {
-                data.push(window.db[x][years[i]][ months[i] ][ depto ][ muni ]);
-                 hasEvents = true;
+				var curr =window.db[x][years[i]][ months[i] ][ depto ][ muni ]; 
+				max = Math.max(max,curr);
+                data.push(curr);
+                hasEvents = true;
+				total+=curr;
              }
              else {
                 data.push(0);
              }
         }
         if(hasEvents) {
-            datasets.push(new DataSet({title:x,data:data}));
+			var title = x+" ("+total+")";
+            datasets.push(new DataSet({
+				title:title,
+				data:data
+			}));
         }
     }
     if(datasets.length > 0) {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Line(
             chartData,
-            {animation: false, scaleShowLabels: true,scaleFontSize:7}
+            {animation: false, scaleShowLabels: true,scaleFontSize:7,
+				scaleSteps : max,
+				scaleStepWidth :1,
+				scaleOverride: true}
         );
         legend(document.getElementById('legend'), chartData);
     }
