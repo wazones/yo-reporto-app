@@ -79,7 +79,6 @@
     <br>
         <h1>Inicio</h1>
     </div>
-    <div data-role="content" >
         <div id="botones">
             <br>
             <button id="btn-report" onclick="navbar.gotoReport()">Reportar</button>
@@ -89,9 +88,8 @@
             <button id="btn-twitter" onclick="navbar.gotoTwitter()">@UNGRD</button>
             <br>
             <button id="btn-about" onclick="navbar.gotoAbout()">Acerca de</button>
-            <img src="img/ima.png" alt=" " />
+          
         </div>
-    </div>
     <!--content-->
     
 </div>
@@ -99,7 +97,7 @@
 <!-- CIERRA third-->
 
 <!-- second -->
-<div id="pg-second" data-role="page" style="background-image:url(img/Fondo12.png);">
+<div id="pg-second" data-role="page" data-theme="a" style="background-image:url(img/Fondo12.png);">
     <div data-role="header" data-position="fixed">
         <br>
         <h4>Tus Datos</h4>
@@ -108,7 +106,7 @@
         <div id="botones">
             <form id="secondForm">
                 <p id="titulo2nd">Nombre:</p>
-                <input id="txtNombre" type="text" maxlength="40"></input>
+                <input id="txtNombre" type="email" maxlength="40"></input>
                 <br/>
 
                 <p id="titulo2nd">Teléfono:</p>
@@ -131,7 +129,7 @@
 
 
 <!-- Report -->
-<div id="pg-report" data-role="page" style="background-image:url(img/Fondo12.png);">
+<div id="pg-report" data-role="page"  style="background-image:url(img/Fondo12.png);">
 
     <div data-role="header" data-position="fixed">
         <!-- ABRE Navbar-->
@@ -163,8 +161,7 @@
         <h2 id="tituloh3">Reportar</h2>
         <!--	-->
     </div>
-    <!--header-->
-    <div data-role="content">
+    <!--header--><br>
 
 
         <div id="botones">
@@ -179,7 +176,7 @@
                     <option>Municipio</option>
                 </select>
             </form>
-            <button id="btn-refresh-map" onclick="refreshMap()" style="width:50%">Recargar posición</button>
+            <button id="btn-refresh-map" onclick="refreshMap()">Recargar posición</button>
 
 
             <!-- Camera -->
@@ -187,16 +184,18 @@
                 <input id="capture" type="image" src="img/btf.png"></input>
                 <input id="pictureSource" type="image" src="img/bdg.png"></input>
             </div>
+<div  id="contentPicture">
             <div id="simg">
-                <img src="" id="smallImage" style="display:none; width:90%; height:50%;max-height:50%;"> </img>
+                <img src="" id="smallImage" style="display:none; width:90%; "> </img>
             </div>
+    </div>
         </div>
 
         <br>
         <!-- Map -->
 
         
-		<div id="botones">
+		<div id="botones"><br>
 								<div style="text-align:center;" id="content">
 									<div id="map" style="width:100%"></div>
 								<br>
@@ -204,9 +203,7 @@
 								</div>
 								</div>
 
-    </div>
-    <!--content-->
-
+    
 </div>
 <!--page-->
 
@@ -247,7 +244,6 @@
 
     </div>
 
-    <div data-role="content" >
 
         <br>
 
@@ -269,7 +265,7 @@
         </div>
        
         
-    </div>
+    
 
 
 </div>

@@ -466,6 +466,7 @@ function onPhotoDataSuccess(imageData)
   var img = document.createElement("img");
   img.src = "data:image/gif;base64," + imageData;
   smallImage.style.visibility = ('visible');
+     $('#contentPicture').height(document.getElementById("smallImage").offsetWidth *0.7);
 } 
 
 function onPhotoURISuccess(imageURI) 
@@ -477,7 +478,8 @@ function onPhotoURISuccess(imageURI)
    var img = document.createElement("img");
    img.src = "data:image/gif;base64," + imageURI;
    largeImage.style.visibility = ('visible');
-    
+         $('#contentPicture').height(document.getElementById("smallImage").offsetWidth *0.7);
+
   
     
 } 
