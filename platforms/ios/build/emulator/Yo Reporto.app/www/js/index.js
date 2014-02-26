@@ -10,6 +10,7 @@ var app = {
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         document.addEventListener('offline', this.onOffline, false);
+       
     },
     onDeviceReady: function () {
         console.log('ready papa2');
