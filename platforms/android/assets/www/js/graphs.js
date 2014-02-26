@@ -157,6 +157,17 @@ function getCodeDept(depto) {
 
 
 function getMunicipiosDepto() {
+    
+     $('#chart_div canvas').remove();
+        $('#legend').remove();
+        $('<div>Selecciona un municipio</div>').attr({
+            id: 'legend'
+        }).css({
+                background: "#FFFFFF"
+            }).appendTo('#chart_div');
+    
+    workarround();
+    
     $('#selectMunGraphs').val('Municipio');
     $('#selectMunGraphs').selectmenu('refresh');
 
@@ -319,7 +330,9 @@ function renderColumnChart() {
     var datasets = [];
     var depto = $("#selectDeptGraphs").val();
     var muni = $("#selectMunGraphs").val();
+    var max = 1;
     for (x in window.db) {
+        var total = 0;
         var data = [];
         var hasEvents = false;
         for(var i = 0;i<months.length;++i) {
@@ -329,23 +342,30 @@ function renderColumnChart() {
                 window.db[x][years[i]][ months[i] ][ depto ] != null &&
                 window.db[x][years[i]][ months[i] ][ depto ][ muni ] != null
                 ) {
-                data.push(window.db[x][years[i]][ months[i] ][ depto ][ muni ]);
+                var curr=window.db[x][years[i]][ months[i] ][ depto ][ muni ];
+                data.push(curr);
                 hasEvents = true;
+                total+=curr;
+                max = Math.max(max,curr);
             }
             else {
                 data.push(0);
             }
         }
         if(hasEvents) {
-            datasets.push(new DataSet({title:x,data:data}));
+            var title = x+" ("+total+")";
+            datasets.push(new DataSet({title:title,data:data}));
         }
     }
     if(datasets.length > 0) {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Bar(
             chartData,
-            {animation: false, scaleShowLabels: true,scaleFontSize:7}
-        );
+            {animation: false, scaleShowLabels: true,scaleFontSize:7, 
+             scaleSteps : max,
+             scaleStepWidth : 1,
+             scaleOverride : true}
+             );
         legend(document.getElementById('legend'), chartData);
     }
     else {
@@ -372,7 +392,9 @@ function renderLineChart() {
     var datasets = [];
     var depto = $("#selectDeptGraphs").val();
     var muni = $("#selectMunGraphs").val();
+    var max=1;
     for (x in window.db) {
+        var total=0;
         var data = [];
         var hasEvents = false;
         for(var i = 0;i<months.length;++i) {
@@ -382,22 +404,26 @@ function renderLineChart() {
              window.db[x][years[i]][ months[i] ][ depto ] != null &&
              window.db[x][years[i]][ months[i] ][ depto ][ muni ] != null
              ) {
-                data.push(window.db[x][years[i]][ months[i] ][ depto ][ muni ]);
+                var curr=window.db[x][years[i]][ months[i] ][ depto ][ muni ];
+                 max = Math.max(max,curr);
+                 data.push(curr);
                  hasEvents = true;
+                 total+=curr;
              }
              else {
                 data.push(0);
              }
         }
         if(hasEvents) {
-            datasets.push(new DataSet({title:x,data:data}));
+            var title = x+" ("+total+")";
+            datasets.push(new DataSet({title:title,data:data}));
         }
     }
     if(datasets.length > 0) {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Line(
             chartData,
-            {animation: false, scaleShowLabels: true,scaleFontSize:7}
+            {animation: false, scaleShowLabels: true,scaleFontSize:7,scaleSteps:max,scaleStepWidth:1,scaleOverride:true}
         );
         legend(document.getElementById('legend'), chartData);
     }
