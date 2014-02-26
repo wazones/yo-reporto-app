@@ -71,31 +71,31 @@ function llenarDeptos() {
     }
 }
 function firstRender() {
-    $.blockUI({ message: 'Cargando posiciÛn por GPS...'});
+    $.blockUI({ message: 'Cargando posici√≥n por GPS...'});
     navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 15000, enableHighAccuracy: false });
     function geo_error(error) {
         //comment
         //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
         //$.unblockUI();
         if (error.code == 1 || error.code == 2) {
-            //alert("Servicios de LocalizaciÛn Desabilitados. Debes encender tu GPS y volver a abrir la aplicaciÛn");
-            //navigator.notification.alert('Servicios de LocalizaciÛn Desabilitados. Debes encender tu GPS y volver a abrir la aplicaciÛn',null,'Yo Reporto','Aceptar');
+            //alert("Servicios de Localizaci√≥n Desabilitados. Debes encender tu GPS y volver a abrir la aplicaci√≥n");
+            //navigator.notification.alert('Servicios de Localizaci√≥n Desabilitados. Debes encender tu GPS y volver a abrir la aplicaci√≥n',null,'Yo Reporto','Aceptar');
 
-            navigator.notification.alert('Servicios de LocalizaciÛn Desabilitados. Se utilizar· LocalizaciÛn por torres celulares (menos preciso)', null, 'Yo Reporto', 'Aceptar');
+            navigator.notification.alert('Servicios de Localizaci√≥n Desabilitados. Se utilizar√° Localizaci√≥n por torres celulares (menos preciso)', null, 'Yo Reporto', 'Aceptar');
 
             //trying low accuracy
-            $.blockUI({ message: 'Cargando posiciÛn por red...'});
+            $.blockUI({ message: 'Cargando posici√≥n por red...'});
             navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
         }
         else {
             if (error.code == 3) {
-                //navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posiciÛn',null,'Yo Reporto','Aceptar');
+                //navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posici√≥n',null,'Yo Reporto','Aceptar');
                 if (error.code == 3) {
                     navigator.notification.confirm(
-                        'Error: tiempo de espera agotado para solicitar la posiciÛn',  // message
+                        'Error: tiempo de espera agotado para solicitar la posici√≥n',  // message
                         onTimeout,              // callback to invoke with index of button pressed
                         'Yo Reporto',            // title
-                        'Reintentar,PosiciÛn por red'          // buttonLabels
+                        'Reintentar,Posici√≥n por red'          // buttonLabels
                     );
 
                 }
@@ -132,7 +132,7 @@ function firstRender() {
                 // $.unblockUI();
             }).fail(function () {
                 // $.unblockUI();
-                alert('Intenta m·s tarde');
+                alert('Intenta m√°s tarde');
             });
     };
 
@@ -140,11 +140,11 @@ function firstRender() {
         //alert("seleccionaste: "+button);
 
         if (button == 2) {
-            $.blockUI({ message: 'Cargando posiciÛn por red...'});
+            $.blockUI({ message: 'Cargando posici√≥n por red...'});
             watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
         }
         else {
-            $.blockUI({ message: 'Cargando posiciÛn por GPS...'});
+            $.blockUI({ message: 'Cargando posici√≥n por GPS...'});
             watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });
         }
 
@@ -157,8 +157,7 @@ function getCodeDept(depto) {
 
 
 function getMunicipiosDepto() {
-    
-     $('#chart_div canvas').remove();
+    $('#chart_div canvas').remove();
         $('#legend').remove();
         $('<div>Selecciona un municipio</div>').attr({
             id: 'legend'
@@ -167,6 +166,7 @@ function getMunicipiosDepto() {
             }).appendTo('#chart_div');
     
     workarround();
+    
     
     $('#selectMunGraphs').val('Municipio');
     $('#selectMunGraphs').selectmenu('refresh');
@@ -330,15 +330,9 @@ function renderColumnChart() {
     var datasets = [];
     var depto = $("#selectDeptGraphs").val();
     var muni = $("#selectMunGraphs").val();
-<<<<<<< HEAD
     var max = 1;
     for (x in window.db) {
         var total = 0;
-=======
-	var max = 1;
-    for (x in window.db) {
-		var total = 0;
->>>>>>> 258349709a5d45c227e86c3a9d7c481d59cf15d1
         var data = [];
         var hasEvents = false;
         for(var i = 0;i<months.length;++i) {
@@ -348,30 +342,18 @@ function renderColumnChart() {
                 window.db[x][years[i]][ months[i] ][ depto ] != null &&
                 window.db[x][years[i]][ months[i] ][ depto ][ muni ] != null
                 ) {
-<<<<<<< HEAD
                 var curr=window.db[x][years[i]][ months[i] ][ depto ][ muni ];
                 data.push(curr);
                 hasEvents = true;
                 total+=curr;
                 max = Math.max(max,curr);
-=======
-				var curr = window.db[x][years[i]][ months[i] ][ depto ][ muni ]; 
-                data.push(curr);
-                hasEvents = true;
-				total+=curr;
-				max = Math.max(max,curr);
->>>>>>> 258349709a5d45c227e86c3a9d7c481d59cf15d1
             }
             else {
                 data.push(0);
             }
         }
         if(hasEvents) {
-<<<<<<< HEAD
             var title = x+" ("+total+")";
-=======
-			var title = x+" ("+total+")";
->>>>>>> 258349709a5d45c227e86c3a9d7c481d59cf15d1
             datasets.push(new DataSet({title:title,data:data}));
         }
     }
@@ -379,19 +361,11 @@ function renderColumnChart() {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Bar(
             chartData,
-<<<<<<< HEAD
             {animation: false, scaleShowLabels: true,scaleFontSize:7, 
              scaleSteps : max,
              scaleStepWidth : 1,
              scaleOverride : true}
              );
-=======
-            {animation: false, scaleShowLabels: true,scaleFontSize:7,
-				scaleSteps : max,
-				scaleStepWidth :1,
-				scaleOverride: true}
-        );
->>>>>>> 258349709a5d45c227e86c3a9d7c481d59cf15d1
         legend(document.getElementById('legend'), chartData);
     }
     else {
@@ -418,15 +392,9 @@ function renderLineChart() {
     var datasets = [];
     var depto = $("#selectDeptGraphs").val();
     var muni = $("#selectMunGraphs").val();
-<<<<<<< HEAD
     var max=1;
     for (x in window.db) {
         var total=0;
-=======
-	var max = 1;
-    for (x in window.db) {
-		var total = 0;
->>>>>>> 258349709a5d45c227e86c3a9d7c481d59cf15d1
         var data = [];
         var hasEvents = false;
         for(var i = 0;i<months.length;++i) {
@@ -436,49 +404,26 @@ function renderLineChart() {
              window.db[x][years[i]][ months[i] ][ depto ] != null &&
              window.db[x][years[i]][ months[i] ][ depto ][ muni ] != null
              ) {
-<<<<<<< HEAD
                 var curr=window.db[x][years[i]][ months[i] ][ depto ][ muni ];
                  max = Math.max(max,curr);
                  data.push(curr);
                  hasEvents = true;
                  total+=curr;
-=======
-				var curr =window.db[x][years[i]][ months[i] ][ depto ][ muni ]; 
-				max = Math.max(max,curr);
-                data.push(curr);
-                hasEvents = true;
-				total+=curr;
->>>>>>> 258349709a5d45c227e86c3a9d7c481d59cf15d1
              }
              else {
                 data.push(0);
              }
         }
         if(hasEvents) {
-<<<<<<< HEAD
             var title = x+" ("+total+")";
             datasets.push(new DataSet({title:title,data:data}));
-=======
-			var title = x+" ("+total+")";
-            datasets.push(new DataSet({
-				title:title,
-				data:data
-			}));
->>>>>>> 258349709a5d45c227e86c3a9d7c481d59cf15d1
         }
     }
     if(datasets.length > 0) {
         var chartData = {labels: months,datasets:datasets};
         new Chart(ctx).Line(
             chartData,
-<<<<<<< HEAD
             {animation: false, scaleShowLabels: true,scaleFontSize:7,scaleSteps:max,scaleStepWidth:1,scaleOverride:true}
-=======
-            {animation: false, scaleShowLabels: true,scaleFontSize:7,
-				scaleSteps : max,
-				scaleStepWidth :1,
-				scaleOverride: true}
->>>>>>> 258349709a5d45c227e86c3a9d7c481d59cf15d1
         );
         legend(document.getElementById('legend'), chartData);
     }
