@@ -9,7 +9,7 @@ function onGraphsReady() {
 var mapaDeptos;
 
 function llenarDeptos() {
-    mapaDeptos = new Map;
+    mapaDeptos = new Map();
     var wsUrl = window.localStorage.getItem("URL");
     var requestHeader = window.localStorage.getItem("RequestHeader");
     var soapRequest0 = requestHeader +
@@ -134,7 +134,7 @@ function firstRender() {
                 // $.unblockUI();
                 alert('Intenta más tarde');
             });
-    };
+    }
 
     function onTimeout(button) {
         //alert("seleccionaste: "+button);
@@ -179,7 +179,6 @@ function getMunicipiosDepto() {
         sel.options.length = 1;
 
 
-        var selectedDept = $("#selectDeptGraphs").val();
         var selectMuni = document.getElementById("selectMunGraphs");
 
         var codDepto = getCodeDept($("#selectDeptGraphs").val());
@@ -276,7 +275,7 @@ function renderPieChart() {
     var depto = $("#selectDeptGraphs").val();
     var muni = $("#selectMunGraphs").val();
     var total = 0;
-    for (x in window.db) {
+    for(x in window.db) {
         var data = 0;
         var hasEvents = false;
         for(var i = 0;i<months.length;++i) {
@@ -479,7 +478,7 @@ function RandomRgb() {
     };
     this.toString=  function() {
         return "rgba("+this.r+","+this.g+","+this.b+","+this.a+")";
-    }
+    };
     function randomColor() {
         return Math.floor(((1 + Math.floor(Math.random() * 254))+254)/2);
     }
@@ -488,7 +487,7 @@ function RandomRgb() {
      var months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
 
      var years = [];
-     var months2 = []
+     var months2 = [];
 
      var currDate = new Date();
      for (var i = currDate.getMonth() + 1; i < 12; ++i) {

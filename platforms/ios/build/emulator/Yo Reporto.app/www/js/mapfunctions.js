@@ -150,7 +150,7 @@ function geo_success(position)
 		 		el.textContent=nombreMun;
 		 		el.value=nombreMun;
 		 		selectM.appendChild(el);
-		 		})
+		 		});
 		 	
 		 	});
       
@@ -216,7 +216,7 @@ function refreshMap() {
 		 		el.textContent=nombreMun;
 		 		el.value=nombreMun;
 		 		selectM.appendChild(el);
-		 		})
+		 		});
 		 	
 		 	});
 

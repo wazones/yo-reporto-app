@@ -22,37 +22,37 @@ function onAboutReady()
     var imageContainer = document.getElementById("imageabout");
     if(screen.height==568&&screen.width==320)//iphone 5
     {
-          imageContainer.src="img/about/i5.png"
+          imageContainer.src="img/about/i5.png";
           
     }
     else if(screen.height==480&&screen.width==320)//otros iphone
     {
-        imageContainer.src="img/about/i4.png"
+        imageContainer.src="img/about/i4.png";
     }
     
     else if(screen.height==1024&&screen.width==768)//ipads
     {
-        imageContainer.src="img/about/ipad.png"
+        imageContainer.src="img/about/ipad.png";
     }
     else if(screen.height==1232&&screen.width==800)//nexus 10
     {
-          imageContainer.src="img/about/nexus10.png"
+          imageContainer.src="img/about/nexus10.png";
     }
     else if(screen.height==1024&&screen.width==600)//samsung chirreta
     {
-          imageContainer.src="img/about/1024x600.png"
+          imageContainer.src="img/about/1024x600.png";
     }
     else if(screen.height==455&&screen.width==320)//galaxy ace
     {
-          imageContainer.src="img/about/galaxyace.png"
+          imageContainer.src="img/about/galaxyace.png";
     }
     else if(screen.height==592&&screen.width==360)//moto x
     {
-          imageContainer.src="img/about/motox.png"
+          imageContainer.src="img/about/motox.png";
     }
     else 
     {
-          imageContainer.src="img/about/default.png"
+          imageContainer.src="img/about/default.png";
     }
     
     
@@ -191,7 +191,7 @@ function testConnection()
  
                     
                        var value = window.localStorage.getItem("NombreUsuario");
-                       if(value!=null)
+                       if(value!==null)
                        {
 		 	    	   //alert("si usuario");
                $.mobile.navigate("#pg-third",{allowSamePageTransition:false,reloadPage:false,changeHash:true,transition:"none"});
@@ -212,21 +212,21 @@ function testConnection()
 
 
 
-         if($("#txtNombre").val()=="")
+         if($("#txtNombre").val()==="")
          {
              navigator.notification.alert('Por favor ingresa tu nombre',null,'Yo Reporto','Aceptar');
            }
-           else if($("#txtTelefono").val()=="")
+           else if($("#txtTelefono").val()==="")
            {
    					navigator.notification.alert('Por favor ingresa tu teléfono',null,'Yo Reporto','Aceptar');
           }
-          else if($("#txtEmail").val()=="")
+          else if($("#txtEmail").val()==="")
           {
    					navigator.notification.alert('Por favor ingresa tu e-mail',null,'Yo Reporto','Aceptar');
           }
-          else if($("#txtEmail").val()!="")
+          else if($("#txtEmail").val()!=="")
           {
-          	var x=$("#txtEmail").val()
+          	var x=$("#txtEmail").val();
 			var atpos=x.indexOf("@");
 			var dotpos=x.lastIndexOf(".");
 			if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
@@ -239,7 +239,7 @@ function testConnection()
           	{
           
           	 var oktelefono = verificarTelefono();    
-               if(oktelefono==true)
+               if(oktelefono===true)
                {
                    window.localStorage.setItem("NombreUsuario", $("#txtNombre").val());
                    window.localStorage.setItem("TelefonoUsuario", $("#txtTelefono").val());
@@ -249,7 +249,7 @@ function testConnection()
                }
                 else
                 {
-                    navigator.notification.alert('Introduce un numero de teléfono mas corto',null,'Yo Reporto','Aceptar');
+                    navigator.notification.alert('Introduce un número de teléfono más corto',null,'Yo Reporto','Aceptar');
                 }
          	}
          }
@@ -373,7 +373,7 @@ function processSuccessInsertarEmergencia(data, status, req)
       //alert("Emergencias Reportadas: "+cod);
     });
 
-	if(imagen==null)
+	if(imagen===null)
 	{
 		navigator.notification.alert('Reporte exitoso',null,'Yo Reporto','Aceptar');
         resetMenus();
@@ -383,7 +383,7 @@ function processSuccessInsertarEmergencia(data, status, req)
 		  
 	}
 	
-    if(imagen!=null)
+    if(imagen!==null)
     {	 
      	 enviarArchivo(cod);
     }
@@ -497,9 +497,9 @@ function getBase64FromImageUrl(URL)
    ctx.drawImage(this, 0, 0);
    var dataURL = canvas.toDataURL("image/png");
 
-   return  dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 
- }
+ };
 }
 
 
