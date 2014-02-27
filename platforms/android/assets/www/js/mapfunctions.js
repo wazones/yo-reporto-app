@@ -113,7 +113,7 @@ function onDeviceReady() {
                     el.textContent = nombreMun;
                     el.value = nombreMun;
                     selectM.appendChild(el);
-                })
+                });
                 $.unblockUI();
             });
 
@@ -190,7 +190,7 @@ function refreshMap() {
 		 		el.textContent=nombreMun;
 		 		el.value=nombreMun;
 		 		selectM.appendChild(el);
-		 		})
+		 		});
 		 	
 		 	});
 
