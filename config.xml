@@ -9,6 +9,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <preference name="websecurity" value="disable" gap:platform="blackberry10" />
     <preference name="webviewbounce" value="true" />
     <preference name="DisallowOverscroll" value="true" />
 </widget>

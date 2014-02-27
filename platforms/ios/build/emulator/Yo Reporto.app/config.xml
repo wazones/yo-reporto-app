@@ -53,6 +53,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <preference gap:platform="blackberry10" name="websecurity" value="disable" />
     <preference name="webviewbounce" value="true" />
     <preference name="DisallowOverscroll" value="true" />
 </widget>

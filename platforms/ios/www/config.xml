@@ -16,4 +16,5 @@
     <preference name="webviewbounce" value="true" />
     <feature name="http://api.phonegap.com/1.0/geolocation" />
     <preference name="DisallowOverscroll" value="true" />
+    <preference name="websecurity" value="disable" gap:platform="blackberry10" />
 </widget>
