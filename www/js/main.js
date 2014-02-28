@@ -102,6 +102,7 @@ function start()
   url: wsUrl,
   contentType: "text/xml",
   dataType: "xml",
+     timeout: 1000000,
   data: requestEventos,
   success: processSuccessEventos,
   error: processError
@@ -151,6 +152,7 @@ function start()
         url: wsUrl,
         contentType: "text/xml",
         dataType: "xml",
+          timeout: 1000000,
         data: requestNiveles,
         success: processSuccessNiveles,
         error: processError
@@ -338,6 +340,7 @@ function testConnection()
               url: wsUrl,
               contentType: "text/xml",
               dataType: "xml",
+                timeout: 1000000,
               data: requestInsertarEmergencia,
               success: processSuccessInsertarEmergencia,
               error: processError

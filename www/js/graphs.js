@@ -21,6 +21,7 @@ function llenarDeptos() {
         url: wsUrl,
         contentType: "text/xml",
         dataType: "xml",
+        timeout: 1000000,
         data: soapRequest0,
         success: processSuccessDepts,
         error: processError
@@ -197,6 +198,7 @@ function getMunicipiosDepto() {
             url: wsUrl,
             contentType: "text/xml",
             dataType: "xml",
+            timeout: 1000000,
             data: soapRequest0,
             success: processSuccess0,
             error: processError
@@ -357,7 +359,7 @@ function renderColumnChart() {
         }
     }
     if(datasets.length > 0) {
-        var chartData = {labels: months,datasets:datasets};
+        var chartData = {labels: monthsAndYears.spanishMonths,datasets:datasets};
         new Chart(ctx).Bar(
             chartData,
             {animation: false, scaleShowLabels: true,scaleFontSize:7, 
@@ -419,7 +421,7 @@ function renderLineChart() {
         }
     }
     if(datasets.length > 0) {
-        var chartData = {labels: months,datasets:datasets};
+       var chartData = {labels: monthsAndYears.spanishMonths,datasets:datasets};
         new Chart(ctx).Line(
             chartData,
             {animation: false, scaleShowLabels: true,scaleFontSize:7,scaleSteps:max,scaleStepWidth:1,scaleOverride:true}
@@ -483,26 +485,31 @@ function RandomRgb() {
         return Math.floor(((1 + Math.floor(Math.random() * 254))+254)/2);
     }
 }
- function genMonthsAndYears() {
-     var months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+  function genMonthsAndYears() {
+    var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+var spanishMonths = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
 
-     var years = [];
-     var months2 = [];
+    var years = [];
+    var months2 = [];
+var spanishMonths2 = [];
 
-     var currDate = new Date();
-     for (var i = currDate.getMonth() + 1; i < 12; ++i) {
-         months2.push(months[i]);
-         years.push("" + (currDate.getYear() + 1900 - 1));
-     }
-     for (var i = 0; i <= currDate.getMonth(); ++i) {
-         months2.push(months[i]);
-         years.push("" + (currDate.getYear() + 1900));
-     }
-     return {
-         months:months2,
-         years:years
-     };
- }
+    var currDate = new Date();
+    for (var i = currDate.getMonth() + 1; i < 12; ++i) {
+        months2.push(months[i]);
+spanishMonths2.push(spanishMonths[i]);
+        years.push("" + (currDate.getYear() + 1900 - 1));
+    }
+    for (var i = 0; i <= currDate.getMonth(); ++i) {
+        months2.push(months[i]);
+spanishMonths2.push(spanishMonths[i]);
+        years.push("" + (currDate.getYear() + 1900));
+    }
+    return {
+spanishMonths:spanishMonths2,
+        months:months2,
+        years:years
+    };
+}
 
 function initCanvas() {
     var elementID = 'chartCanvas'; // Unique ID

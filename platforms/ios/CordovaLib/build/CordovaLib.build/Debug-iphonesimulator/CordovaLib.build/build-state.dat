@@ -913,7 +913,7 @@ s3202244
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies8e91f0d9e4bfb841^35f027dae4bfb841^---0#1#1#--18"Check dependencies36"E26E3125-8B8A-4E36-A19A-69CC84FAB104-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesd9787cde10c0b841^0916afde10c0b841^---0#1#1#--18"Check dependencies36"85586B70-EE25-4B75-BAFD-FDB0500FE1DC-
 
 CCompileC build/CordovaLib.build/Debug-iphonesimulator/CordovaLib.build/Objects-normal/i386/CDVCommandDelegateImpl.o /Users/daniel/Desktop/yo-reporto-app/platforms/ios/CordovaLib/Classes/CDVCommandDelegateImpl.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s414903437.142070

@@ -1223,9 +1223,9 @@ t1393264419
 s175018
 
 N/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/Yo Reporto/Yo Reporto-Info.plist
-c00000000530FAD570000000000000AFD
-t1393536343
-s2813
+c00000000530FD95C0000000000000BA2
+t1393547612
+s2978
 
 N/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/Yo Reporto/Yo Reporto-Prefix.pch
 c00000000530B872300000000000003C5
@@ -1308,11 +1308,11 @@ t1393264419
 s45
 
 N/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app
-t1393536347
+t1393547615
 s1360
 
 N/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app.dSYM
-t1393533876
+t1393546974
 s102
 
 N/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/CDVNotification.bundle
@@ -1352,8 +1352,8 @@ t1393264419
 s10394
 
 N/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/Info.plist
-t1393536346
-s1514
+t1393547614
+s1465
 
 N/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/MainViewController.nib
 t1393264419
@@ -1695,7 +1695,7 @@ s5342544
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesb70c2cdae4bfb841^5d8934dae4bfb841^---0#1#1#--18"Check dependencies36"F3462922-4B00-42BA-9C47-5250600F08C1-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesacc7b1de10c0b841^5b22b3de10c0b841^---0#1#1#--18"Check dependencies36"D259D502-09BD-4E08-B923-B1FE0D05766A-
 
 CCompileC build/Yo\ Reporto.build/Debug-iphonesimulator/Yo\ Reporto.build/Objects-normal/i386/AppDelegate.o /Users/daniel/Desktop/yo-reporto-app/platforms/ios/Yo\ Reporto/Classes/AppDelegate.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s414903439.679524
@@ -2862,14 +2862,14 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"Generat
 b80A5404F-C93D-4871-9A3E-65CAD3D5A476
 
 CGenerateDSYMFile /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app.dSYM /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app/Yo\ Reporto
-s415229147.304217
-e415229147.454705
+s415240415.963477
+e415240416.073718
 r1
 xGenerateDSYMFile
 x/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app.dSYM
 x/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/Yo Reporto
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"Generate /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app.dSYM111"[1mGenerateDSYMFile[0m [1mbuild/emulator/Yo\ Reporto.app.dSYM[0m build/emulator/Yo\ Reporto.app/Yo\ Reporto48f94ddbe4bfb841^b56d74dbe4bfb841^---0#0#1#-19%DVTDocumentLocation2@95"file:///Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo%20Reporto.app.dSYM/0000000000000000^846"[1mGenerateDSYMFile[0m [1mbuild/emulator/Yo\ Reporto.app.dSYM[0m build/emulator/Yo\ Reporto.app/Yo\ Reporto    cd /Users/daniel/Desktop/yo-reporto-ios/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/adt-bundle-mac-x86_64-20130917/sdk/platform-tools:/Applications/adt-bundle-mac-x86_64-20130917/sdk/tools:/Applications/Momentics.app/host_10_2_0_15/darwin/x86/usr/bin/"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app/Yo\ Reporto -o /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app.dSYM36"3673E11D-354E-4F90-8A0D-55CD79348593-
-bFDF540B6-9B6C-4F3D-A1F4-7B3A1C496AB4
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection94"Generate /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app.dSYM111"[1mGenerateDSYMFile[0m [1mbuild/emulator/Yo\ Reporto.app.dSYM[0m build/emulator/Yo\ Reporto.app/Yo\ Reporto16bef6df10c0b841^0ddf12e010c0b841^---0#0#1#-19%DVTDocumentLocation2@95"file:///Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo%20Reporto.app.dSYM/0000000000000000^846"[1mGenerateDSYMFile[0m [1mbuild/emulator/Yo\ Reporto.app.dSYM[0m build/emulator/Yo\ Reporto.app/Yo\ Reporto    cd /Users/daniel/Desktop/yo-reporto-ios/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/adt-bundle-mac-x86_64-20130917/sdk/platform-tools:/Applications/adt-bundle-mac-x86_64-20130917/sdk/tools:/Applications/Momentics.app/host_10_2_0_15/darwin/x86/usr/bin/"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app/Yo\ Reporto -o /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app.dSYM36"B3C1B9B1-52A4-4F9F-A1FB-5558DF69EBD9-
+b32DFD5C8-8B5D-4430-A593-8584D1765772
 
 CLd /Users/daniel/Desktop/yo-reporto-app/platforms/ios/build/emulator/Yo\ Reporto.app/Yo\ Reporto normal i386
 s414903440.984555
@@ -3076,18 +3076,18 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection44"Run cus
 b80A5404F-C93D-4871-9A3E-65CAD3D5A476
 
 CPhaseScriptExecution Copy\ www\ directory /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/Yo\ Reporto.build/Debug-iphonesimulator/Yo\ Reporto.build/Script-304B58A110DAC018002A0835.sh
-s415229146.180305
-e415229147.286862
+s415240414.702113
+e415240415.946120
 r1
 xPhaseScriptExecution
 xCopy www directory
 x/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/Yo Reporto.build/Debug-iphonesimulator/Yo Reporto.build/Script-304B58A110DAC018002A0835.sh
 o
-oreal	0m1.065s
-ouser	0m0.228s
-osys	0m0.460s
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection44"Run custom shell script 'Copy www directory'148"[1mPhaseScriptExecution[0m Copy\ www\ directory build/Yo\ Reporto.build/Debug-iphonesimulator/Yo\ Reporto.build/Script-304B58A110DAC018002A0835.shcdaf2edae4bfb841^1cb649dbe4bfb841^-42"real	0m1.065suser	0m0.228ssys	0m0.460s3(21%IDEActivityLogMessage2@14"real	0m1.065s-415229147#1#14#-0#-----2@14"user	0m0.228s-415229147#15#14#-0#-----2@13"sys	0m0.460s-415229147#29#13#-0#-----0#0#1#--376"[1mPhaseScriptExecution[0m Copy\ www\ directory build/Yo\ Reporto.build/Debug-iphonesimulator/Yo\ Reporto.build/Script-304B58A110DAC018002A0835.sh    cd /Users/daniel/Desktop/yo-reporto-ios/platforms/ios    /bin/sh -c \"/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/Yo\ Reporto.build/Debug-iphonesimulator/Yo\ Reporto.build/Script-304B58A110DAC018002A0835.sh\"36"25EB1AF2-0D79-471F-9FB3-3079A705EDE5-
-bFDF540B6-9B6C-4F3D-A1F4-7B3A1C496AB4
+oreal	0m1.205s
+ouser	0m0.233s
+osys	0m0.488s
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection44"Run custom shell script 'Copy www directory'148"[1mPhaseScriptExecution[0m Copy\ www\ directory build/Yo\ Reporto.build/Debug-iphonesimulator/Yo\ Reporto.build/Script-304B58A110DAC018002A0835.shb247b4de10c0b841^8467f2df10c0b841^-42"real	0m1.205suser	0m0.233ssys	0m0.488s3(21%IDEActivityLogMessage2@14"real	0m1.205s-415240415#1#14#-0#-----2@14"user	0m0.233s-415240415#15#14#-0#-----2@13"sys	0m0.488s-415240415#29#13#-0#-----0#0#1#--376"[1mPhaseScriptExecution[0m Copy\ www\ directory build/Yo\ Reporto.build/Debug-iphonesimulator/Yo\ Reporto.build/Script-304B58A110DAC018002A0835.sh    cd /Users/daniel/Desktop/yo-reporto-ios/platforms/ios    /bin/sh -c \"/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/Yo\ Reporto.build/Debug-iphonesimulator/Yo\ Reporto.build/Script-304B58A110DAC018002A0835.sh\"36"D92A877C-9D8F-461F-9C99-56A42E0DB83A-
+b32DFD5C8-8B5D-4430-A593-8584D1765772
 
 CProcessInfoPlistFile /Users/daniel/Desktop/yo-reporto-app/platforms/ios/build/emulator/Yo\ Reporto.app/Info.plist /Users/daniel/Desktop/yo-reporto-app/platforms/ios/Yo\ Reporto/Yo\ Reporto-Info.plist
 s414911662.836480
@@ -3100,14 +3100,14 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection91"Process
 b80A5404F-C93D-4871-9A3E-65CAD3D5A476
 
 CProcessInfoPlistFile /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app/Info.plist /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/Yo\ Reporto/Yo\ Reporto-Info.plist
-s415229146.176028
-e415229146.178741
+s415240414.697309
+e415240414.700636
 r1
 xProcessInfoPlistFile
 x/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/Info.plist
 x/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/Yo Reporto/Yo Reporto-Info.plist
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection91"Process /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/Yo Reporto/Yo Reporto-Info.plist113"[1mProcessInfoPlistFile[0m build/emulator/Yo\ Reporto.app/Info.plist [1mYo\ Reporto/Yo\ Reporto-Info.plist[0ma5322ddae4bfb841^829034dae4bfb841^---0#0#1#-19%DVTDocumentLocation2@94"file:///Users/daniel/Desktop/yo-reporto-ios/platforms/ios/Yo%20Reporto/Yo%20Reporto-Info.plist0000000000000000^939"[1mProcessInfoPlistFile[0m build/emulator/Yo\ Reporto.app/Info.plist [1mYo\ Reporto/Yo\ Reporto-Info.plist[0m    cd /Users/daniel/Desktop/yo-reporto-ios/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/adt-bundle-mac-x86_64-20130917/sdk/platform-tools:/Applications/adt-bundle-mac-x86_64-20130917/sdk/tools:/Applications/Momentics.app/host_10_2_0_15/darwin/x86/usr/bin/"    builtin-infoPlistUtility /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/Yo\ Reporto/Yo\ Reporto-Info.plist -genpkginfo /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app/Info.plist36"E84B78BE-F1EB-49D0-BB9C-093C2EED72CA-
-bFDF540B6-9B6C-4F3D-A1F4-7B3A1C496AB4
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection91"Process /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/Yo Reporto/Yo Reporto-Info.plist113"[1mProcessInfoPlistFile[0m build/emulator/Yo\ Reporto.app/Info.plist [1mYo\ Reporto/Yo\ Reporto-Info.plist[0mbda7b2de10c0b841^855eb3de10c0b841^---0#0#1#-19%DVTDocumentLocation2@94"file:///Users/daniel/Desktop/yo-reporto-ios/platforms/ios/Yo%20Reporto/Yo%20Reporto-Info.plist0000000000000000^939"[1mProcessInfoPlistFile[0m build/emulator/Yo\ Reporto.app/Info.plist [1mYo\ Reporto/Yo\ Reporto-Info.plist[0m    cd /Users/daniel/Desktop/yo-reporto-ios/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/adt-bundle-mac-x86_64-20130917/sdk/platform-tools:/Applications/adt-bundle-mac-x86_64-20130917/sdk/tools:/Applications/Momentics.app/host_10_2_0_15/darwin/x86/usr/bin/"    builtin-infoPlistUtility /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/Yo\ Reporto/Yo\ Reporto-Info.plist -genpkginfo /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app/Info.plist36"E9D19689-DF10-4402-98EF-C1AE4B19D61E-
+b32DFD5C8-8B5D-4430-A593-8584D1765772
 
 CProcessPCH /var/folders/_8/9dq87dp53y3ccks_dzj2xk340000gn/C/com.apple.DeveloperTools/5.0.2-5A3005/Xcode/SharedPrecompiledHeaders/Yo\ Reporto-Prefix-assdzpdrjrthqcgrsunvmgcsyerf/Yo\ Reporto-Prefix.pch.pch Yo\ Reporto/Yo\ Reporto-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s414903439.029505
@@ -3149,11 +3149,11 @@ lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection86"Touch /
 b80A5404F-C93D-4871-9A3E-65CAD3D5A476
 
 CTouch /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app
-s415229147.456128
-e415229147.463604
+s415240416.076185
+e415240416.083804
 r1
 xTouch
 x/Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection86"Touch /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app44"[1mTouch[0m build/emulator/Yo\ Reporto.app44dc74dbe4bfb841^17ba76dbe4bfb841^---0#0#1#--599"[1mTouch[0m build/emulator/Yo\ Reporto.app    cd /Users/daniel/Desktop/yo-reporto-ios/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/adt-bundle-mac-x86_64-20130917/sdk/platform-tools:/Applications/adt-bundle-mac-x86_64-20130917/sdk/tools:/Applications/Momentics.app/host_10_2_0_15/darwin/x86/usr/bin/"    /usr/bin/touch -c /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app36"50D15DEA-996F-4732-AD53-15B6D825008E-
-bFDF540B6-9B6C-4F3D-A1F4-7B3A1C496AB4
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection86"Touch /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app44"[1mTouch[0m build/emulator/Yo\ Reporto.appd49913e010c0b841^4f7415e010c0b841^---0#0#1#--599"[1mTouch[0m build/emulator/Yo\ Reporto.app    cd /Users/daniel/Desktop/yo-reporto-ios/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/adt-bundle-mac-x86_64-20130917/sdk/platform-tools:/Applications/adt-bundle-mac-x86_64-20130917/sdk/tools:/Applications/Momentics.app/host_10_2_0_15/darwin/x86/usr/bin/"    /usr/bin/touch -c /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo\ Reporto.app36"0A9B25AD-89EE-4370-8AF0-0DB452E9B41B-
+b32DFD5C8-8B5D-4430-A593-8584D1765772
 
