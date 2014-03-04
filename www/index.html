@@ -61,10 +61,15 @@
     </script>
     
    <script>
-  function maxLengthCheck(object)
+  function maxLengthCheckNumber(object)
   {
     if (object.value.length > 13)
       object.value = object.value.slice(0, 13)
+  }
+   function maxLengthCheckText(object)
+  {
+    if (object.value.length > 40)
+      object.value = object.value.slice(0, 40)
   }
 </script>
 
@@ -112,15 +117,15 @@
         <div id="botones">
             <form id="secondForm">
                 <p id="titulo2nd">Nombre:</p>
-                <input id="txtNombre" type="email" maxlength="40"></input>
+                <input id="txtNombre" type="email" oninput="maxLengthCheckText(this)"></input>
                 <br/>
 
                 <p id="titulo2nd">Teléfono:</p>
-                <input id="txtTelefono" type="number" oninput="maxLengthCheck(this)"></input>
+                <input id="txtTelefono" type="number" oninput="maxLengthCheckNumber(this)"></input>
                 <br/>
 
                 <p id="titulo2nd">E-mail:</p>
-                <input id="txtEmail" type="email" maxlength="40"/>
+                <input id="txtEmail" type="email" oninput="maxLengthCheckText(this)"/>
                 <br/>
 
             </form>
