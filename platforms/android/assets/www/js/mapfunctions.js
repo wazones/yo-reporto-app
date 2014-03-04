@@ -135,8 +135,7 @@ function onDeviceReady() {
 
 function refreshMap() {
    
-    $('#selectMuni').val('Municipio');
-    $('#selectMuni').selectmenu('refresh');
+   
     $.blockUI({ message: 'Cargando posición por GPS...'});
     navigator.geolocation.getCurrentPosition(geo_success, geo_error, { timeout: 15000, enableHighAccuracy: false });
     function geo_error(error) {

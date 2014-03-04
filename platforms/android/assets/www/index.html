@@ -59,6 +59,14 @@
         }, false);
 
     </script>
+    
+     <script>
+  function maxLengthCheck(object)
+  {
+    if (object.value.length > 13)
+      object.value = object.value.slice(0, 13)
+  }
+</script>
 
     <title>Yo Reporto</title>
 </head>
@@ -99,7 +107,7 @@
                 <br/>
 
                 <p id="titulo2nd">Teléfono:</p>
-                <input id="txtTelefono" type="number" ></input>
+                <input id="txtTelefono" type="number" oninput="maxLengthCheck(this)"></input>
                 <br/>
 
                 <p id="titulo2nd">E-mail:</p>
