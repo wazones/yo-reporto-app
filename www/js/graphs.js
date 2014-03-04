@@ -235,6 +235,8 @@ function getMunicipiosDepto() {
 
 }//getmunicipiosdepto 
 
+
+
 function workarround() {
     $('#chart_div canvas').parents("*").css("overflow", "visible");
     $('[data-role="page"]').bind('pageshow', function() { $("#chart_div canvas").parents("*").css("overflow", "visible"); });

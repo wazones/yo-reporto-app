@@ -21,6 +21,11 @@
 	margin-left:10%;
 }
 
+#botones2{
+	width:85%;
+	margin-left:7%;
+}
+
 /*Propiedad general para todos los campos de texto del aplicativo*/
 input[type=text]{
   color:#FFFFFF;  

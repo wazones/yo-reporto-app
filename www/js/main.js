@@ -240,35 +240,18 @@ function testConnection()
           	else
           	{
           
-          	 var oktelefono = verificarTelefono();    
-               if(oktelefono===true)
-               {
+          	 
                    window.localStorage.setItem("NombreUsuario", $("#txtNombre").val());
                    window.localStorage.setItem("TelefonoUsuario", $("#txtTelefono").val());
            	       window.localStorage.setItem("EmailUsuario", $("#txtEmail").val());
            	       window.localStorage.setItem("EntidadUsuario", $("#selectEntidad").val());
            	        $.mobile.navigate("#pg-third",{allowSamePageTransition:true,reloadPage:true,changeHash:true,transition:"none"});
-               }
-                else
-                {
-                    navigator.notification.alert('Introduce un número de teléfono más corto',null,'Yo Reporto','Aceptar');
-                }
+               
          	}
          }
  		}//gothird
 
-    function verificarTelefono()
-    {
-        
-           var value=$("#txtTelefono").val();
-           // alert(value);
-           if ( value.length > 13) 
-           {
-		       return false;
-               
-	       } 
-        else return true;
-    }
+    
 
     function getCodeEvent(event)
     {
