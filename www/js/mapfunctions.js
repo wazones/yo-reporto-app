@@ -40,12 +40,17 @@ function geo_error(error)
     //comment
     //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
     $.unblockUI();
-    if(error.code==1 || error.code == 2)
+    if(error.code==1)
     {
-    	//alert("Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación");
-    	//navigator.notification.alert('Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación',null,'Yo Reporto','Aceptar');
+     navigator.notification.alert('Servicios de localización deshabilitados. Debes activar la localización por GPS',null,'Yo Reporto','Aceptar');
+    }
+    
+    else if (error.code==2)
+    {
+       // alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+    
 
-      navigator.notification.alert('Servicios de Localización Desabilitados. Se utilizará localización por torres celulares (menos preciso)',null,'Yo Reporto','Aceptar');
+     
       
       //trying low accuracy
       $.blockUI({ message: 'Cargando posición por red...'});
