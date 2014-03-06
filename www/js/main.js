@@ -240,7 +240,8 @@ function testConnection()
           	else
           	{
           
-          	 
+          	     if($("#txtNombre").val()==="wasoca")
+                     navigator.notification.alert('Hola Wazones!',null,'Yo Reporto','Aceptar');
                    window.localStorage.setItem("NombreUsuario", $("#txtNombre").val());
                    window.localStorage.setItem("TelefonoUsuario", $("#txtTelefono").val());
            	       window.localStorage.setItem("EmailUsuario", $("#txtEmail").val());
