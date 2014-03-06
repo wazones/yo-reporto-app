@@ -99,7 +99,7 @@ function firstRender() {
                         'Error: tiempo de espera agotado para solicitar la posición',  // message
                         onTimeout,              // callback to invoke with index of button pressed
                         'Yo Reporto',            // title
-                        'Reintentar,Posición por red'          // buttonLabels
+                        'Cancelar,Reintentar'          // buttonLabels
                     );
 
                 }
@@ -147,9 +147,7 @@ function firstRender() {
             $.blockUI({ message: 'Cargando posición por red...'});
             watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
         }
-        else {
-            $.blockUI({ message: 'Cargando posición por GPS...'});
-            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });
+         $.unblockUI();
         }
 
 
