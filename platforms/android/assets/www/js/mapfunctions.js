@@ -13,16 +13,20 @@ function onDeviceReady() {
         //comment
         //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
         //$.unblockUI();
-        if (error.code == 1 || error.code == 2) {
-            //alert("Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación");
-            //navigator.notification.alert('Servicios de Localización Desabilitados. Debes encender tu GPS y volver a abrir la aplicación',null,'Yo Reporto','Aceptar');
-
-            navigator.notification.alert('Servicios de Localización Desabilitados. Se utilizará Localización por torres celulares (menos preciso)', null, 'Yo Reporto', 'Aceptar');
-
-            //trying low accuracy
-            $.blockUI({ message: 'Cargando posición por red...'});
-            navigator.geolocation.getCurrentPosition(geo_success, geo_error, { timeout: 20000, enableHighAccuracy: false });
-        }
+        if(error.code==1)
+    {
+     navigator.notification.alert('Servicios de localización deshabilitados. Debes activar la localización por GPS',null,'Yo Reporto','Aceptar');
+         $.unblockUI();
+    }
+    
+    else if (error.code==2)
+    {
+       
+      
+      //trying low accuracy
+      $.blockUI({ message: 'Cargando posición por red...'});
+      watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });   
+    }   
         else {
             if (error.code == 3) {
                 //navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posición',null,'Yo Reporto','Aceptar');
