@@ -1,5 +1,5 @@
 281c9d8668adb6c59664fee959d6725c 4469b49de3bf15cf811b447f22935ad1 ffffffffffffffffffffffffffffffff 1360 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app
-00000000531893ad0000000000000ba2 409b433e714c05b922f8f9ea833ab448 ffffffffffffffffffffffffffffffff 0 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/PkgInfo
+000000005318ca0e0000000000000ba2 409b433e714c05b922f8f9ea833ab448 ffffffffffffffffffffffffffffffff 0 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/PkgInfo
 ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff 91713 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/Default-Portrait~ipad.png
 ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff 1459926 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/Default-Retina.png
 ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff 7025 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/icon-76.png
@@ -27,8 +27,8 @@ ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff ffffffffffffff
 ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff 24805 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/icon-57-2x.png
 ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff 34225 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/Default-568h@2x~iphone.png
 ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff ffffffffffffffffffffffffffffffff 10772 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/icon-57.png
-55247e50bb820b66fbfe176538cb37d4 4b105fb71d40874faa8c2c5c146bb4db ffffffffffffffffffffffffffffffff 102 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app.dSYM
-00000000531893ad0000000000000ba2 409b433e714c05b922f8f9ea833ab448 ffffffffffffffffffffffffffffffff 1465 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/Info.plist
+55247e50bb8252c5fbfe176538cb37d4 4b105fb71d40874faa8c2c5c146bb4db ffffffffffffffffffffffffffffffff 102 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app.dSYM
+000000005318ca0e0000000000000ba2 409b433e714c05b922f8f9ea833ab448 ffffffffffffffffffffffffffffffff 1465 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/Info.plist
 0000000001acf510000000000140223a 15bf3d6e987a6862d906ee8fbab1aa04 ffffffffffffffffffffffffffffffff 636476 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/emulator/Yo Reporto.app/Yo Reporto
 288860198aaae3f6ebe448f93622c5b9 533f9f5fc38be73e0728c04bc93346b2 ffffffffffffffffffffffffffffffff 76724 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/Yo Reporto.build/Debug-iphonesimulator/Yo Reporto.build/Objects-normal/i386/CDVSplashScreen.o
 288860198aaae3f6ebe448f93622c5d3 08415e0bcde0fec55a3b58d95dac09f9 ffffffffffffffffffffffffffffffff 21164 /Users/daniel/Desktop/yo-reporto-ios/platforms/ios/build/Yo Reporto.build/Debug-iphonesimulator/Yo Reporto.build/Objects-normal/i386/CDVReachability.o
