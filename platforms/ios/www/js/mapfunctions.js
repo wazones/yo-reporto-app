@@ -64,7 +64,7 @@ function geo_error(error)
         'Error: Tiempo de espera agotado para solicitar la posición',  // message
          onTimeout,              // callback to invoke with index of button pressed
         'Yo Reporto',            // title
-        'Reintentar,Posición por red'          // buttonLabels
+        'Cancelar,Reintentar'          // buttonLabels
          );
     		//navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posición',null,'Yo Reporto','Aceptar');
     
@@ -84,8 +84,7 @@ function onTimeout(button)
   }
   else
   {
-    $.blockUI({ message: 'Cargando posición por GPS...'});
-    watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: false });
+    $.unblockUI();
   } 
   
 

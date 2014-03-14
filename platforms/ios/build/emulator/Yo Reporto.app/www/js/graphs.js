@@ -75,22 +75,23 @@ function firstRender() {
     $.blockUI({ message: 'Cargando posición por GPS...'});
     navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 15000, enableHighAccuracy: false });
     function geo_error(error) {
-        //comment
-        //alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
-        //$.unblockUI();
         if(error.code==1)
-        {
-            navigator.notification.alert('Servicios de localización deshabilitados. Debes activar la localización por GPS',null,'Yo Reporto','Aceptar');
-            $.unblockUI();
-        }
-        
-        else if (error.code==2)
-        {
-       
+    {
+     navigator.notification.alert('Servicios de localización deshabilitados. Debes activar la localización por GPS',null,'Yo Reporto','Aceptar');
+         $.unblockUI();
+    }
+    
+    else if (error.code==2)
+    {
+       // alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+    
+
+     
+      
       //trying low accuracy
       $.blockUI({ message: 'Cargando posición por red...'});
       watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });   
-        }
+    }
         else {
             if (error.code == 3) {
                 //navigator.notification.alert('Error: Tiempo de espera agotado para solicitar la posición',null,'Yo Reporto','Aceptar');
@@ -99,7 +100,7 @@ function firstRender() {
                         'Error: tiempo de espera agotado para solicitar la posición',  // message
                         onTimeout,              // callback to invoke with index of button pressed
                         'Yo Reporto',            // title
-                        'Reintentar,Posición por red'          // buttonLabels
+                        'Cancelar,Reintentar'          // buttonLabels
                     );
 
                 }
@@ -148,8 +149,8 @@ function firstRender() {
             watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 20000, enableHighAccuracy: false });
         }
         else {
-            $.blockUI({ message: 'Cargando posición por GPS...'});
-            watchID = navigator.geolocation.getCurrentPosition(geo_success, geo_error, { maximumAge: 5000, timeout: 10000, enableHighAccuracy: true });
+             $.unblockUI();
+            
         }
 
 
@@ -238,8 +239,6 @@ function getMunicipiosDepto() {
 
 }//getmunicipiosdepto 
 
-
-
 function workarround() {
     $('#chart_div canvas').parents("*").css("overflow", "visible");
     $('[data-role="page"]').bind('pageshow', function() { $("#chart_div canvas").parents("*").css("overflow", "visible"); });
@@ -282,7 +281,7 @@ function renderPieChart() {
     var depto = $("#selectDeptGraphs").val();
     var muni = $("#selectMunGraphs").val();
     var total = 0;
-    for(x in window.db) {
+    for (x in window.db) {
         var data = 0;
         var hasEvents = false;
         for(var i = 0;i<months.length;++i) {
