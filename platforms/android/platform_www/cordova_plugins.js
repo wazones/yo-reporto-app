@@ -268,26 +268,26 @@ module.exports = [
         ]
     },
     {
-        "id": "org.apache.cordova.network-information.network",
-        "file": "plugins/org.apache.cordova.network-information/www/network.js",
-        "pluginId": "org.apache.cordova.network-information",
+        "id": "cordova-plugin-network-information.network",
+        "file": "plugins/cordova-plugin-network-information/www/network.js",
+        "pluginId": "cordova-plugin-network-information",
         "clobbers": [
             "navigator.connection",
             "navigator.network.connection"
         ]
     },
     {
-        "id": "org.apache.cordova.network-information.Connection",
-        "file": "plugins/org.apache.cordova.network-information/www/Connection.js",
-        "pluginId": "org.apache.cordova.network-information",
+        "id": "cordova-plugin-network-information.Connection",
+        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+        "pluginId": "cordova-plugin-network-information",
         "clobbers": [
             "Connection"
         ]
     },
     {
-        "id": "org.apache.cordova.splashscreen.SplashScreen",
-        "file": "plugins/org.apache.cordova.splashscreen/www/splashscreen.js",
-        "pluginId": "org.apache.cordova.splashscreen",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
         "clobbers": [
             "navigator.splashscreen"
         ]
@@ -304,8 +304,8 @@ module.exports.metadata =
     "cordova-plugin-geolocation": "2.4.1",
     "cordova-plugin-whitelist": "1.3.1",
     "org.apache.cordova.device-motion": "0.2.6",
-    "org.apache.cordova.network-information": "0.2.7",
-    "org.apache.cordova.splashscreen": "0.2.7"
+    "cordova-plugin-network-information": "1.3.1",
+    "cordova-plugin-splashscreen": "4.0.1"
 };
 // BOTTOM OF METADATA
 });

@@ -21,9 +21,12 @@ package org.apache.cordova.networkinformation;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.LOG;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -31,7 +34,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
+
+import java.util.Locale;
 
 public class NetworkManager extends CordovaPlugin {
 
@@ -43,11 +47,16 @@ public class NetworkManager extends CordovaPlugin {
     public static final String WIMAX = "wimax";
     // mobile
     public static final String MOBILE = "mobile";
+
+    // Android L calls this Cellular, because I have no idea!
+    public static final String CELLULAR = "cellular";
     // 2G network types
+    public static final String TWO_G = "2g";
     public static final String GSM = "gsm";
     public static final String GPRS = "gprs";
     public static final String EDGE = "edge";
     // 3G network types
+    public static final String THREE_G = "3g";
     public static final String CDMA = "cdma";
     public static final String UMTS = "umts";
     public static final String HSPA = "hspa";
@@ -56,12 +65,14 @@ public class NetworkManager extends CordovaPlugin {
     public static final String ONEXRTT = "1xrtt";
     public static final String EHRPD = "ehrpd";
     // 4G network types
+    public static final String FOUR_G = "4g";
     public static final String LTE = "lte";
     public static final String UMB = "umb";
     public static final String HSPA_PLUS = "hspa+";
     // return type
     public static final String TYPE_UNKNOWN = "unknown";
     public static final String TYPE_ETHERNET = "ethernet";
+    public static final String TYPE_ETHERNET_SHORT = "eth";
     public static final String TYPE_WIFI = "wifi";
     public static final String TYPE_2G = "2g";
     public static final String TYPE_3G = "3g";
@@ -71,18 +82,10 @@ public class NetworkManager extends CordovaPlugin {
     private static final String LOG_TAG = "NetworkManager";
 
     private CallbackContext connectionCallbackContext;
-    private boolean registered = false;
 
     ConnectivityManager sockMan;
     BroadcastReceiver receiver;
-    private String lastStatus = "";
-
-    /**
-     * Constructor.
-     */
-    public NetworkManager() {
-        this.receiver = null;
-    }
+    private JSONObject lastInfo = null;
 
     /**
      * Sets the context of the Command. This can then be used to do things like
@@ -104,12 +107,11 @@ public class NetworkManager extends CordovaPlugin {
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     // (The null check is for the ARM Emulator, please use Intel Emulator for better results)
-                    if(NetworkManager.this.webView != null)                        
+                    if(NetworkManager.this.webView != null)
                         updateConnectionInfo(sockMan.getActiveNetworkInfo());
                 }
             };
-            cordova.getActivity().registerReceiver(this.receiver, intentFilter);
-            this.registered = true;
+            webView.getContext().registerReceiver(this.receiver, intentFilter);
         }
 
     }
@@ -126,7 +128,14 @@ public class NetworkManager extends CordovaPlugin {
         if (action.equals("getConnectionInfo")) {
             this.connectionCallbackContext = callbackContext;
             NetworkInfo info = sockMan.getActiveNetworkInfo();
-            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, this.getConnectionInfo(info));
+            String connectionType = "";
+            try {
+                connectionType = this.getConnectionInfo(info).get("type").toString();
+            } catch (JSONException e) {
+                LOG.d(LOG_TAG, e.getLocalizedMessage());
+            }
+
+            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, connectionType);
             pluginResult.setKeepCallback(true);
             callbackContext.sendPluginResult(pluginResult);
             return true;
@@ -138,12 +147,13 @@ public class NetworkManager extends CordovaPlugin {
      * Stop network receiver.
      */
     public void onDestroy() {
-        if (this.receiver != null && this.registered) {
+        if (this.receiver != null) {
             try {
-                this.cordova.getActivity().unregisterReceiver(this.receiver);
-                this.registered = false;
+                webView.getContext().unregisterReceiver(this.receiver);
             } catch (Exception e) {
-                Log.e(LOG_TAG, "Error unregistering network receiver: " + e.getMessage(), e);
+                LOG.e(LOG_TAG, "Error unregistering network receiver: " + e.getMessage(), e);
+            } finally {
+                receiver = null;
             }
         }
     }
@@ -161,13 +171,19 @@ public class NetworkManager extends CordovaPlugin {
     private void updateConnectionInfo(NetworkInfo info) {
         // send update to javascript "navigator.network.connection"
         // Jellybean sends its own info
-        String thisStatus = this.getConnectionInfo(info);
-        if(!thisStatus.equals(lastStatus))
+        JSONObject thisInfo = this.getConnectionInfo(info);
+        if(!thisInfo.equals(lastInfo))
         {
-            sendUpdate(thisStatus);
-            lastStatus = thisStatus;
+            String connectionType = "";
+            try {
+                connectionType = thisInfo.get("type").toString();
+            } catch (JSONException e) {
+                LOG.d(LOG_TAG, e.getLocalizedMessage());
+            }
+
+            sendUpdate(connectionType);
+            lastInfo = thisInfo;
         }
-            
     }
 
     /**
@@ -176,8 +192,9 @@ public class NetworkManager extends CordovaPlugin {
      * @param info the current active network info
      * @return a JSONObject that represents the network info
      */
-    private String getConnectionInfo(NetworkInfo info) {
+    private JSONObject getConnectionInfo(NetworkInfo info) {
         String type = TYPE_NONE;
+        String extraInfo = "";
         if (info != null) {
             // If we are not connected to any network set type to none
             if (!info.isConnected()) {
@@ -186,9 +203,22 @@ public class NetworkManager extends CordovaPlugin {
             else {
                 type = getType(info);
             }
+            extraInfo = info.getExtraInfo();
         }
-        Log.d("CordovaNetworkManager", "Connection Type: " + type);
-        return type;
+
+        LOG.d(LOG_TAG, "Connection Type: " + type);
+        LOG.d(LOG_TAG, "Connection Extra Info: " + extraInfo);
+
+        JSONObject connectionInfo = new JSONObject();
+
+        try {
+            connectionInfo.put("type", type);
+            connectionInfo.put("extraInfo", extraInfo);
+        } catch (JSONException e) {
+            LOG.d(LOG_TAG, e.getLocalizedMessage());
+        }
+
+        return connectionInfo;
     }
 
     /**
@@ -213,30 +243,38 @@ public class NetworkManager extends CordovaPlugin {
      */
     private String getType(NetworkInfo info) {
         if (info != null) {
-            String type = info.getTypeName();
+            String type = info.getTypeName().toLowerCase(Locale.US);
 
-            if (type.toLowerCase().equals(WIFI)) {
+            LOG.d(LOG_TAG, "toLower : " + type.toLowerCase());
+            LOG.d(LOG_TAG, "wifi : " + WIFI);
+            if (type.equals(WIFI)) {
                 return TYPE_WIFI;
             }
-            else if (type.toLowerCase().equals(MOBILE)) {
-                type = info.getSubtypeName();
-                if (type.toLowerCase().equals(GSM) ||
-                        type.toLowerCase().equals(GPRS) ||
-                        type.toLowerCase().equals(EDGE)) {
+            else if (type.toLowerCase().equals(TYPE_ETHERNET) || type.toLowerCase().startsWith(TYPE_ETHERNET_SHORT)) {
+                return TYPE_ETHERNET;
+            }
+            else if (type.equals(MOBILE) || type.equals(CELLULAR)) {
+                type = info.getSubtypeName().toLowerCase(Locale.US);
+                if (type.equals(GSM) ||
+                        type.equals(GPRS) ||
+                        type.equals(EDGE) ||
+                        type.equals(TWO_G)) {
                     return TYPE_2G;
                 }
-                else if (type.toLowerCase().startsWith(CDMA) ||
-                        type.toLowerCase().equals(UMTS) ||
-                        type.toLowerCase().equals(ONEXRTT) ||
-                        type.toLowerCase().equals(EHRPD) ||
-                        type.toLowerCase().equals(HSUPA) ||
-                        type.toLowerCase().equals(HSDPA) ||
-                        type.toLowerCase().equals(HSPA)) {
+                else if (type.startsWith(CDMA) ||
+                        type.equals(UMTS) ||
+                        type.equals(ONEXRTT) ||
+                        type.equals(EHRPD) ||
+                        type.equals(HSUPA) ||
+                        type.equals(HSDPA) ||
+                        type.equals(HSPA) ||
+                        type.equals(THREE_G)) {
                     return TYPE_3G;
                 }
-                else if (type.toLowerCase().equals(LTE) ||
-                        type.toLowerCase().equals(UMB) ||
-                        type.toLowerCase().equals(HSPA_PLUS)) {
+                else if (type.equals(LTE) ||
+                        type.equals(UMB) ||
+                        type.equals(HSPA_PLUS) ||
+                        type.equals(FOUR_G)) {
                     return TYPE_4G;
                 }
             }

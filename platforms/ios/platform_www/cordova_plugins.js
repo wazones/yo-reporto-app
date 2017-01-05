@@ -33,60 +33,11 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-file-transfer.FileTransferError",
-        "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
-        "pluginId": "cordova-plugin-file-transfer",
-        "clobbers": [
-            "window.FileTransferError"
-        ]
-    },
-    {
-        "id": "cordova-plugin-file-transfer.FileTransfer",
-        "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
-        "pluginId": "cordova-plugin-file-transfer",
-        "clobbers": [
-            "window.FileTransfer"
-        ]
-    },
-    {
-        "id": "org.apache.cordova.device-motion.Acceleration",
-        "file": "plugins/org.apache.cordova.device-motion/www/Acceleration.js",
-        "pluginId": "org.apache.cordova.device-motion",
-        "clobbers": [
-            "Acceleration"
-        ]
-    },
-    {
-        "id": "org.apache.cordova.device-motion.accelerometer",
-        "file": "plugins/org.apache.cordova.device-motion/www/accelerometer.js",
-        "pluginId": "org.apache.cordova.device-motion",
-        "clobbers": [
-            "navigator.accelerometer"
-        ]
-    },
-    {
-        "id": "org.apache.cordova.network-information.network",
-        "file": "plugins/org.apache.cordova.network-information/www/network.js",
-        "pluginId": "org.apache.cordova.network-information",
-        "clobbers": [
-            "navigator.connection",
-            "navigator.network.connection"
-        ]
-    },
-    {
-        "id": "org.apache.cordova.network-information.Connection",
-        "file": "plugins/org.apache.cordova.network-information/www/Connection.js",
-        "pluginId": "org.apache.cordova.network-information",
-        "clobbers": [
-            "Connection"
-        ]
-    },
-    {
-        "id": "org.apache.cordova.splashscreen.SplashScreen",
-        "file": "plugins/org.apache.cordova.splashscreen/www/splashscreen.js",
-        "pluginId": "org.apache.cordova.splashscreen",
-        "clobbers": [
-            "navigator.splashscreen"
+        "id": "cordova-plugin-dialogs.notification",
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
         ]
     },
     {
@@ -263,11 +214,92 @@ module.exports = [
         "runs": true
     },
     {
-        "id": "cordova-plugin-dialogs.notification",
-        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
-        "pluginId": "cordova-plugin-dialogs",
-        "merges": [
-            "navigator.notification"
+        "id": "cordova-plugin-file-transfer.FileTransferError",
+        "file": "plugins/cordova-plugin-file-transfer/www/FileTransferError.js",
+        "pluginId": "cordova-plugin-file-transfer",
+        "clobbers": [
+            "window.FileTransferError"
+        ]
+    },
+    {
+        "id": "cordova-plugin-file-transfer.FileTransfer",
+        "file": "plugins/cordova-plugin-file-transfer/www/FileTransfer.js",
+        "pluginId": "cordova-plugin-file-transfer",
+        "clobbers": [
+            "window.FileTransfer"
+        ]
+    },
+    {
+        "id": "cordova-plugin-geolocation.Coordinates",
+        "file": "plugins/cordova-plugin-geolocation/www/Coordinates.js",
+        "pluginId": "cordova-plugin-geolocation",
+        "clobbers": [
+            "Coordinates"
+        ]
+    },
+    {
+        "id": "cordova-plugin-geolocation.PositionError",
+        "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+        "pluginId": "cordova-plugin-geolocation",
+        "clobbers": [
+            "PositionError"
+        ]
+    },
+    {
+        "id": "cordova-plugin-geolocation.Position",
+        "file": "plugins/cordova-plugin-geolocation/www/Position.js",
+        "pluginId": "cordova-plugin-geolocation",
+        "clobbers": [
+            "Position"
+        ]
+    },
+    {
+        "id": "cordova-plugin-geolocation.geolocation",
+        "file": "plugins/cordova-plugin-geolocation/www/geolocation.js",
+        "pluginId": "cordova-plugin-geolocation",
+        "clobbers": [
+            "navigator.geolocation"
+        ]
+    },
+    {
+        "id": "cordova-plugin-network-information.network",
+        "file": "plugins/cordova-plugin-network-information/www/network.js",
+        "pluginId": "cordova-plugin-network-information",
+        "clobbers": [
+            "navigator.connection",
+            "navigator.network.connection"
+        ]
+    },
+    {
+        "id": "cordova-plugin-network-information.Connection",
+        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+        "pluginId": "cordova-plugin-network-information",
+        "clobbers": [
+            "Connection"
+        ]
+    },
+    {
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
+        "id": "org.apache.cordova.device-motion.Acceleration",
+        "file": "plugins/org.apache.cordova.device-motion/www/Acceleration.js",
+        "pluginId": "org.apache.cordova.device-motion",
+        "clobbers": [
+            "Acceleration"
+        ]
+    },
+    {
+        "id": "org.apache.cordova.device-motion.accelerometer",
+        "file": "plugins/org.apache.cordova.device-motion/www/accelerometer.js",
+        "pluginId": "org.apache.cordova.device-motion",
+        "clobbers": [
+            "navigator.accelerometer"
         ]
     }
 ];
@@ -276,13 +308,14 @@ module.exports.metadata =
 {
     "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-camera": "2.3.2-dev",
-    "cordova-plugin-file-transfer": "1.6.1",
-    "org.apache.cordova.device-motion": "0.2.6",
-    "org.apache.cordova.network-information": "0.2.7",
-    "org.apache.cordova.splashscreen": "0.2.7",
-    "cordova-plugin-file": "4.3.1",
     "cordova-plugin-dialogs": "1.3.1",
-    "cordova-plugin-whitelist": "1.3.1"
+    "cordova-plugin-file": "4.3.1",
+    "cordova-plugin-file-transfer": "1.6.1",
+    "cordova-plugin-geolocation": "2.4.1",
+    "cordova-plugin-network-information": "1.3.1",
+    "cordova-plugin-splashscreen": "4.0.1",
+    "cordova-plugin-whitelist": "1.3.1",
+    "org.apache.cordova.device-motion": "0.2.6"
 };
 // BOTTOM OF METADATA
 });

@@ -7,37 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "co.gov.gestiondelriesgo.yoreporto"
-        },
-        "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "co.gov.gestiondelriesgo.yoreporto"
-        },
-        "cordova-plugin-whitelist": {
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "co.gov.gestiondelriesgo.yoreporto"
         }
     },
-    "dependent_plugins": {
-        "cordova-plugin-compat": {
-            "PACKAGE_NAME": "co.gov.gestiondelriesgo.yoreporto"
-        },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "co.gov.gestiondelriesgo.yoreporto"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "co.gov.gestiondelriesgo.yoreporto"
-        },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "co.gov.gestiondelriesgo.yoreporto"
-        },
-        "org.apache.cordova.device-motion": {
-            "PACKAGE_NAME": "co.gov.gestiondelriesgo.yoreporto"
-        },
-        "org.apache.cordova.network-information": {
-            "PACKAGE_NAME": "co.gov.gestiondelriesgo.yoreporto"
-        },
-        "org.apache.cordova.splashscreen": {
-            "PACKAGE_NAME": "co.gov.gestiondelriesgo.yoreporto"
-        }
-    }
+    "dependent_plugins": {}
 }
