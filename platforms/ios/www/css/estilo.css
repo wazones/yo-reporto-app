@@ -1,0 +1,134 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*Condicionales para la pantalla*/
+/*Chrome*/
+@-webkit-viewport{width:device-width;}
+/*Mozilla*/
+@-moz-viewport{width:device-width;}
+/*Opera*/
+@-o-viewport{width:device-width;}
+/*Navegadores html5*/
+@viewport{width:device-width;}
+@-ms-viewport{width:device-width;}
+
+
+
+
+	
+#botones{
+	width:80%;
+	margin-left:10%;
+}
+
+/*Propiedad general para todos los campos de texto del aplicativo*/
+input[type=text]{
+  color:#FFFFFF;  
+}
+
+input[type=email]{
+  color:#FFFFFF;  
+}
+
+/*Propiedad general para todos los campos de tipo numerico del aplicativo*/
+
+input[type=number]{
+  color:#FFFFFF;
+}
+
+/*Indicador del boton del home*/
+#homebtn {
+  float: left;
+  width: 10%;
+  padding-top:-5px;
+}
+
+/*Css para los titulos de cada pantalla*/
+#tituloh3{
+color:red;
+}
+
+/*Css para los titulos de la pantalla de datos personales*/
+#titulo2nd{
+color:white;
+font-weight:bold;
+}
+
+
+/*estilo de la tercera pagina (cuatro botones)*/
+/*#pg-third{
+	width:100%;
+	height:5em;
+	background-image:url(../img/Fondo12.png);
+}*/
+
+/*#pg-report{
+	width:100%;
+	height:5em;
+	background-image:url(../img/Fondo12.png);
+}*/
+
+/*content*/
+#ctnt {
+width: 100%;
+/*background-color: #f00;*/        
+margin: 0px;
+left: 0px;
+}
+
+#map{
+width: 100%;
+height:60%;
+}
+
+#content-background{
+background-image:url(../img/Fondo12.png);
+    border:none;
+    height: 100%;
+    min-height: 100%;
+    -webkit-background-size: cover; 
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+    background-size: cover;
+ min-height: 100% !important; /* Insert the height of your content */
+}
+
+
+
+/*botones de tomar foto, galeria y visualizador de foto*/
+#btnsypic {
+  float: left;
+  width: 10%;
+}
+
+/*small image*/
+#simg {
+  margin-left: 50%;
+}
+
+/*imagen colocada en acerca de*/
+#img {
+    width: 100%;
+    height: 100%;
+    margin: 100%;
+}
+
+
+#fork {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+}
+
+.legend {
+    border: 1px solid black;
+}
+
+.legend .title {
+    display: block;
+    margin: 0.5em;
+    border-style: solid;
+    border-width: 0 0 0 1em;
+    padding: 0 0.3em;
+}
